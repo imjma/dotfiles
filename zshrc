@@ -46,3 +46,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=$PATH:/Users/jie/.rvm/gems/ruby-2.0.0-p195/bin:/Users/jie/.rvm/gems/ruby-2.0.0-p195@global/bin:/Users/jie/.rvm/rubies/ruby-2.0.0-p195/bin:/Users/jie/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+# alias
+alias mou='open -a Mou'
