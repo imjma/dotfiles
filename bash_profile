@@ -1,3 +1,5 @@
+source ~/.git-completion.bash
+
 ############################################
 # Modified from 
 # https://gist.github.com/1844923
@@ -133,8 +135,8 @@ bash_prompt() {
 	#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 	#PS1="${EMK}[${UC}\u${EMR}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
 
-	PS1="$status_style"'$fill \t\n'"${NONE}[\t${NONE}] ${NONE}[${R}\u${R}@${R}\h ${C}\${PWD}${NONE}]${G}${GIT_CURRENT_BRANCH_STATE_COLOR}\${GIT_CURRENT_BRANCH}${NONE}\n\\$ ${W}"
-	SUDO_PS1="$status_style"'$fill \t\n'"${NONE}[\t${NONE}] ${NONE}[${R}\u${R}@${R}\h ${C}\${PWD}${NONE}]${G}\${GIT_CURRENT_BRANCH}${NONE}\\$ ${W}"
+	PS1="$status_style"'$fill \t\n'"${NONE}[\t${NONE}] ${NONE}[${R}\u${R}@${R}\h ${C}\${PWD}${NONE}]${G}${GIT_CURRENT_BRANCH_STATE_COLOR}\${GIT_CURRENT_BRANCH}${NONE}\n\\$ ${NONE}"
+	SUDO_PS1="$status_style"'$fill \t\n'"${NONE}[\t${NONE}] ${NONE}[${R}\u${R}@${R}\h ${C}\${PWD}${NONE}]${G}\${GIT_CURRENT_BRANCH}${NONE}\\$ ${NONE}"
 }
 	
 PROMPT_COMMAND=bash_prompt_command 
@@ -150,3 +152,5 @@ bash_prompt
 
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
