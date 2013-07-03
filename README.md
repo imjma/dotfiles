@@ -1,4 +1,6 @@
-# My Personal Configuration Files a.k.a dotfiles
+# My dotfiles
+
+##Installation
 
 	git clone https://github.com/imjma/dotfiles.git ~/dotfiles
 	cd ~/dotfiles
