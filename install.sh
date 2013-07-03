@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=$HOME/dotfiles                    # dotfiles directory
-files="bashrc bash_profile"    # list of files/folders to symlink in homedir
+files="bashrc bash_profile zshrc"    # list of files/folders to symlink in homedir
 
 ##########
 
