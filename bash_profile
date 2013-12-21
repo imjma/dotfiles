@@ -7,9 +7,9 @@ source ~/.git-completion.bash
 # from https://github.com/emilis/emilis-config/blob/master/.bash_ps1
 #
 # Modified for Mac OS X by
-# @kenziii
-# twitter: https://twitter.com/#!/kenziii
-# github: https://github.com/whileimbit
+# @imjma
+# twitter: https://twitter.com/imjma
+# github: https://github.com/imjma
 ###########################################
 
 # System-wide .bashrc file for interactive bash(1) shells.
