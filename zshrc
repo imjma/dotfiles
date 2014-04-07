@@ -1,5 +1,7 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+FEARLESS2FREE
+FEARLESS2FREE
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -11,13 +13,13 @@ ZSH_THEME="gnzh"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Set to this to use case-sensitive completion
+# Set this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment to change how often before auto-updates occur? (in days)
+# Uncomment to change how often to auto-update? (in days)
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment following line if you want to disable colors in ls
@@ -37,21 +39,28 @@ ZSH_THEME="gnzh"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment following line if you want to  shown in the command execution time stamp
-# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
-# yyyy-mm-dd
+# Uncomment following line if you want to the command execution time stamp shown
+# in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby osx zsh-syntax-highlighting)
+plugins=(git rails ruby osx zsh-syntax-highlighting node npm brew rvm)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/Users/jie/.nvm/v0.10.24/bin:/Users/jie/.rvm/gems/ruby-2.0.0-p353/bin:/Users/jie/.rvm/gems/ruby-2.0.0-p353@global/bin:/Users/jie/.rvm/rubies/ruby-2.0.0-p353/bin:/usr/local/bin:/Users/jie/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jie/.rvm/bin"
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -66,3 +75,4 @@ export PATH="/Users/jie/.nvm/v0.10.24/bin:/Users/jie/.rvm/gems/ruby-2.0.0-p353/b
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
