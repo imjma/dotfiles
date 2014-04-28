@@ -3,3 +3,5 @@
 	email = codejma@gmail.com
 [mergetool]
 	keepBackup = true
+[alias]
+  lg = log --abbrev-commit --decorate --pretty=oneline
