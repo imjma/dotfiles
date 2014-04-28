@@ -1,6 +1,13 @@
 set nocompatible               " Be iMproved
 
 "===============================================================================
+" Detect OS
+"===============================================================================
+let s:is_windows = has('win32') || has('win64')
+let s:is_cygwin = has('win32unix')
+let s:is_macvim = has('gui_macvim')
+
+"===============================================================================
 " NeoBundle
 "===============================================================================
 if has('vim_starting')
@@ -30,10 +37,24 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'Xuyuanp/git-nerdtree'
 
+" Fuzzy search
+NeoBundle 'Shougo/unite.vim'
+
+" Code completion
+" NeoBundle'Shougo/neocomplcache'
+" NeoBundle 'vim-scripts/AutoComplPop'
+if s:is_macvim
+  " NeoBundle 'Valloric/YouCompleteMe'
+endif
+
+" Snippets
+NeoBundle 'honza/vim-snippets'
+
 " Color themems
 NeoBundle 'nanotech/jellybeans.vim'
 
 " Git
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 
 " You can specify revision/branch/tag.
