@@ -3,6 +3,7 @@ set nocompatible               " Be iMproved
 "===============================================================================
 " Detect OS
 "===============================================================================
+
 let s:is_windows = has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
 let s:is_macvim = has('gui_macvim')
@@ -10,6 +11,7 @@ let s:is_macvim = has('gui_macvim')
 "===============================================================================
 " NeoBundle
 "===============================================================================
+
 if has('vim_starting')
   " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -50,6 +52,9 @@ endif
 " Snippets
 NeoBundle 'honza/vim-snippets'
 
+" Comments
+NeoBundle 'scrooloose/nerdcommenter'
+
 " Color themems
 NeoBundle 'nanotech/jellybeans.vim'
 
@@ -72,6 +77,7 @@ NeoBundleCheck
 "===============================================================================
 " General Settings
 "===============================================================================
+
 syntax enable
 
 " Colorscheme
@@ -81,8 +87,19 @@ colorscheme jellybeans
 set number
 
 "===============================================================================
+" Leader Key Mappings
+"===============================================================================
+
+" Map leader and localleader key to comma
+let mapleader = ","
+let g:mapleader = ","
+let maplocalleader = ","
+let g:maplocalleader = ","
+
+"===============================================================================
 " NERDTree
 "===============================================================================
+
 let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
