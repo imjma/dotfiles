@@ -38,13 +38,13 @@ NeoBundle 'bling/vim-airline' " So much faster than Powerline! :)
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'Xuyuanp/git-nerdtree'
+NeoBundle 'Shougo/vimfiler'
 
 " Fuzzy search
 NeoBundle 'Shougo/unite.vim'
 
 " Code completion
-" NeoBundle'Shougo/neocomplcache'
-" NeoBundle 'vim-scripts/AutoComplPop'
+NeoBundle 'Shougo/neocomplete.vim'
 if s:is_macvim
   " NeoBundle 'Valloric/YouCompleteMe'
 endif
@@ -61,6 +61,12 @@ NeoBundle 'nanotech/jellybeans.vim'
 " Git
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
+
+" Ident
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" UI Enchance
+NeoBundle 'yonchu/accelerated-smooth-scroll'
 
 " You can specify revision/branch/tag.
 " NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -86,6 +92,17 @@ colorscheme jellybeans
 " Turn on line number
 set number
 
+" Sets how many lines of history vim has to remember
+set history=10000
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Display unprintable chars
+set list
+set listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:␣
+set showbreak=↪
+
 "===============================================================================
 " Leader Key Mappings
 "===============================================================================
@@ -103,3 +120,10 @@ let g:maplocalleader = ","
 let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+
+"===============================================================================
+" Ident Guides
+"===============================================================================
+
+let g:indent_guides_enable_on_vim_startup = 1
+
