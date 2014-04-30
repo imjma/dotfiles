@@ -103,6 +103,9 @@ set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:␣
 set showbreak=↪
 
+" 256bit terminal
+set t_Co=256
+
 "===============================================================================
 " Leader Key Mappings
 "===============================================================================
@@ -126,4 +129,3 @@ let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 "===============================================================================
 
 let g:indent_guides_enable_on_vim_startup = 1
-
