@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################
-# .make.sh
+# install.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
@@ -12,11 +12,26 @@ files="bashrc bash_profile zshrc gitconfig vimrc vim"    # list of files/folders
 ##########
 
 # change to the dotfiles directory
-echo "Changing to the $dir directory"
+echo "==> Changing to the $dir directory"
 cd $dir
 echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-  [[ ! -e $HOME/.$file ]] && ln -s $dir/.$file $HOME/.$file || echo ".$file already exists..."
+  [[ ! -e $HOME/.$file ]] && ln -s $dir/.$file $HOME/.$file || echo "### .$file already exists..."
+done
+
+# symbol link .oh-my-zsh custom plugins
+ZSH=$HOME/.oh-my-zsh
+plugins_dir=custom/plugins
+plugins="zsh-syntax-highlighting"
+
+# dotfiles oh-my-zsh plugins folder
+src=$dir/.oh-my-zsh/$plugins_dir
+target=$ZSH/$plugins_dir
+
+echo "==> Symbol link oh-my-zsh plugins"
+
+for plugin in $plugins; do
+  [[ ! -e $target/$plugin ]] && ln -s $src/$plugin $target/$plugin || echo "### $plugin already exists..."
 done
