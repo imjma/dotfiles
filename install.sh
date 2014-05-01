@@ -7,10 +7,9 @@
 ########## Variables
 
 dir=$HOME/dotfiles                    # dotfiles directory
-files=".bashrc .bash_profile .zshrc .gitconfig .vimrc .vim .tmux.conf"    # list of files/folders to symlink in homedir
+files=".bashrc .bash_profile .zshrc .gitconfig .vimrc .vim"    # list of files/folders to symlink in homedir
 
 ##########
-
 # change to the dotfiles directory
 echo "==> Changing to the $dir directory"
 cd $dir
@@ -20,6 +19,15 @@ echo "...done"
 for file in $files; do
   [[ ! -e $HOME/$file ]] && ln -s $dir/$file $HOME/$file || echo "### $file already exists..."
 done
+
+# .tmux.conf
+if [[ "$(uname)" = "Linux" ]]; then
+  tmuxconf=".tmux.linux.conf"
+else
+  tmuxconf=".tmux.conf"
+fi
+[[ ! -e "$HOME/.tmux.conf" ]] && ln -s $dir/$tmuxconf $HOME/.tmux.conf || echo "###
+.tmux.conf already exists..."
 
 # symbol link .oh-my-zsh custom plugins
 ZSH=$HOME/.oh-my-zsh
