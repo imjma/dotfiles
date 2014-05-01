@@ -74,3 +74,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+################################################################################
+# General
+################################################################################
+# Export TERM correctly for tmux
+[[ $TERM == "screen" ]] && export TERM=screen-256color
+[[ $TERM == "xterm" ]] && export TERM=xterm-256color
