@@ -41,7 +41,8 @@ NeoBundle 'Xuyuanp/git-nerdtree'
 NeoBundle 'Shougo/vimfiler'
 
 " Fuzzy search
-NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/unite.vim'
+NeoBundle 'kien/ctrlp.vim'
 
 " Code completion
 NeoBundle 'Shougo/neocomplete.vim'
@@ -69,6 +70,9 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 " UI Enchance
 NeoBundle 'yonchu/accelerated-smooth-scroll'
 
+" Misc
+NeoBundle 'sjl/gundo.vim'
+
 " You can specify revision/branch/tag.
 " NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
@@ -89,6 +93,7 @@ syntax enable
 
 " Colorscheme
 colorscheme jellybeans
+set background=dark
 
 " Turn on line number
 set number
@@ -243,3 +248,19 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 " Always show the statusline
 set laststatus=2
+
+"===============================================================================
+" ctrlp 
+"===============================================================================
+
+let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_height = 30
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+if s:is_windows
+  set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+endif
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+

@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=$HOME/dotfiles                    # dotfiles directory
-files="bashrc bash_profile zshrc gitconfig vimrc vim"    # list of files/folders to symlink in homedir
+files=".bashrc .bash_profile .zshrc .gitconfig .vimrc .vim .tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -18,17 +18,17 @@ echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-  [[ ! -e $HOME/.$file ]] && ln -s $dir/.$file $HOME/.$file || echo "### .$file already exists..."
+  [[ ! -e $HOME/$file ]] && ln -s $dir/$file $HOME/$file || echo "### $file already exists..."
 done
 
 # symbol link .oh-my-zsh custom plugins
 ZSH=$HOME/.oh-my-zsh
-plugins_dir=custom/plugins
+pluginsDir=custom/plugins
 plugins="zsh-syntax-highlighting"
 
 # dotfiles oh-my-zsh plugins folder
-src=$dir/.oh-my-zsh/$plugins_dir
-target=$ZSH/$plugins_dir
+src=$dir/.oh-my-zsh/$pluginsDir
+target=$ZSH/$pluginsDir
 
 echo "==> Symbol link oh-my-zsh plugins"
 
