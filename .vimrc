@@ -140,6 +140,9 @@ set smartcase
 " Make search act like search in modern browsers
 set incsearch
 
+" search highlight
+set hlsearch
+
 " Make regex a little easier to type
 set magic
 
