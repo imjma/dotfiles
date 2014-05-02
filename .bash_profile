@@ -154,3 +154,4 @@ bash_prompt
 shopt -s checkwinsize
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+[ -s "/Users/jie/.nvm/nvm.sh" ] && . "/Users/jie/.nvm/nvm.sh" # This loads nvm
