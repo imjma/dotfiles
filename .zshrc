@@ -76,6 +76,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+[[ -e $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
 
 ################################################################################
 # General
