@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Remap Left Control to Hyper</name>
+    <appendix>OS X doesn't have a Hyper. This maps Left Control to Control + Shift + Option + Command.</appendix>
+
+    <identifier>private.left_control_to_hyper</identifier>
+
+    <autogen>
+        --KeyToKey--
+        KeyCode::F19,
+        KeyCode::COMMAND_L, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+    </autogen>
+  </item>
+
+  <item>
+        <name>Hyper+Tab To Capslock</name>
+        <appendix>Hyper(cmd+ctrl+shift+opt)+tab, send capslock</appendix>
+        <identifier>private.hyper_tab_tp_capslock</identifier>
+        <autogen>
+        --KeyToKey--
+        KeyCode::TAB, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+        KeyCode::CAPSLOCK
+        </autogen>
+    </item>
+</root>
