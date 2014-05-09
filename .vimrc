@@ -69,7 +69,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " UI Enchance
-NeoBundle 'yonchu/accelerated-smooth-scroll'
+" NeoBundle 'yonchu/accelerated-smooth-scroll'
 
 " Misc
 NeoBundle 'sjl/gundo.vim'
@@ -269,7 +269,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 set laststatus=2
 
 "===============================================================================
-" ctrlp 
+" ctrlp
 "===============================================================================
 
 let g:ctrlp_map = '<c-p>'
@@ -281,10 +281,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 if s:is_windows
   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 endif
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
 
 "===============================================================================
-" neocomplete 
+" neocomplete
 "===============================================================================
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
