@@ -1,4 +1,4 @@
-source ~/.git-completion.bash
+[[ -e ~/.git-completion.bash ]] && source ~/.git-completion.bash
 
 ############################################
 # Modified from 
