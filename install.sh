@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=$HOME/dotfiles                    # dotfiles directory
-files=".bashrc .bash_profile .zshrc .gitconfig .vimrc .vim .tmux.conf"    # list of files/folders to symlink in homedir
+files=".bashrc .bash_profile .zshrc .gitconfig .vimrc .vim .tmux.conf .tigrc"    # list of files/folders to symlink in homedir
 
 ##########
 # change to the dotfiles directory

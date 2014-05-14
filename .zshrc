@@ -84,3 +84,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # Export TERM correctly for tmux
 [[ $TERM == "screen" ]] && export TERM=screen-256color
 [[ $TERM == "xterm" ]] && export TERM=xterm-256color
+
+################################################################################
+# Alias 
+################################################################################
+# alias gci="git commit -a -m"
