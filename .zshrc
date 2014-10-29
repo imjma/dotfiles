@@ -77,6 +77,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 [[ -e $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ################################################################################
 # General

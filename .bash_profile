@@ -155,3 +155,4 @@ shopt -s checkwinsize
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 [ -s "/Users/jie/.nvm/nvm.sh" ] && . "/Users/jie/.nvm/nvm.sh" # This loads nvm
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
