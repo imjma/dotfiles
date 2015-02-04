@@ -6,6 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="gnzh"
+# ZSH_THEME="aussiegeek"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -48,7 +49,7 @@ ZSH_THEME="gnzh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby osx zsh-syntax-highlighting node npm brew rvm zsh-syntax-highlighting sublime)
+plugins=(git rails ruby osx zsh-syntax-highlighting node npm brew rvm zsh-syntax-highlighting sublime colored-man tmux git-flow sudo vagrant compass macvim)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,10 +75,12 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.composer/vendor/bin # Add homestead to PATH
 
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 [[ -e $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 ################################################################################
 # General
@@ -90,3 +93,4 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # Alias 
 ################################################################################
 # alias gci="git commit -a -m"
+alias gcd="git checkout develop"
