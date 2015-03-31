@@ -49,7 +49,7 @@ ZSH_THEME="gnzh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails ruby osx zsh-syntax-highlighting node npm brew rvm zsh-syntax-highlighting sublime colored-man tmux git-flow sudo vagrant compass macvim)
+plugins=(gitfast rails ruby osx zsh-syntax-highlighting node npm brew rvm zsh-syntax-highlighting sublime colored-man tmux git-flow sudo vagrant compass macvim)
 
 source $ZSH/oh-my-zsh.sh
 
