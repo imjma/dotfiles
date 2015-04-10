@@ -5,6 +5,7 @@
 # path, the 0 in the filename causes this to load first
 path=(
   $path
+  $HOME/bin
   $HOME/.rvm/bin # Add RVM to PATH for scripting
   $HOME/.composer/vendor/bin # Add homestead to PATH
 )
