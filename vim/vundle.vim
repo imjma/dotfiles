@@ -42,7 +42,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 
 
 " Interface
-" Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'trusktr/seti.vim'
 " Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
