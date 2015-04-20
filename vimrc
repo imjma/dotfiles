@@ -47,8 +47,8 @@ else
   let g:CSApprox_loaded = 1
 
   " For people using a terminal that is not Solarized
-  " let g:solarized_termcolors=256
-  " let g:solarized_termtrans=1
+  let g:solarized_termcolors=256
+  let g:solarized_termtrans=1
 endif
 
 " Colorscheme
