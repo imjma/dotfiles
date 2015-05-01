@@ -67,4 +67,15 @@ hs.hotkey.bind(hyper, '\\', function()
     hs.hints.windowHints()
 end)
 
+-- Move Mouse to center of next Monitor
+hs.hotkey.bind(hyper, '`', function()
+    local screen = hs.mouse.getCurrentScreen()
+    local nextScreen = screen:next()
+    local rect = nextScreen:fullFrame()
+    local center = hs.geometry.rectMidPoint(rect)
+
+    -- hs.mouse.setRelativePosition(center, nextScreen)
+    hs.mouse.setAbsolutePosition(center)
+end)
+
 hs.hotkey.bind(hyper, '/', toggleCaffeine)
