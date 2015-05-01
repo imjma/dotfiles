@@ -78,4 +78,14 @@ hs.hotkey.bind(hyper, '`', function()
     hs.mouse.setAbsolutePosition(center)
 end)
 
+-- Move Mouse to center of current Window
+hs.hotkey.bind(hyperShift, '`', function()
+    local win = hs.window.focusedWindow()
+    local rect = win:frame()
+    local center = hs.geometry.rectMidPoint(rect)
+
+    -- hs.mouse.setRelativePosition(center, nextScreen)
+    hs.mouse.setAbsolutePosition(center)
+end)
+
 hs.hotkey.bind(hyper, '/', toggleCaffeine)
