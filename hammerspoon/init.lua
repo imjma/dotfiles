@@ -17,33 +17,33 @@ hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/hammerspoon/", reload_config)
 hs.alert.show("Config loaded")
 
 -- replace caffeine
-local caffeine = hs.menubar.new()
-function setCaffeineDisplay(state)
-    if state then
-        -- caffeine:setTitle("A") -- AWAKE
-        caffeine:setIcon("caffeine-active.png")
-        hs.alert("Caffeine enabled", 1)
-    else
-        -- caffeine:setTitle("S") -- SLEEPY
-        caffeine:setIcon("caffeine-inactive.png")
-        hs.alert("Caffeine disabled", 1)
-    end
-end
+-- local caffeine = hs.menubar.new()
+-- function setCaffeineDisplay(state)
+--     if state then
+--         -- caffeine:setTitle("A") -- AWAKE
+--         caffeine:setIcon("caffeine-active.png")
+--         hs.alert("Caffeine enabled", 1)
+--     else
+--         -- caffeine:setTitle("S") -- SLEEPY
+--         caffeine:setIcon("caffeine-inactive.png")
+--         hs.alert("Caffeine disabled", 1)
+--     end
+-- end
 
-function toggleCaffeine()
-    setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
-end
+-- function toggleCaffeine()
+--     setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
+-- end
 
-function removeCaffeine()
-    caffeine:delete()
-    caffeine = nil
-end
+-- function removeCaffeine()
+--     caffeine:delete()
+--     caffeine = nil
+-- end
 
-if caffeine then
-    caffeine:setClickCallback(toggleCaffeine)
-    -- hs.caffeinate.set("displayIdle", true)  -- default to turn caffeinate on
-    setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
-end
+-- if caffeine then
+--     caffeine:setClickCallback(toggleCaffeine)
+--     -- hs.caffeinate.set("displayIdle", true)  -- default to turn caffeinate on
+--     setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
+-- end
 -- /replace caffeine
 
 -- launch and focus applications
