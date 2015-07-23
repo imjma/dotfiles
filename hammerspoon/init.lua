@@ -88,4 +88,4 @@ hs.hotkey.bind(hyperShift, '`', function()
     hs.mouse.setAbsolutePosition(center)
 end)
 
-hs.hotkey.bind(hyper, '/', toggleCaffeine)
+-- hs.hotkey.bind(hyper, '/', toggleCaffeine)
