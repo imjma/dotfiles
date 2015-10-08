@@ -1,7 +1,8 @@
 -- Set hyper to ctrl + alt + cmd
 -- Set hyperShift to ctrl + alt + cmd + shift
-local hyper      = {'ctrl', 'cmd', 'alt'}
-local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
+-- local hyper      = {'ctrl', 'cmd', 'alt'}
+local hyper      = {'ctrl', 'cmd', 'alt', 'shift'}
+-- local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 
 -- reload configka
 -- hs.hotkey.bind(hyper, "r", function()
@@ -79,13 +80,13 @@ hs.hotkey.bind(hyper, '`', function()
 end)
 
 -- Move Mouse to center of current Window
-hs.hotkey.bind(hyperShift, '`', function()
-    local win = hs.window.focusedWindow()
-    local rect = win:frame()
-    local center = hs.geometry.rectMidPoint(rect)
+-- hs.hotkey.bind(hyperShift, '/', function()
+--     local win = hs.window.focusedWindow()
+--     local rect = win:frame()
+--     local center = hs.geometry.rectMidPoint(rect)
 
     -- hs.mouse.setRelativePosition(center, nextScreen)
-    hs.mouse.setAbsolutePosition(center)
-end)
+--     hs.mouse.setAbsolutePosition(center)
+-- end)
 
 -- hs.hotkey.bind(hyper, '/', toggleCaffeine)

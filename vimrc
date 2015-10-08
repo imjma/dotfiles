@@ -150,7 +150,7 @@ set smarttab
 
 " Text display settings
 set linebreak
-set textwidth=80
+set textwidth=120
 set autoindent
 set nowrap
 set whichwrap+=h,l,<,>,[,]
