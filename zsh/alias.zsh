@@ -2,4 +2,7 @@
 # Alias 
 ################################################################################
 # alias gci="git commit -a -m"
-alias vim="mvim -v"
+
+if [ `uname` == 'Darwin' ]; then
+  alias vim="mvim -v"
+fi
