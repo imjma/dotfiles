@@ -1,0 +1,18 @@
+# Folder view configuration files
+.DS_Store
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Compiled Python files
+*.pyc
+
+# Application specific files
+.sass-cache
+
+# Vim specific files
+vim/bundle/*
+*.swp
+vim/.netrwhist
+vim/tmp

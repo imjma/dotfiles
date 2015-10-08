@@ -1,1 +1,2 @@
-[[ -e $HOME/.nvm/nvm.sh ]] && source $HOME/.nvm/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
