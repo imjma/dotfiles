@@ -32,7 +32,11 @@ if executable('ag')
       let g:ctrlp_use_caching = 0
 else
     " Fall back to using git ls-files if Ag is not available
-      let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+    " let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$'
+      \ }
       let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
