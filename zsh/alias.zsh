@@ -3,6 +3,6 @@
 ################################################################################
 # alias gci="git commit -a -m"
 
-if [ `uname` == 'Darwin' ]; then
+if [ `uname` = 'Darwin' ]; then
   alias vim="mvim -v"
 fi
