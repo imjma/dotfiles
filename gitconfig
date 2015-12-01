@@ -29,7 +29,7 @@
 
   # branch
   b = branch -v                     # branch (verbose)
-  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 
   # commit
   c = commit -m                     # commit with message
@@ -90,6 +90,11 @@
 
   # tag
   t = tag -n                        # show tags with <n> lines of each tag message
+
+  #update-index
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
+  ignored = !git ls-files -v | grep ^[a-z]
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [apply]
