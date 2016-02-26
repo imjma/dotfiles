@@ -33,6 +33,7 @@ Plugin 'SirVer/ultisnips'
 
 " Search
 Plugin 'kien/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 
@@ -43,9 +44,11 @@ Plugin 'jistr/vim-nerdtree-tabs'
 
 " Interface
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'jdkanani/vim-material-theme'
 Plugin 'trusktr/seti.vim'
-" Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'itchyny/lightline.vim'
+Plugin 'w0ng/vim-hybrid'
 
 " Enhance
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -54,6 +57,11 @@ Plugin 'godlygeek/tabular'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-repeat'
+Plugin 'junegunn/rainbow_parentheses.vim'
+
+" Navigation
+Plugin 'easymotion/vim-easymotion'
+Plugin 'zhaocai/GoldenView.Vim'
 
 
 " All of your Plugins must be added before the following line

@@ -1,8 +1,8 @@
 -- Set hyper to ctrl + alt + cmd
 -- Set hyperShift to ctrl + alt + cmd + shift
--- local hyper      = {'ctrl', 'cmd', 'alt'}
-local hyper      = {'ctrl', 'cmd', 'alt', 'shift'}
--- local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
+local hyper      = {'ctrl', 'cmd', 'alt'}
+-- local hyper      = {'ctrl', 'cmd', 'alt', 'shift'}
+local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 
 -- reload configka
 -- hs.hotkey.bind(hyper, "r", function()
@@ -49,27 +49,40 @@ hs.alert.show("Config loaded")
 
 -- launch and focus applications
 local key2App = {
-    a = "App Store",
-    w = 'Safari',
-    e = 'Sublime Text',
-    -- l = 'Adobe Lightroom', -- used for lock screen
-    p = 'Adobe Photoshop CC',
-    f = 'Finder',
-    t = 'iTerm',
-    g = 'Google Chrome',
-    m = 'Airmail'
+    ["a"] = "App Store",
+    ["w"] = "Safari",
+    ["e"] = "Sublime Text",
+    ["f"] = "Finder",
+    ["t"] = "iTerm",
+    ["g"] = "Google Chrome",
+    ["m"] = "Polymail",
+    ["s"] = "Slack"
 }
 for key, app in pairs(key2App) do
-    hs.hotkey.bind(hyper, key, function() hs.application.launchOrFocus(app) end)
+    hs.hotkey.bind(hyperShift, key, function() hs.application.launchOrFocus(app) end)
 end
 
+-- Simple triggers
+-- triggers = {
+--   {hyper, "s", "Slack"}
+-- }
+-- for _, trigger in pairs(triggers) do
+  -- local mods = trigger[1]
+  -- local key = trigger[2]
+  -- local applicationName = trigger[3]
+
+  -- hs.hotkey.bind(mods, key, function()
+    -- hs.application.launchOrFocus(applicationName)
+  -- end)
+-- end
+
 -- Hints
-hs.hotkey.bind(hyper, '\\', function() 
+hs.hotkey.bind(hyperShift, '\\', function() 
     hs.hints.windowHints()
 end)
 
 -- Move Mouse to center of next Monitor
-hs.hotkey.bind(hyper, '`', function()
+hs.hotkey.bind(hyperShift, '`', function()
     local screen = hs.mouse.getCurrentScreen()
     local nextScreen = screen:next()
     local rect = nextScreen:fullFrame()

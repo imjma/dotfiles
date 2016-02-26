@@ -19,11 +19,8 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <leader>l :Align
 nnoremap <leader>a :Ag<space>
-nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>\ :TagbarToggle<CR>
 nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
@@ -44,11 +41,11 @@ nnoremap W :w<cr>
 " alias yw to yank the entire word 'yank inner word'
 " even if the cursor is halfway inside the word
 " FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
-nnoremap ,yw yiww
+nnoremap <leader>yw yiww
 
 " ,ow = 'overwrite word', replace a word with what's in the yank buffer
 " FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
-nnoremap ,ow "_diwhp
+nnoremap <leader>ow "_diwhp
 
 "make Y consistent with C and D
 nnoremap Y y$
@@ -64,43 +61,43 @@ nnoremap 0 ^
 nnoremap ^ 0
 
 " ,# Surround a word with #{ruby interpolation}
-map ,# ysiw#
-vmap ,# c#{<C-R>"}<ESC>
+map <leader># ysiw#
+vmap <leader># c#{<C-R>"}<ESC>
 
 " ," Surround a word with "quotes"
-map ," ysiw"
-vmap ," c"<C-R>""<ESC>
+map <leader>" ysiw"
+vmap <leader>" c"<C-R>""<ESC>
 
 " ,' Surround a word with 'single quotes'
-map ,' ysiw'
-vmap ,' c'<C-R>"'<ESC>
+map <leader>' ysiw'
+vmap <leader>' c'<C-R>"'<ESC>
 
 " ,) or ,( Surround a word with (parens)
 " The difference is in whether a space is put in
-map ,( ysiw(
-map ,) ysiw)
-vmap ,( c( <C-R>" )<ESC>
-vmap ,) c(<C-R>")<ESC>
+map <leader>( ysiw(
+map <leader>) ysiw)
+vmap <leader>( c( <C-R>" )<ESC>
+vmap <leader>) c(<C-R>")<ESC>
 
 " ,[ Surround a word with [brackets]
-map ,] ysiw]
-map ,[ ysiw[
-vmap ,[ c[ <C-R>" ]<ESC>
-vmap ,] c[<C-R>"]<ESC>
+map <leader>] ysiw]
+map <leader>[ ysiw[
+vmap <leader>[ c[ <C-R>" ]<ESC>
+vmap <leader>] c[<C-R>"]<ESC>
 
 " ,{ Surround a word with {braces}
-map ,} ysiw}
-map ,{ ysiw{
-vmap ,} c{ <C-R>" }<ESC>
-vmap ,{ c{<C-R>"}<ESC>
+map <leader>} ysiw}
+map <leader>{ ysiw{
+vmap <leader>} c{ <C-R>" }<ESC>
+vmap <leader>{ c{<C-R>"}<ESC>
 
-map ,` ysiw`
+map <leader>` ysiw`
 
 " gary bernhardt's hashrocket
 imap <c-l> <space>=><space>
 
 "Go to last edit location with ,.
-nnoremap ,. '.
+nnoremap <leader>. '.
 
 "When typing a string, your quotes auto complete. Move past the quote
 "while still in insert mode by hitting Ctrl-a. Example:
@@ -113,15 +110,15 @@ imap <C-a> <esc>wa
 
 "Move back and forth through previous and next buffers
 "with ,z and ,x
-nnoremap <silent> ,z :bp<CR>
-nnoremap <silent> ,x :bn<CR>
+nnoremap <silent> <leader>z :bp<CR>
+nnoremap <silent> <leader>x :bn<CR>
 
 " ==============================
 " Window/Tab/Split Manipulation
 " ==============================
 
 " Zoom in
-map <silent> ,gz <C-w>o
+map <silent> <leader>gz <C-w>o
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
@@ -135,8 +132,8 @@ nnoremap <silent> ss <C-w>s
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
 " this is helpful to paste someone the path you're looking at
-nnoremap <silent> ,cf :let @* = expand("%:~")<CR>
-nnoremap <silent> ,cn :let @* = expand("%:t")<CR>
+nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
+nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 
 "Clear current search highlight by double tapping //
 nmap <silent> // :nohlsearch<CR>

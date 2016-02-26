@@ -40,24 +40,33 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Monaco\ 12,Inconsolata\ XL\ 12,Inconsolata\ 15
   else
-    set guifont=Monaco:h17,Inconsolata\ XL:h17,Inconsolata:h20
+    set guifont=Code\ Source\ Pro:h11,Monaco:h12,Inconsolata\ XL:h17,Inconsolata:h20
   end
 
 else
   let g:CSApprox_loaded = 1
 
   " For people using a terminal that is not Solarized
-  let g:solarized_termcolors=256
-  let g:solarized_termtrans=1
+  " let g:solarized_termcolors=256
+  " let g:solarized_termtrans=1
 endif
 
 " Colorscheme
-colorscheme solarized
+colorscheme material-theme
+" colorscheme hybrid
+" colorscheme solarized
 " colorscheme seti
 set background=dark
 
+" Turn on relative number mode
+set relativenumber
+
 " Turn on line number
 set number
+
+" Open split panes to right and bottom
+set splitbelow
+set splitright
 
 " Sets how many lines of history vim has to remember
 set history=10000
