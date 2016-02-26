@@ -12,7 +12,4 @@
 .sass-cache
 
 # Vim specific files
-vim/bundle/*
 *.swp
-vim/.netrwhist
-vim/tmp
