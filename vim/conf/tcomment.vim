@@ -8,3 +8,4 @@
 " Keybindings
 "-------------------------------------------------------------------------------
 map <leader>__ gcc
+map <leader>_b :: :TCommentBlock<cr>
