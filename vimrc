@@ -52,7 +52,8 @@ else
 endif
 
 " Colorscheme
-colorscheme material-theme
+" colorscheme material-theme
+colorscheme base16-default
 " colorscheme hybrid
 " colorscheme solarized
 " colorscheme seti
