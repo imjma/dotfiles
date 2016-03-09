@@ -53,10 +53,13 @@ endif
 
 " Colorscheme
 " colorscheme material-theme
-colorscheme base16-default
+" colorscheme base16-default
+colorscheme base16-tomorrow
+" colorscheme jellybeans
 " colorscheme hybrid
 " colorscheme solarized
 " colorscheme seti
+" colorscheme molokai
 set background=dark
 
 " Turn on relative number mode
