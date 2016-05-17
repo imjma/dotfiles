@@ -165,7 +165,7 @@ let g:syntastic_check_on_wq = 0
 let g:airline_powerline_fonts = 1
 
 "===============================================================================
-"" Local Settings
+" Local Settings
 "===============================================================================
 
 " Go crazy!
@@ -180,4 +180,4 @@ if filereadable(expand("~/.vimrc.local"))
   " autocmd! bufwritepost .vimrc source ~/.vimrc
   " noremap! jj <ESC>
   source ~/.vimrc.local
-endif<Paste>
+endif
