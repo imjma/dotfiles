@@ -155,6 +155,11 @@ nmap <silent> // :nohlsearch<CR>
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
+" <tab> do completion
+inoremap <silent><expr> <Tab>
+\ pumvisible() ? "\<C-n>" :
+\ deoplete#mappings#manual_complete()
+
 "Syntastic-related configurations.
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
