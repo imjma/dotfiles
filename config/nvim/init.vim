@@ -171,7 +171,7 @@ let g:syntastic_check_on_wq = 0
 let g:airline_powerline_fonts = 1
 
 " vim-move
-let g:move_key_modifier = 'C'
+" let g:move_key_modifier = 'C'
 
 "===============================================================================
 " Local Settings
