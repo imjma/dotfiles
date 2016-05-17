@@ -30,6 +30,7 @@ Plug 'scrooloose/syntastic'
 
 " Enhance
 Plug 'godlygeek/tabular'
+Plug 'matze/vim-move'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -168,6 +169,9 @@ let g:syntastic_check_on_wq = 0
 
 "vim-airline
 let g:airline_powerline_fonts = 1
+
+" vim-move
+let g:move_key_modifier = 'C'
 
 "===============================================================================
 " Local Settings
