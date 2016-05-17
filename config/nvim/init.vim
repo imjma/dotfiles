@@ -164,3 +164,20 @@ let g:syntastic_check_on_wq = 0
 "vim-airline
 let g:airline_powerline_fonts = 1
 
+"===============================================================================
+"" Local Settings
+"===============================================================================
+
+" Go crazy!
+if filereadable(expand("~/.vimrc.local"))
+  " In your .vimrc.local, you might like:
+  "
+  " set autowrite
+  " set nocursorline
+  " set nowritebackup
+  " set whichwrap+=<,>,h,l,[,] " Wrap arrow keys between lines
+  "
+  " autocmd! bufwritepost .vimrc source ~/.vimrc
+  " noremap! jj <ESC>
+  source ~/.vimrc.local
+endif<Paste>
