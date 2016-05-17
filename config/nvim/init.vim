@@ -66,26 +66,29 @@ set textwidth=120
 set autoindent
 
 "These languages have their own tab/indent settings.
-au FileType cpp    setl ts=2 sw=2 sts=2
-au FileType ruby   setl ts=2 sw=2 sts=2
-au FileType yaml   setl ts=2 sw=2 sts=2
-au FileType html   setl ts=2 sw=2 sts=2
-au FileType jinja  setl ts=2 sw=2 sts=2
-au FileType lua    setl ts=2 sw=2 sts=2
-au FileType haml   setl ts=2 sw=2 sts=2
-au FileType sass   setl ts=2 sw=2 sts=2
-au FileType scss   setl ts=2 sw=2 sts=2
-au FileType make   setl ts=4 sw=4 sts=4 noet
-au FileType gitcommit setl spell
+autocmd FileType gitcommit setlocal spell
+
+" md is markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md set spell
+
+" Special sets for different filetype
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType lua setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 "English spelling checker.
 setlocal spelllang=en_us
 
 "Keep 80 columns.
-set colorcolumn=80
+set colorcolumn=120
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-autocmd WinEnter * match OverLength /\%81v.\+/
+match OverLength /\%121v.\+/
+autocmd WinEnter * match OverLength /\%121v.\+/
 
 " I dislike folding.
 set nofoldenable
@@ -105,6 +108,49 @@ let g:maplocalleader = ","
 
 set bg=dark
 colorscheme solarized 
+
+"===============================================================================
+" Keymaps
+"===============================================================================
+
+" w!!: Writes using sudo
+cnoremap w!! w !sudo tee % >/dev/null
+
+" keyboard shortcuts
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+
+" ==============================
+" Window/Tab/Split Manipulation
+" ==============================
+
+" Zoom in
+map <silent> <leader>gz <C-w>o
+
+" Create window splits easier. The default
+" way is Ctrl-w,v and Ctrl-w,s. I remap
+" this to vv and ss
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
+
+" ============================
+" Shortcuts for everyday tasks
+" ============================
+
+" copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
+" this is helpful to paste someone the path you're looking at
+nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
+nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
+
+"Clear current search highlight by double tapping //
+nmap <silent> // :nohlsearch<CR>
+
+"===============================================================================
+" Plugins
+"===============================================================================
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
