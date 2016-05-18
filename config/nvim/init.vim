@@ -24,6 +24,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Interface
 Plug 'altercation/vim-colors-solarized'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Language
 Plug 'scrooloose/syntastic'
@@ -55,9 +56,18 @@ set expandtab
 set tabstop=4 shiftwidth=4 sts=4
 set autoindent nosmartindent
 
-" Make search act like search in modern browsers
-set incsearch
+"===============================================================================
+" Better Search 
+"===============================================================================
 
+" set search case to a good configuration http://vim.wikia.com/wiki/Searching 
+set ignorecase
+set smartcase
+
+" search characters as they're entered
+set incsearch
+" don't highlight all search matches
+" set nohlsearch
 " search highlight
 set hlsearch
 
@@ -114,15 +124,19 @@ colorscheme solarized
 " Keymaps
 "===============================================================================
 
+if has('nvim')
+    " Hack to get C-h working in NeoVim
+    " nmap <bs> <C-W>h
+endif
+
 " w!!: Writes using sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
 " keyboard shortcuts
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
+" noremap <C-H> <C-W>h
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+" noremap <C-L> <C-W>l
 
 " ==============================
 " Window/Tab/Split Manipulation
@@ -152,6 +166,7 @@ nmap <silent> // :nohlsearch<CR>
 "===============================================================================
 " Plugins
 "===============================================================================
+
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
