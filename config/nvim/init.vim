@@ -46,6 +46,7 @@ Plug 'tomtom/tcomment_vim'
 " Navigation
 Plug 'easymotion/vim-easymotion'
 Plug 'zhaocai/GoldenView.Vim'
+Plug 'scrooloose/nerdtree'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -186,6 +187,9 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
 
 " ==============================
 " Window/Tab/Split Manipulation
