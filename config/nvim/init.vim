@@ -29,6 +29,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sts10/vim-mustard'
 Plug 'junegunn/seoul256.vim'
+Plug 'ajh17/Spacegray.vim'
 
 " Language
 Plug 'scrooloose/syntastic'
@@ -168,6 +169,7 @@ let g:maplocalleader = ","
 set background=dark
 " colorscheme solarized 
 colorscheme seoul256 
+" colorscheme spacegray
 " let g:seoul256_background = 236
 
 "===============================================================================
@@ -295,6 +297,31 @@ nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 
 "Clear current search highlight by double tapping //
 nmap <silent> // :nohlsearch<CR>
+
+" ============================
+" Intelligent Window Killer
+" ============================
+
+" Use Q to intelligently close a window 
+" (if there are multiple windows into the same buffer)
+" or kill the buffer entirely if it's the last window looking into that buffer
+function! CloseWindowOrKillBuffer()
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+  " We should never bdelete a nerd tree
+  if matchstr(expand("%"), 'NERD') == 'NERD'
+    wincmd c
+    return
+  endif
+
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    bdelete
+  endif
+endfunction
+
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
 "===============================================================================
 " Plugins
