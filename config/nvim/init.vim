@@ -44,7 +44,6 @@ Plug 'matze/vim-move'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'majutsushi/tagbar'
-Plug 'godlygeek/tabular'
 
 " Navigation
 Plug 'easymotion/vim-easymotion'
