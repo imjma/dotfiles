@@ -389,11 +389,18 @@ nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>\ :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
-" ================ Tabular=======================
+" ================ Tabular =======================
 " nnoremap <leader>a= :Tabularize /=<CR>
 " vnoremap <leader>a= :Tabularize /=<CR>
 " nnoremap <leader>a: :Tabularize /:\zs<CR>
 " vnoremap <leader>a: :Tabularize /:\zs<CR>
+
+" ================ EasyAlign =======================
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " ================ goldenview=======================
 
