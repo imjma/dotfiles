@@ -43,6 +43,7 @@ Plug 'godlygeek/tabular'
 Plug 'matze/vim-move'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
+Plug 'majutsushi/tagbar'
 
 " Navigation
 Plug 'easymotion/vim-easymotion'
@@ -382,6 +383,10 @@ let g:ctrlp_map = ',t'
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+
+" ================ tagbar =======================
+nnoremap <leader>\ :TagbarToggle<CR>
+let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
 " ================ goldenview=======================
 
