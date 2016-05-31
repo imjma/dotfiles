@@ -39,11 +39,12 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
 " Enhance
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 Plug 'matze/vim-move'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/vim-easy-align'
 
 " Navigation
 Plug 'easymotion/vim-easymotion'
@@ -389,10 +390,10 @@ nnoremap <leader>\ :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
 " ================ Tabular=======================
-nnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
-nnoremap <leader>a: :Tabularize /:\zs<CR>
-vnoremap <leader>a: :Tabularize /:\zs<CR>
+" nnoremap <leader>a= :Tabularize /=<CR>
+" vnoremap <leader>a= :Tabularize /=<CR>
+" nnoremap <leader>a: :Tabularize /:\zs<CR>
+" vnoremap <leader>a: :Tabularize /:\zs<CR>
 
 " ================ goldenview=======================
 
