@@ -45,7 +45,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
-Plug 'Plug scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " Navigation
 Plug 'easymotion/vim-easymotion'
