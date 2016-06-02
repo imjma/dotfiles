@@ -28,6 +28,7 @@ Plug 'ajh17/Spacegray.vim'
 
 " Language
 Plug 'scrooloose/syntastic'
+Plug 'Shougo/neocomplete.vim'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
