@@ -7,8 +7,11 @@ filetype off                   " required
 " =============== Vundle Initialization ===============
 " This loads all the plugins specified in ~/.vim/vundles.vim
 " Use Vundle plugin to manage all other plugins
-if filereadable(expand("~/.vim/vundle.vim"))
-  source ~/.vim/vundle.vim
+" if filereadable(expand("~/.vim/vundle.vim"))
+"   source ~/.vim/vundle.vim
+" endif
+if filereadable(expand("~/.vim/plug.vim"))
+  source ~/.vim/plug.vim
 endif
 
 "===============================================================================
@@ -54,12 +57,13 @@ endif
 " Colorscheme
 " colorscheme material-theme
 " colorscheme base16-default
-colorscheme base16-tomorrow
+" colorscheme base16-tomorrow
 " colorscheme jellybeans
 " colorscheme hybrid
 " colorscheme solarized
 " colorscheme seti
 " colorscheme molokai
+colorscheme seoul256
 set background=dark
 
 " Turn on relative number mode
