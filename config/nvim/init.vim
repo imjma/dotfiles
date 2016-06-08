@@ -29,6 +29,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'ervandew/supertab'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -121,11 +122,11 @@ if v:version >= 703
   set undodir=/tmp//,.
 endif
 
-" mouse
-set mouse=a
+set diffopt=filler,iwhite    " in diff mode ignore whitespace changes and align
 
-" Keep the cursor on the same column
-set nostartofline
+set mouse=a    " mouse
+
+set nostartofline    " Keep the cursor on the same column
 
 " }}}
 " =============================================================================
