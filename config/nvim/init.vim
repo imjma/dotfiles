@@ -82,10 +82,13 @@ set showmatch               " highlight matching [{()}]
 
 set backspace=indent,eol,start
 set scrolloff=5             " at least 5 visible lines of text above and below
-set encoding=utf-8
 set list
 set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣,eol:¬
 set clipboard=unnamed
+
+if !has('nvim')
+set encoding=utf-8
+endif
 
 " Open split panes to right and bottom
 set splitbelow
