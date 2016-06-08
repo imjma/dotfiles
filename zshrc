@@ -18,4 +18,5 @@ for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
 
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
-export DOCKER_HOST=tcp://localhost:2375
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,9 +1,7 @@
-"No compatibility to traditional vi
-set nocompatible
+" ============================================================================
+" vim-plug {{{
+" ============================================================================
 
-filetype off
-
-" vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
 "Plugin list ------------------------------------------------------------------
@@ -13,133 +11,96 @@ function! DoRemote(arg)
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
-" Ctrl-P - Fuzzy file search
-Plug 'kien/ctrlp.vim'
+" Colorscheme
+Plug 'sjl/badwolf'
+Plug 'junegunn/seoul256.vim'
 
-" Status bar mods
-Plug 'bling/vim-airline'
+" Browsing
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'zhaocai/GoldenView.Vim'
+
+" Edit
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " Git
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Interface
-Plug 'christoomey/vim-tmux-navigator'
+" Lint
+Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 
-" Colorscheme
-Plug 'altercation/vim-colors-solarized'
-Plug 'sts10/vim-mustard'
-Plug 'junegunn/seoul256.vim'
-Plug 'ajh17/Spacegray.vim'
-
-" Language
-Plug 'scrooloose/syntastic'
-
+" Lang
 " Ruby
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-
-" Enhance
-" Plug 'godlygeek/tabular'
-Plug 'matze/vim-move'
-Plug 'tpope/vim-fugitive'
-Plug 'tomtom/tcomment_vim'
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/vim-easy-align'
-Plug 'scrooloose/nerdcommenter'
-
-" Navigation
-Plug 'easymotion/vim-easymotion'
-Plug 'zhaocai/GoldenView.Vim'
-Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-endwise'
 
 " Add plugins to &runtimepath
 call plug#end()
 
-filetype plugin on
+" }}}
+" ============================================================================
+" Basic Settings {{{
+" ============================================================================
 
-" Show number
-set number
+" Colors 
+colorscheme badwolf
+syntax enable
 
-" Syntax highlighting.
-syntax on
+" Spaces & Tabs
+set tabstop=4     " number of visual spaces per TAB
+set softtabstop=4 " number of spaces in tab when editing
+set expandtab     " tabs are spaces
 
-" Turn on relative number mode
-set relativenumber
+" UI
+set number                  " show line numbers
+set showcmd                 " show command in bottom bar
+set cursorline              " highlight current line
+filetype indent on          " load filetype-specific indent files
+
+set wildmenu                " visual autocomplete for command menu
+set wildmode=list:longest
+set wildignore=*.o,*.obj,*~ " stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+set lazyredraw              " redraw only when we need to.
+set showmatch               " highlight matching [{()}]
+
+set backspace=indent,eol,start
+set scrolloff=5             " at least 5 visible lines of text above and below
+set encoding=utf-8
+set list
+set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣,eol:¬
+set clipboard=unnamed
 
 " Open split panes to right and bottom
 set splitbelow
 set splitright
 
-set encoding=utf-8
-set clipboard+=unnamed
-set laststatus=2
+" Search
+set incsearch           " search as characters are entered<Paste>
+set hlsearch            " highlight matches
 
-set cursorline
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-" Softtab -- use spaces instead tabs.
-set expandtab
-set tabstop=4 shiftwidth=4 sts=4
-set autoindent nosmartindent
-
-" Set backspace config
-set backspace=eol,start,indent
-
-set directory=~/.config/nvim/swap  " Directory to use for the swap file
-set diffopt=filler,iwhite          " In diff mode, ignore whitespace changes and align unchanged lines
-set nowrap
-set mouse=a
-
-" Display unprintable chars
-set list
-set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣
-set showbreak=↪
-
-" ================ Better Search =======================
-" set search case to a good configuration http://vim.wikia.com/wiki/Searching 
-set ignorecase
-set smartcase
-
-" search characters as they're entered
-set incsearch
-" don't highlight all search matches
-" set nohlsearch
-" search highlight
-set hlsearch
-
-" Text display settings
-set linebreak
-set textwidth=120
-set autoindent
-
-"These languages have their own tab/indent settings.
-autocmd FileType gitcommit setlocal spell
-
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md set spell
-
-" Special sets for different filetype
-autocmd FileType ruby,erb setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType lua setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-"English spelling checker.
-setlocal spelllang=en_us
-
-"Keep 80 columns.
-set colorcolumn=120
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%121v.\+/
-autocmd WinEnter * match OverLength /\%121v.\+/
+" 80 chars/line
+set textwidth=0
+if exists('&colorcolumn')
+  set colorcolumn=80
+  highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  match OverLength /\%81v.\+/
+endif
 
 " I dislike folding.
 set nofoldenable
@@ -147,66 +108,23 @@ set nofoldenable
 " I dislike visual bell as well.
 set novisualbell
 
-" ================ Completion =======================
-
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-
-"===============================================================================
-" Leader Key Mappings
-"===============================================================================
-
-" Map leader and localleader key to comma
-let mapleader = ","
-let g:mapleader = ","
-let maplocalleader = ","
-let g:maplocalleader = ","
-
-set background=dark
-" colorscheme solarized 
-colorscheme seoul256 
-" colorscheme spacegray
-" let g:seoul256_background = 236
-
-"===============================================================================
-" Keymaps
-"===============================================================================
-
-if has('nvim')
-    " Hack to get C-h working in NeoVim
-    " nmap <bs> <C-W>h
-endif
+" }}}
+" ============================================================================
+" Keybindings {{{
+" ============================================================================
+" Keybindings
+let mapleader=","       " leader is comma
 
 " w!!: Writes using sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
-" keyboard shortcuts
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
-nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
-
-" ==============================
-" Window/Tab/Split Manipulation
-" ==============================
-
-" Zoom in
-map <silent> <leader>gz <C-w>o
+" Movement
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
@@ -214,11 +132,6 @@ map <silent> <leader>gz <C-w>o
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-" ========================================
-" General vim sanity improvements
-" ========================================
-"
-"
 " alias yw to yank the entire word 'yank inner word'
 " even if the cursor is halfway inside the word
 " FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
@@ -227,19 +140,6 @@ nnoremap <leader>yw yiww
 " ,ow = 'overwrite word', replace a word with what's in the yank buffer
 " FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
 nnoremap <leader>ow "_diwhp
-
-"make Y consistent with C and D
-nnoremap Y y$
-function! YRRunAfterMaps()
-  nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-endfunction
-
-" Make 0 go to the first character rather than the beginning
-" of the line. When we're programming, we're almost always
-" interested in working with text rather than empty space. If
-" you want the traditional beginning of line, use ^
-nnoremap 0 ^
-nnoremap ^ 0
 
 " ,# Surround a word with #{ruby interpolation}
 map <leader># ysiw#
@@ -254,17 +154,11 @@ map <leader>' ysiw'
 vmap <leader>' c'<C-R>"'<ESC>
 
 " ,) or ,( Surround a word with (parens)
-" The difference is in whether a space is put in
+" " The difference is in whether a space is put in
 map <leader>( ysiw(
 map <leader>) ysiw)
 vmap <leader>( c( <C-R>" )<ESC>
 vmap <leader>) c(<C-R>")<ESC>
-
-" ,[ Surround a word with [brackets]
-map <leader>] ysiw]
-map <leader>[ ysiw[
-vmap <leader>[ c[ <C-R>" ]<ESC>
-vmap <leader>] c[<C-R>"]<ESC>
 
 " ,{ Surround a word with {braces}
 map <leader>} ysiw}
@@ -272,43 +166,28 @@ map <leader>{ ysiw{
 vmap <leader>} c{ <C-R>" }<ESC>
 vmap <leader>{ c{<C-R>"}<ESC>
 
-map <leader>` ysiw`
+" Make 0 go to the first character rather than the beginning
+" of the line. When we're programming, we're almost always
+" interested in working with text rather than empty space. If
+" you want the traditional beginning of line, use ^
+nnoremap 0 ^
+nnoremap ^ 0
 
-" gary bernhardt's hashrocket
-imap <c-l> <space>=><space>
+" highlight last inserted text
+nnoremap gV `[v`]
 
 "Go to last edit location with ,.
 nnoremap <leader>. '.
-
-"When typing a string, your quotes auto complete. Move past the quote
-"while still in insert mode by hitting Ctrl-a. Example:
-"
-" type 'foo<c-a>
-"
-" the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
-" put the cursor right after the quote
-imap <C-a> <esc>wa
 
 "Move back and forth through previous and next buffers
 "with ,z and ,x
 nnoremap <silent> <leader>z :bp<CR>
 nnoremap <silent> <leader>x :bn<CR>
 
-" ============================
-" Shortcuts for everyday tasks
-" ============================
-
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
-" this is helpful to paste someone the path you're looking at
+" this is helpful to paste someone the path you're looking at 
 nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
 nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
-
-"Clear current search highlight by double tapping //
-nmap <silent> // :nohlsearch<CR>
-
-" ============================
-" Intelligent Window Killer
-" ============================
 
 " Use Q to intelligently close a window 
 " (if there are multiple windows into the same buffer)
@@ -331,11 +210,14 @@ endfunction
 
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
-"===============================================================================
-" Plugins
-"===============================================================================
+" edit vimrc and load vimrc bindings
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
-
+" }}}
+" ============================================================================
+" deoplete {{{
+" ============================================================================
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
@@ -344,32 +226,99 @@ inoremap <silent><expr> <Tab>
 \ pumvisible() ? "\<C-n>" :
 \ deoplete#mappings#manual_complete()
 
-"Syntastic-related configurations.
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" }}}
+" ============================================================================
+" FZF {{{
+" ============================================================================
 
-"vim-airline
-let g:airline_powerline_fonts = 1
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
+  " let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
 
-" vim-move
-" let g:move_key_modifier = 'C'
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <Leader><Enter>  :Buffers<CR>
+nnoremap <silent> <Leader>c :Commits<CR>
 
-" ================ airline =======================
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:tmuxline_powerline_separators = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_section_z = ''
+inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
-" TComment
-" map <leader>__ gcc
-" map <leader>_b :: :TCommentBlock<cr>
-" map <leader>_i :: :TCommentInline<cr>
-"
-" ================ nerdcommenter =======================
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+" }}}
+" ============================================================================
+" nerdtree {{{
+" ============================================================================
+
+nnoremap <leader>d :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" }}}
+
+" ============================================================================
+" vim-easy-align {{{
+" ============================================================================
+
+let g:easy_align_delimiters = {
+\ '>': { 'pattern': '>>\|=>\|>' },
+\ '\': { 'pattern': '\\' },
+\ '/': { 'pattern': '//\+\|/\*\|\*/', 'delimiter_align': 'l', 'ignore_groups': ['!Comment'] },
+\ ']': {
+\     'pattern':       '\]\zs',
+\     'left_margin':   0,
+\     'right_margin':  1,
+\     'stick_to_left': 0
+\   },
+\ ')': {
+\     'pattern':       ')\zs',
+\     'left_margin':   0,
+\     'right_margin':  1,
+\     'stick_to_left': 0
+\   },
+\ 'f': {
+\     'pattern': ' \(\S\+(\)\@=',
+\     'left_margin': 0,
+\     'right_margin': 0
+\   },
+\ 'd': {
+\     'pattern': ' \ze\S\+\s*[;=]',
+\     'left_margin': 0,
+\     'right_margin': 0
+\   }
+\ }
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+nmap gaa ga_
+
+" }}}
+" ===============================================================================
+" syntastic {{{
+" ===============================================================================
+
+let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+" }}}
+" ===============================================================================
+" nerdcommenter {{{
+" ===============================================================================
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -385,45 +334,11 @@ let g:NERDAltDelims_java = 1
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
-" ================ ctrlp =======================
-let g:ctrlp_map = ',t'
+" }}}
+" ===============================================================================
+" goldenview {{{
+" ===============================================================================
 
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_max_height = 30
-" let g:ctrlp_match_window = 'order:ttb,max:20'
-
-" Default to filename searches - so that appctrl will find application
-" controller
-" let g:ctrlp_by_filename = 1
-
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-
-" ================ tagbar =======================
-nnoremap <leader>\ :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
-
-" ================ Tabular =======================
-" nnoremap <leader>a= :Tabularize /=<CR>
-" vnoremap <leader>a= :Tabularize /=<CR>
-" nnoremap <leader>a: :Tabularize /:\zs<CR>
-" vnoremap <leader>a: :Tabularize /:\zs<CR>
-
-" ================ EasyAlign =======================
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" ================ goldenview=======================
-
-"-------------------------------------------------------------------------------
-" Settings
-"-------------------------------------------------------------------------------
 let g:goldenview__enable_default_mapping = 0
 " let g:goldenview__enable_at_startup = 0
 let g:goldenview__ignore_urule = {
@@ -452,12 +367,6 @@ let g:goldenview__restore_urule= {
 \  ]
 \}
 
-"-------------------------------------------------------------------------------
-" functions
-"-------------------------------------------------------------------------------
-"-------------------------------------------------------------------------------
-" Keybindings
-"-------------------------------------------------------------------------------
 " 1. split to tiled windows
 nmap <silent> <leader>wv <plug>GoldenViewSplit
 
@@ -472,9 +381,10 @@ nmap <silent> <leader>wp <Plug>GoldenViewPrevious
 " 4. toggle auto resize
 nmap <silent> <leader>tg :ToggleGoldenViewAutoResize<CR>
 
-"===============================================================================
-" Local Settings
-"===============================================================================
+" }}}
+" ===============================================================================
+" Local Settings {{{
+" ===============================================================================
 
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
@@ -489,3 +399,5 @@ if filereadable(expand("~/.vimrc.local"))
   " noremap! jj <ESC>
   source ~/.vimrc.local
 endif
+
+" }}}
