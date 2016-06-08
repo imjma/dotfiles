@@ -114,6 +114,19 @@ set nofoldenable
 " I dislike visual bell as well.
 set novisualbell
 
+" Annoying temporary files
+set backupdir=/tmp//,.
+set directory=/tmp//,.
+if v:version >= 703
+  set undodir=/tmp//,.
+endif
+
+" mouse
+set mouse=a
+
+" Keep the cursor on the same column
+set nostartofline
+
 " }}}
 " =============================================================================
 " Keybindings {{{
