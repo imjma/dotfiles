@@ -4,10 +4,9 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-"Plugin list ------------------------------------------------------------------
-
+" Plugin list
 function! DoRemote(arg)
-  UpdateRemotePlugins
+    UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
@@ -35,12 +34,15 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" Interface
+
 " Lint
 Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 
 " Lang
 " Ruby
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -61,7 +63,50 @@ set shiftwidth=4
 set expandtab     " tabs are spaces
 
 " UI
-set number                  " show line numbers
+
+" linenumber {{{
+" set number                  " show line numbers
+
+" Default show linenumber
+if !exists('g:noshowlinenumber')
+    let g:noshowlinenumber = 0
+endif
+if (g:noshowlinenumber == 1)
+    set nonumber norelativenumber
+else
+    set number relativenumber
+endif
+
+" Use absolute linenum in Insert mode; relative linenum in Normal mode
+autocmd FocusLost,InsertEnter * :call UseAbsNum()
+autocmd FocusGained,InsertLeave * :call UseRelNum()
+
+function! UseAbsNum()
+    let b:fcStatus = &foldcolumn
+    setlocal foldcolumn=0 " Don't show foldcolumn in Insert mode
+    if (g:noshowlinenumber == 1) || exists('#goyo')
+        set nonumber norelativenumber
+    else
+        set number norelativenumber
+    endif
+endfunction
+
+function! UseRelNum()
+    if !exists('b:fcStatus')
+        let b:fcStatus = &foldcolumn
+    endif
+    if b:fcStatus == 1
+        setlocal foldcolumn=1 " Restore foldcolumn in Normal mode
+    endif
+    if (g:noshowlinenumber == 1) || exists('#goyo')
+        set nonumber norelativenumber
+    else
+        set number relativenumber
+    endif
+endfunction
+
+" }}}
+
 set showcmd                 " show command in bottom bar
 set cursorline              " highlight current line
 filetype plugin indent on          " load filetype-specific indent files
@@ -81,16 +126,31 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 set lazyredraw              " redraw only when we need to.
 set showmatch               " highlight matching [{()}]
+set matchtime=2
 
 set backspace=indent,eol,start
 set scrolloff=5             " at least 5 visible lines of text above and below
 set list
 set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣,eol:¬
-set clipboard=unnamed
+" set listchars=tab:¦\ ,eol:¬,trail:⋅,extends:»,precedes:«,nbsp:␣
+
+" Enable clipboard if possible
+if has('clipboard')
+    if has('unnamedplus') " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
 
 if !has('nvim')
-set encoding=utf-8
+    set encoding=utf-8
 endif
+
+" Use Unix as the standard file type
+set fileformats=unix,mac,dos
+
+set whichwrap+=h,l,<,>,[,]    " set iskeyword+=-
 
 " Open split panes to right and bottom
 set splitbelow
@@ -104,13 +164,137 @@ set hlsearch            " highlight matches
 " 80 chars/line
 set textwidth=0
 if exists('&colorcolumn')
-  set colorcolumn=80
-  highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  match OverLength /\%81v.\+/
+    set colorcolumn=80
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    match OverLength /\%81v.\+/
 endif
 
+" folden {{{
 " I dislike folding.
-set nofoldenable
+" set nofoldenable
+
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent   " fold based on indent level
+
+" space open/closes folds
+nnoremap <space> za
+
+" }}}
+
+" statusline {{{
+" always show status line
+set laststatus=2
+set statusline=%<%f\ " filename
+set statusline+=%w%h%m%r " option
+set statusline+=\ [%{&ff}]/%y " fileformat/filetype
+set statusline+=\ [%{getcwd()}] " current dir
+set statusline+=\ [%{&encoding}] " encoding
+set statusline+=%=%-14.(%l/%L,%c%V%)\ %p%% " Right aligned file nav info
+
+" %< Where to truncate
+" %n buffer number
+" %F Full path
+" %m Modified flag: [+], [-]
+" %r Readonly flag: [RO]
+" %y Type:          [vim]
+" fugitive#statusline()
+" %= Separator
+" %-14.(...)
+" %l Line
+" %c Column
+" %V Virtual column
+" %P Percentage
+" %#HighlightGroup#
+set statusline=%<[%n]\ %F\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
+silent! if emoji#available()
+  let s:ft_emoji = map({
+    \ 'c':          'baby_chick',
+    \ 'clojure':    'lollipop',
+    \ 'coffee':     'coffee',
+    \ 'cpp':        'chicken',
+    \ 'css':        'art',
+    \ 'eruby':      'ring',
+    \ 'gitcommit':  'soon',
+    \ 'haml':       'hammer',
+    \ 'help':       'angel',
+    \ 'html':       'herb',
+    \ 'java':       'older_man',
+    \ 'javascript': 'monkey',
+    \ 'make':       'seedling',
+    \ 'markdown':   'book',
+    \ 'perl':       'camel',
+    \ 'python':     'snake',
+    \ 'ruby':       'gem',
+    \ 'scala':      'barber',
+    \ 'sh':         'shell',
+    \ 'slim':       'dancer',
+    \ 'text':       'books',
+    \ 'vim':        'poop',
+    \ 'vim-plug':   'electric_plug',
+    \ 'yaml':       'yum',
+    \ 'yaml.jinja': 'yum'
+  \ }, 'emoji#for(v:val)')
+
+  function! S_filetype()
+    if empty(&filetype)
+      return emoji#for('grey_question')
+    else
+      return get(s:ft_emoji, &filetype, '['.&filetype.']')
+    endif
+  endfunction
+
+  function! S_modified()
+    if &modified
+      return emoji#for('kiss').' '
+    elseif !&modifiable
+      return emoji#for('construction').' '
+    else
+      return ''
+    endif
+  endfunction
+
+  function! S_fugitive()
+    if !exists('g:loaded_fugitive')
+      return ''
+    endif
+    let head = fugitive#head()
+    if empty(head)
+      return ''
+    else
+      return head == 'master' ? emoji#for('crown') : emoji#for('dango').'='.head
+    endif
+  endfunction
+
+  let s:braille = split('"⠉⠒⠤⣀', '\zs')
+  function! Braille()
+    let len = len(s:braille)
+    let [cur, max] = [line('.'), line('$')]
+    let pos  = min([len * (cur - 1) / max([1, max - 1]), len - 1])
+    return s:braille[pos]
+  endfunction
+
+  hi def link User1 TablineFill
+  let s:cherry = emoji#for('cherry_blossom')
+  function! MyStatusLine()
+    let mod = '%{S_modified()}'
+    let ro  = "%{&readonly ? emoji#for('lock') . ' ' : ''}"
+    let ft  = '%{S_filetype()}'
+    let fug = ' %{S_fugitive()}'
+    let sep = ' %= '
+    let pos = ' %l,%c%V '
+    let pct = ' %P '
+
+    return s:cherry.' [%n] %F %<'.mod.ro.ft.fug.sep.pos.'%{Braille()}%*'.pct.s:cherry
+  endfunction
+
+  " Note that the "%!" expression is evaluated in the context of the
+  " current window and buffer, while %{} items are evaluated in the
+  " context of the window that the statusline belongs to.
+  set statusline=%!MyStatusLine()
+endif
+" }}}
 
 " I dislike visual bell as well.
 set novisualbell
@@ -119,7 +303,7 @@ set novisualbell
 set backupdir=/tmp//,.
 set directory=/tmp//,.
 if v:version >= 703
-  set undodir=/tmp//,.
+    set undodir=/tmp//,.
 endif
 
 set diffopt=filler,iwhite    " in diff mode ignore whitespace changes and align
@@ -127,6 +311,8 @@ set diffopt=filler,iwhite    " in diff mode ignore whitespace changes and align
 set mouse=a    " mouse
 
 set nostartofline    " Keep the cursor on the same column
+
+set modelines=2
 
 " }}}
 " =============================================================================
@@ -213,19 +399,19 @@ nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
-  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+    let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
-  " We should never bdelete a nerd tree
-  if matchstr(expand("%"), 'NERD') == 'NERD'
-    wincmd c
-    return
-  endif
+    " We should never bdelete a nerd tree
+    if matchstr(expand("%"), 'NERD') == 'NERD'
+        wincmd c
+        return
+    endif
 
-  if number_of_windows_to_this_buffer > 1
-    wincmd c
-  else
-    bdelete
-  endif
+    if number_of_windows_to_this_buffer > 1
+        wincmd c
+    else
+        bdelete
+    endif
 endfunction
 
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
@@ -233,6 +419,21 @@ nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 " edit vimrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" linenumber {{{
+" Toggle showing linenumber
+nnoremap <silent> <Leader>n :call ToggleShowlinenum()<CR>
+function! ToggleShowlinenum()
+    if (g:noshowlinenumber == 0)
+        setlocal nonumber norelativenumber
+        let g:noshowlinenumber = 1
+    else
+        setlocal number relativenumber
+        let g:noshowlinenumber = 0
+    endif
+endfunction
+
+" }}}
 
 " }}}
 " =============================================================================
@@ -243,8 +444,8 @@ let g:deoplete#enable_at_startup = 1
 
 " <tab> do completion
 inoremap <silent><expr> <Tab>
-\ pumvisible() ? "\<C-n>" :
-\ deoplete#mappings#manual_complete()
+            \ pumvisible() ? "\<C-n>" :
+            \ deoplete#mappings#manual_complete()
 
 " }}}
 " =============================================================================
@@ -252,15 +453,15 @@ inoremap <silent><expr> <Tab>
 " =============================================================================
 
 if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --inline-info'
-  " let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+    let $FZF_DEFAULT_OPTS .= ' --inline-info'
+    " let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
 
 " search hidden files
 if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 else
-  let $FZF_DEFAULT_COMMAND = 'find -L'
+    let $FZF_DEFAULT_COMMAND = 'find -L'
 endif
 
 nnoremap <silent> <C-p> :Files<CR>
@@ -297,32 +498,32 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " =============================================================================
 
 let g:easy_align_delimiters = {
-\ '>': { 'pattern': '>>\|=>\|>' },
-\ '\': { 'pattern': '\\' },
-\ '/': { 'pattern': '//\+\|/\*\|\*/', 'delimiter_align': 'l', 'ignore_groups': ['!Comment'] },
-\ ']': {
-\     'pattern':       '\]\zs',
-\     'left_margin':   0,
-\     'right_margin':  1,
-\     'stick_to_left': 0
-\   },
-\ ')': {
-\     'pattern':       ')\zs',
-\     'left_margin':   0,
-\     'right_margin':  1,
-\     'stick_to_left': 0
-\   },
-\ 'f': {
-\     'pattern': ' \(\S\+(\)\@=',
-\     'left_margin': 0,
-\     'right_margin': 0
-\   },
-\ 'd': {
-\     'pattern': ' \ze\S\+\s*[;=]',
-\     'left_margin': 0,
-\     'right_margin': 0
-\   }
-\ }
+            \ '>': { 'pattern': '>>\|=>\|>' },
+            \ '\': { 'pattern': '\\' },
+            \ '/': { 'pattern': '//\+\|/\*\|\*/', 'delimiter_align': 'l', 'ignore_groups': ['!Comment'] },
+            \ ']': {
+            \     'pattern':       '\]\zs',
+            \     'left_margin':   0,
+            \     'right_margin':  1,
+            \     'stick_to_left': 0
+            \   },
+            \ ')': {
+            \     'pattern':       ')\zs',
+            \     'left_margin':   0,
+            \     'right_margin':  1,
+            \     'stick_to_left': 0
+            \   },
+            \ 'f': {
+            \     'pattern': ' \(\S\+(\)\@=',
+            \     'left_margin': 0,
+            \     'right_margin': 0
+            \   },
+            \ 'd': {
+            \     'pattern': ' \ze\S\+\s*[;=]',
+            \     'left_margin': 0,
+            \     'right_margin': 0
+            \   }
+            \ }
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -340,6 +541,8 @@ nmap gaa ga_
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " }}}
 " =============================================================================
@@ -369,30 +572,30 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:goldenview__enable_default_mapping = 0
 " let g:goldenview__enable_at_startup = 0
 let g:goldenview__ignore_urule = {
-\  'filetype': [
-\    'nerdtree',
-\    'nerd',
-\    'unite'
-\  ],
-\  'buftype': [
-\    'nofile',
-\    'nerd',
-\    'nerdtree'
-\  ]
-\}
+            \  'filetype': [
+            \    'nerdtree',
+            \    'nerd',
+            \    'unite'
+            \  ],
+            \  'buftype': [
+            \    'nofile',
+            \    'nerd',
+            \    'nerdtree'
+            \  ]
+            \}
 
 let g:goldenview__restore_urule= {
-\  'filetype': [
-\    'nerdtree',
-\    'nerd',
-\    'unite'
-\  ],
-\  'buftype': [
-\    'nofile',
-\    'nerd',
-\    'nerdtree'
-\  ]
-\}
+            \  'filetype': [
+            \    'nerdtree',
+            \    'nerd',
+            \    'unite'
+            \  ],
+            \  'buftype': [
+            \    'nofile',
+            \    'nerd',
+            \    'nerdtree'
+            \  ]
+            \}
 
 " 1. split to tiled windows
 nmap <silent> <leader>wv <plug>GoldenViewSplit
@@ -414,9 +617,9 @@ nmap <silent> <leader>tg :ToggleGoldenViewAutoResize<CR>
 " =============================================================================
 
 if executable('ag')
-  let &grepprg = 'ag --nogroup --nocolor --column'
+    let &grepprg = 'ag --nogroup --nocolor --column'
 else
-  let &grepprg = 'grep -rn $* *'
+    let &grepprg = 'grep -rn $* *'
 endif
 command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 
@@ -460,11 +663,11 @@ augroup END " }}}
 
 augroup tmux " {{{
     au!
-  " Automatic rename of tmux window
-  if exists('$TMUX') && !exists('$NORENAME')
-    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-    autocmd VimLeave * call system('tmux set-window automatic-rename on')
-  endif
+    " Automatic rename of tmux window
+    if exists('$TMUX') && !exists('$NORENAME')
+        autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+        autocmd VimLeave * call system('tmux set-window automatic-rename on')
+    endif
 augroup END " }}}
 
 " }}}
@@ -474,16 +677,16 @@ augroup END " }}}
 
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
-  " In your .vimrc.local, you might like:
-  "
-  " set autowrite
-  " set nocursorline
-  " set nowritebackup
-  " set whichwrap+=<,>,h,l,[,] " Wrap arrow keys between lines
-  "
-  " autocmd! bufwritepost .vimrc source ~/.vimrc
-  " noremap! jj <ESC>
-  source ~/.vimrc.local
+    " In your .vimrc.local, you might like:
+    "
+    " set autowrite
+    " set nocursorline
+    " set nowritebackup
+    " set whichwrap+=<,>,h,l,[,] " Wrap arrow keys between lines
+    "
+    " autocmd! bufwritepost .vimrc source ~/.vimrc
+    " noremap! jj <ESC>
+    source ~/.vimrc.local
 endif
 
 " }}}
