@@ -135,7 +135,7 @@ set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣,eol:¬
 " set listchars=tab:¦\ ,eol:¬,trail:⋅,extends:»,precedes:«,nbsp:␣
 
 " Enable clipboard if possible
-if has('clipboard')
+if executable('pbcopy') || executable('xclip') || has('clipboard')
     if has('unnamedplus') " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
     else " On mac and Windows, use * register for copy-paste
