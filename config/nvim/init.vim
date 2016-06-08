@@ -56,13 +56,14 @@ syntax enable
 " Spaces & Tabs
 set tabstop=4     " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
+set shiftwidth=4
 set expandtab     " tabs are spaces
 
 " UI
 set number                  " show line numbers
 set showcmd                 " show command in bottom bar
 set cursorline              " highlight current line
-filetype indent on          " load filetype-specific indent files
+filetype plugin indent on          " load filetype-specific indent files
 
 set wildmenu                " visual autocomplete for command menu
 set wildmode=list:longest
@@ -95,7 +96,8 @@ set splitbelow
 set splitright
 
 " Search
-set incsearch           " search as characters are entered<Paste>
+set ignorecase          " ignore case when searching
+set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
 " 80 chars/line
@@ -404,6 +406,52 @@ else
 endif
 command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 
+" }}}
+" =============================================================================
+" atuocmd {{{
+" =============================================================================
+
+" https://raw.githubusercontent.com/ziz/vimrc/master/vim/inc/autocmd.vim
+augroup invisible_chars " {{{
+    au!
+
+    " Show invisible characters in all of these files
+    autocmd filetype vim setlocal list
+    autocmd filetype php setlocal list
+    autocmd filetype python,rst setlocal list
+    autocmd filetype ruby setlocal list
+    autocmd filetype javascript,css setlocal list
+augroup END " }}}
+
+augroup file_type " {{{
+    au!
+
+    "These languages have their own tab/indent settings.
+    autocmd FileType gitcommit setlocal spell
+
+    " md is markdown
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.md set spell
+
+    " Special sets for different filetype
+    autocmd FileType ruby,erb setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+    autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType lua setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+augroup END " }}}
+
+augroup tmux " {{{
+    au!
+  " Automatic rename of tmux window
+  if exists('$TMUX') && !exists('$NORENAME')
+    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    autocmd VimLeave * call system('tmux set-window automatic-rename on')
+  endif
+augroup END " }}}
 
 " }}}
 " =============================================================================
