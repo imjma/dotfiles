@@ -439,13 +439,16 @@ endfunction
 " =============================================================================
 " deoplete {{{
 " =============================================================================
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" enable it in neovim only
+if has('nvim')
+    " Use deoplete.
+    let g:deoplete#enable_at_startup = 1
 
-" <tab> do completion
-inoremap <silent><expr> <Tab>
-            \ pumvisible() ? "\<C-n>" :
-            \ deoplete#mappings#manual_complete()
+    " <tab> do completion
+    inoremap <silent><expr> <Tab>
+                \ pumvisible() ? "\<C-n>" :
+                \ deoplete#mappings#manual_complete()
+endif
 
 " }}}
 " =============================================================================
