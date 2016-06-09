@@ -131,8 +131,8 @@ set matchtime=2
 set backspace=indent,eol,start
 set scrolloff=5             " at least 5 visible lines of text above and below
 set list
-set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣,eol:¬
-" set listchars=tab:¦\ ,eol:¬,trail:⋅,extends:»,precedes:«,nbsp:␣
+" set listchars=tab:▸\ ,trail:▫,extends:❯,precedes:❮,nbsp:␣,eol:¬
+set listchars=tab:¦\ ,eol:¬,trail:⋅,extends:»,precedes:«,nbsp:␣
 
 " Enable clipboard if possible
 if executable('pbcopy') || executable('xclip') || has('clipboard')
