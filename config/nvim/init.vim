@@ -372,6 +372,12 @@ map <leader>{ ysiw{
 vmap <leader>} c{ <C-R>" }<ESC>
 vmap <leader>{ c{<C-R>"}<ESC>
 
+" ,[ Surround a word with [braces]
+map <leader>] ysiw]
+map <leader>[ ysiw[
+vmap <leader>] c[ <C-R>" ]<ESC>
+vmap <leader>[ c[<C-R>"]<ESC>
+
 " Make 0 go to the first character rather than the beginning
 " of the line. When we're programming, we're almost always
 " interested in working with text rather than empty space. If
