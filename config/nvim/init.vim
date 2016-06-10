@@ -308,7 +308,9 @@ endif
 
 set diffopt=filler,iwhite    " in diff mode ignore whitespace changes and align
 
-if !has('nvim')
+if has('nvim')
+    set mouse=
+else
     set mouse=a    " mouse
 endif
 
