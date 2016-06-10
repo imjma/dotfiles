@@ -308,7 +308,9 @@ endif
 
 set diffopt=filler,iwhite    " in diff mode ignore whitespace changes and align
 
-set mouse=a    " mouse
+if !has('nvim')
+    set mouse=a    " mouse
+endif
 
 set nostartofline    " Keep the cursor on the same column
 
