@@ -246,6 +246,9 @@ set modelines=2
 " Keybindings
 let mapleader=","       " leader is comma
 
+" map semicolon to colon to avoid the extra shift keypress
+nmap ;; :
+
 " w!!: Writes using sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
