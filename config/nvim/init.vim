@@ -167,12 +167,12 @@ set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
-" 80 chars/line
-set textwidth=0
+" 120 chars/line
+set textwidth=120
 if exists('&colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=120
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    match OverLength /\%81v.\+/
+    match OverLength /\%121v.\+/
 endif
 
 " folden {{{
