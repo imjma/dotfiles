@@ -1,26 +1,74 @@
 <?xml version="1.0"?>
 <root>
-  <item>
-    <name>Remap Left Control to Hyper</name>
-    <appendix>OS X doesn't have a Hyper. This maps Left Control to Control + Shift + Option + Command.</appendix>
-
-    <identifier>private.left_control_to_hyper</identifier>
-
-    <autogen>
-        --KeyToKey--
-        KeyCode::F19,
-        KeyCode::COMMAND_L, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
-    </autogen>
-  </item>
-
-  <item>
-        <name>Hyper+Tab To Capslock</name>
-        <appendix>Hyper(cmd+ctrl+shift+opt)+tab, send capslock</appendix>
-        <identifier>private.hyper_tab_tp_capslock</identifier>
-        <autogen>
-        --KeyToKey--
-        KeyCode::TAB, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
-        KeyCode::CAPSLOCK
-        </autogen>
-    </item>
+	<item>
+		<name>F19 to F19</name>
+		<appendix>(F19 to Hyper (ctrl+shift+cmd+opt) + F19 Only, F19)</appendix>
+		<identifier>private.f192f19</identifier>
+		<autogen>
+			--KeyOverlaidModifier--
+			KeyCode::F19,
+			KeyCode::COMMAND_L,
+			ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,
+		</autogen>
+	</item>
+	<item>
+		<name>Hyper+space To Enter</name>
+		<appendix>Hyper(cmd+ctrl+shift+opt)+space, send enter</appendix>
+		<identifier>private.hyperspace2enter</identifier>
+		<autogen>
+			--KeyToKey--
+			KeyCode::SPACE, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+			KeyCode::ENTER
+		</autogen>
+	</item>
+	<item>
+		<name>Hyper+J To Down</name>
+		<appendix>Hyper(cmd+ctrl+shift+opt)+J, send down</appendix>
+		<identifier>private.hyperj2down</identifier>
+		<autogen>
+			--KeyToKey--
+			KeyCode::J, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+			KeyCode::CURSOR_DOWN
+		</autogen>
+	</item>
+	<item>
+		<name>Hyper+K To Up</name>
+		<appendix>Hyper(cmd+ctrl+shift+opt)+k, send up</appendix>
+		<identifier>private.hyperk2up</identifier>
+		<autogen>
+			--KeyToKey--
+			KeyCode::K, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+			KeyCode::CURSOR_UP
+		</autogen>
+	</item>
+	<item>
+		<name>Hyper+H To Left</name>
+		<appendix>Hyper(cmd+ctrl+shift+opt)+h, send left</appendix>
+		<identifier>private.hyperh2left</identifier>
+		<autogen>
+			--KeyToKey--
+			KeyCode::H, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+			KeyCode::CURSOR_LEFT
+		</autogen>
+	</item>
+	<item>
+		<name>Hyper+L To Right</name>
+		<appendix>Hyper(cmd+ctrl+shift+opt)+l, send right</appendix>
+		<identifier>private.hyperl2right</identifier>
+		<autogen>
+			--KeyToKey--
+			KeyCode::L, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+			KeyCode::CURSOR_RIGHT
+		</autogen>
+	</item>
+	<item>
+		<name>Hyper+Tab To Capslock</name>
+		<appendix>Hyper(cmd+ctrl+shift+opt)+tab, send capslock</appendix>
+		<identifier>private.hypertab2capslock</identifier>
+		<autogen>
+			--KeyToKey--
+			KeyCode::TAB, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+			KeyCode::CAPSLOCK
+		</autogen>
+	</item>
 </root>
