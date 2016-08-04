@@ -56,6 +56,7 @@ call plug#end()
 
 " Colors 
 colorscheme badwolf
+colorscheme seoul256 
 
 set background=dark
 colorscheme gruvbox

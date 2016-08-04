@@ -17,5 +17,5 @@ if [[ "$(command -v fasd)" > /dev/null ]]; then
 # alias z='fasd_cd -d' # cd, same functionality as j in autojump
 # alias zz='fasd_cd -d -i' # interactive directory jump
 
-  alias v='f -e vim' # quick opening files with vim
+  # alias v='f -e vim' # quick opening files with vim
 fi

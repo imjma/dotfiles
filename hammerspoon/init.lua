@@ -51,11 +51,12 @@ hs.alert.show("Config loaded")
 local key2App = {
     ["a"] = "App Store",
     ["w"] = "Safari",
-    ["e"] = "Sublime Text",
+    ["e"] = "Atom",
+    ["r"] = "RubyMine",
     ["f"] = "Finder",
     ["t"] = "iTerm",
     ["g"] = "Google Chrome",
-    ["m"] = "Polymail",
+    ["m"] = "Airmail 3",
     ["s"] = "Slack"
 }
 for key, app in pairs(key2App) do
