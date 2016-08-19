@@ -52,7 +52,6 @@ local key2App = {
     ["a"] = "App Store",
     ["w"] = "Safari",
     ["e"] = "Atom",
-    ["r"] = "RubyMine",
     ["f"] = "Finder",
     ["t"] = "iTerm",
     ["g"] = "Google Chrome",

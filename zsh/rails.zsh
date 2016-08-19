@@ -1,0 +1,6 @@
+alias rsr="mysql.server start;brew services start redis;"
+alias rsd="mysql.server stop;brew services stop redis;"
+alias rssd="foreman start -f Procfile.dev"
+alias rssh="foreman start -f Procfile.hot"
+alias rc="rails c"
+alias rorf="mkdir -p actions components constants containers layout reducers routes startup store"

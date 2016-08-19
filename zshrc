@@ -20,3 +20,6 @@ for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
