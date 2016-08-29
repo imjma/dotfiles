@@ -39,12 +39,19 @@ Plug 'airblade/vim-gitgutter'
 " Interface
 
 " Lint
-Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
+Plug 'scrooloose/syntastic'
 
 " Lang
 " Ruby
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
+
+" React
+Plug 'mxw/vim-jsx'
+Plug 'justinj/vim-react-snippets'
+Plug 'SirVer/ultisnips'
+
+Plug 'honza/vim-snippets'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -64,9 +71,9 @@ colorscheme gruvbox
 syntax enable
 
 " Spaces & Tabs
-set tabstop=4     " number of visual spaces per TAB
-set softtabstop=4 " number of spaces in tab when editing
-set shiftwidth=4
+set tabstop=2     " number of visual spaces per TAB
+set softtabstop=2 " number of spaces in tab when editing
+set shiftwidth=2
 set expandtab     " tabs are spaces
 
 " UI
@@ -475,12 +482,15 @@ nmap gaa ga_
 " ===============================================================================
 " syntastic {{{
 " ===============================================================================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 " }}}
 " =============================================================================
@@ -591,7 +601,7 @@ augroup file_type " {{{
     " Special sets for different filetype
     autocmd FileType ruby,erb setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
     autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-    autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
     autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
     autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
     autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
