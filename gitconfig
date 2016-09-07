@@ -106,3 +106,5 @@
 [core]
   autocrlf = false
   editor = vim
+[pull]
+  rebase = true
