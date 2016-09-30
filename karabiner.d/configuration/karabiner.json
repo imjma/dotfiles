@@ -1,0 +1,12 @@
+{
+    "profiles": [
+        {
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": {
+                "caps_lock": "left_control",
+                "left_control": "f18"
+            }
+        }
+    ]
+}

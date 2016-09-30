@@ -1,0 +1,27 @@
+[2016-09-30 10:22:05.361] [console_user_server] [info] version 0.90.45
+[2016-09-30 10:22:06.507] [console_user_server] [info] grabber_client_ is connected
+[2016-09-30 10:22:06.509] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 10:22:07.578] [console_user_server] [info] system_preferences::values is updated.
+[2016-09-30 10:24:29.905] [console_user_server] [info] version 0.90.45
+[2016-09-30 10:24:31.008] [console_user_server] [info] grabber_client_ is connected
+[2016-09-30 10:24:31.009] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 10:24:32.080] [console_user_server] [info] system_preferences::values is updated.
+[2016-09-30 10:27:12.064] [console_user_server] [info] version 0.90.45
+[2016-09-30 10:27:15.021] [console_user_server] [info] grabber_client_ is connected
+[2016-09-30 10:27:15.022] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 10:27:16.084] [console_user_server] [info] system_preferences::values is updated.
+[2016-09-30 10:30:05.167] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 10:30:56.016] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 10:47:15.780] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 10:53:02.825] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 12:13:28.274] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 12:13:36.594] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 12:13:40.443] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 12:14:15.189] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 14:11:46.552] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 14:11:46.553] [console_user_server] [warning] unknown key_code:F18 in /Users/jma/dotfiles/karabiner.d/configuration/karabiner.json
+[2016-09-30 14:11:57.673] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 14:25:13.953] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 14:25:18.367] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 14:30:35.464] [console_user_server] [info] configuration_core_ was loaded.
+[2016-09-30 14:34:38.735] [console_user_server] [info] configuration_core_ was loaded.

@@ -34,6 +34,10 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
+" JavaScript
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
 " Enhance
 " Plug 'godlygeek/tabular'
 Plug 'matze/vim-move'

@@ -4,12 +4,15 @@ local hyper      = {'ctrl', 'cmd', 'alt'}
 -- local hyper      = {'ctrl', 'cmd', 'alt', 'shift'}
 local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 
--- reload configka
--- hs.hotkey.bind(hyper, "r", function()
---     removeCaffeine()
---     hs.reload()
--- end)
--- hs.alert.show("Config loaded")
+-- A global variable for the Hyper Mode
+k = hs.hotkey.modal.new({}, "F17")
+
+-- k:bind({}, 'm', nil, function() hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'm') end)
+
+launch = function(appname)
+  hs.application.launchOrFocus(appname)
+  k.triggered = true
+end
 
 function reload_config(files)
     hs.reload()
@@ -17,89 +20,49 @@ end
 hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/hammerspoon/", reload_config):start()
 hs.alert.show("Config loaded")
 
--- replace caffeine
--- local caffeine = hs.menubar.new()
--- function setCaffeineDisplay(state)
---     if state then
---         -- caffeine:setTitle("A") -- AWAKE
---         caffeine:setIcon("caffeine-active.png")
---         hs.alert("Caffeine enabled", 1)
---     else
---         -- caffeine:setTitle("S") -- SLEEPY
---         caffeine:setIcon("caffeine-inactive.png")
---         hs.alert("Caffeine disabled", 1)
---     end
--- end
-
--- function toggleCaffeine()
---     setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
--- end
-
--- function removeCaffeine()
---     caffeine:delete()
---     caffeine = nil
--- end
-
--- if caffeine then
---     caffeine:setClickCallback(toggleCaffeine)
---     -- hs.caffeinate.set("displayIdle", true)  -- default to turn caffeinate on
---     setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
--- end
--- /replace caffeine
-
 -- launch and focus applications
 local key2App = {
-    ["a"] = "App Store",
-    ["w"] = "Safari",
-    ["e"] = "Atom",
-    ["f"] = "Finder",
-    ["t"] = "iTerm",
-    ["g"] = "Google Chrome",
-    ["m"] = "Airmail 3",
-    ["s"] = "Slack"
+    ['w'] = 'Safari',
+    ['e'] = 'Atom',
+    ['f'] = 'Finder',
+    ['t'] = 'iTerm',
+    ['g'] = 'Google Chrome',
+    ['m'] = 'Airmail 3',
+    ['s'] = 'Slack',
 }
 for key, app in pairs(key2App) do
-    hs.hotkey.bind(hyperShift, key, function() hs.application.launchOrFocus(app) end)
+    k:bind({}, key, function() launch(app); k:exit(); end)
 end
 
--- Simple triggers
--- triggers = {
---   {hyper, "s", "Slack"}
--- }
--- for _, trigger in pairs(triggers) do
-  -- local mods = trigger[1]
-  -- local key = trigger[2]
-  -- local applicationName = trigger[3]
+-- Sequential keybindings, e.g. Hyper-a,f for Finder
+a = hs.hotkey.modal.new({}, "F16")
+apps = {
+  {'d', 'Tweetbot'},
+  {'f', 'Finder'},
+}
+for i, app in ipairs(apps) do
+  a:bind({}, app[1], function() launch(app[2]); a:exit(); end)
+end
 
-  -- hs.hotkey.bind(mods, key, function()
-    -- hs.application.launchOrFocus(applicationName)
-  -- end)
--- end
+pressedA = function() a:enter() end
+releasedA = function() end
+k:bind({}, 'a', nil, pressedA, releasedA)
 
--- Hints
-hs.hotkey.bind(hyperShift, '\\', function() 
-    hs.hints.windowHints()
-end)
+-- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
+pressedF18 = function()
+  k.triggered = false
+  k:enter()
+end
 
--- Move Mouse to center of next Monitor
-hs.hotkey.bind(hyperShift, '`', function()
-    local screen = hs.mouse.getCurrentScreen()
-    local nextScreen = screen:next()
-    local rect = nextScreen:fullFrame()
-    local center = hs.geometry.rectMidPoint(rect)
+-- Leave Hyper Mode when F18 (Hyper/Capslock) is pressed,
+--   send ESCAPE if no other keys are pressed.
+releasedF18 = function()
+  k:exit()
+  if not k.triggered then
+    hs.eventtap.keyStroke({}, 'ESCAPE')
+  end
+end
 
-    -- hs.mouse.setRelativePosition(center, nextScreen)
-    hs.mouse.setAbsolutePosition(center)
-end)
+-- Bind the Hyper key
+f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 
--- Move Mouse to center of current Window
--- hs.hotkey.bind(hyperShift, '/', function()
---     local win = hs.window.focusedWindow()
---     local rect = win:frame()
---     local center = hs.geometry.rectMidPoint(rect)
-
-    -- hs.mouse.setRelativePosition(center, nextScreen)
---     hs.mouse.setAbsolutePosition(center)
--- end)
-
--- hs.hotkey.bind(hyper, '/', toggleCaffeine)
