@@ -7,7 +7,7 @@ local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 -- A global variable for the Hyper Mode
 k = hs.hotkey.modal.new({}, "F17")
 
--- k:bind({}, 'm', nil, function() hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'm') end)
+k:bind({}, 'f', nil, function() hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'f') end)
 
 launch = function(appname)
   hs.application.launchOrFocus(appname)
@@ -24,7 +24,6 @@ hs.alert.show("Config loaded")
 local key2App = {
     ['w'] = 'Safari',
     ['e'] = 'Atom',
-    ['f'] = 'Finder',
     ['t'] = 'iTerm',
     ['g'] = 'Google Chrome',
     ['m'] = 'Airmail 3',
