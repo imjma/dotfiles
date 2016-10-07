@@ -94,6 +94,8 @@ set guioptions-=L
 " Disable the macvim toolbar
 set guioptions-=T
 
+set lazyredraw
+
 " ================ Scrolling ========================
 
 " Minimal number of screen lines to keep above and below the cursor
@@ -216,12 +218,13 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=
 autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 
-" Writes to the unnamed register also writes to the * and + registers. This
-" makes it easy to interact with the system clipboard
-if has ('unnamedplus')
-  set clipboard=unnamedplus
-else
-  set clipboard=unnamed
+" Enable clipboard if possible
+if executable('pbcopy') || executable('xclip') || has('clipboard')
+    if has('unnamedplus') " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
 endif
 
 " Spelling highlights. Use underline in term to prevent cursorline highlights
@@ -248,6 +251,7 @@ endif
 
 " Don't copy the contents of an overwritten selection.
 vnoremap p "_dP
+
 
 "===============================================================================
 " Leader Key Mappings
@@ -284,7 +288,53 @@ let g:gitgutter_enabled = 0
 
 let g:jsx_ext_required = 0 
 
+" =============================================================================
+" atuocmd {{{
+" =============================================================================
 
+" https://raw.githubusercontent.com/ziz/vimrc/master/vim/inc/autocmd.vim
+augroup invisible_chars " {{{
+    au!
+
+    " Show invisible characters in all of these files
+    autocmd filetype vim setlocal list
+    autocmd filetype php setlocal list
+    autocmd filetype python,rst setlocal list
+    autocmd filetype ruby setlocal list
+    autocmd filetype javascript,css setlocal list
+augroup END " }}}
+
+augroup file_type " {{{
+    au!
+
+    "These languages have their own tab/indent settings.
+    autocmd FileType gitcommit setlocal spell
+
+    " md is markdown
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.md set spell
+
+    " Special sets for different filetype
+    autocmd FileType ruby,erb setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+    autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType lua setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+augroup END " }}}
+
+augroup tmux " {{{
+    au!
+    " Automatic rename of tmux window
+    if exists('$TMUX') && !exists('$NORENAME')
+        autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+        autocmd VimLeave * call system('tmux set-window automatic-rename on')
+    endif
+augroup END " }}}
+
+" }}}
 "===============================================================================
 "" Local Settings
 "===============================================================================

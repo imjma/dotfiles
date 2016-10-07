@@ -36,7 +36,9 @@ nnoremap W :w<cr>
 " ========================================
 " General vim sanity improvements
 " ========================================
-"
+" map semicolon to colon to avoid the extra shift keypress
+nmap ;; :
+
 "
 " alias yw to yank the entire word 'yank inner word'
 " even if the cursor is halfway inside the word
@@ -162,3 +164,85 @@ function! CloseWindowOrKillBuffer()
 endfunction
 
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
+
+" edit vimrc and load vimrc bindings
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
+" this is helpful to paste someone the path you're looking at 
+nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
+nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
+
+" linenumber {{{
+
+" Default show linenumber
+if !exists('g:noshowlinenumber')
+    let g:noshowlinenumber = 0
+endif
+if (g:noshowlinenumber == 1)
+    set nonumber norelativenumber
+else
+    set number relativenumber
+endif
+
+" Toggle showing linenumber
+nnoremap <silent> <Leader>n :call ToggleShowlinenum()<CR>
+function! ToggleShowlinenum()
+    if (g:noshowlinenumber == 0)
+        setlocal nonumber norelativenumber
+        let g:noshowlinenumber = 1
+    else
+        setlocal number relativenumber
+        let g:noshowlinenumber = 0
+    endif
+endfunction
+
+" Use absolute linenum in Insert mode; relative linenum in Normal mode
+autocmd FocusLost,InsertEnter * :call UseAbsNum()
+autocmd FocusGained,InsertLeave * :call UseRelNum()
+
+function! UseAbsNum()
+    let b:fcStatus = &foldcolumn
+    setlocal foldcolumn=0 " Don't show foldcolumn in Insert mode
+    if (g:noshowlinenumber == 1) || exists('#goyo')
+        set nonumber norelativenumber
+    else
+        set number norelativenumber
+    endif
+endfunction
+
+function! UseRelNum()
+    if !exists('b:fcStatus')
+        let b:fcStatus = &foldcolumn
+    endif
+    if b:fcStatus == 1
+        setlocal foldcolumn=1 " Restore foldcolumn in Normal mode
+    endif
+    if (g:noshowlinenumber == 1) || exists('#goyo')
+        set nonumber norelativenumber
+    else
+        set number relativenumber
+    endif
+endfunction
+
+" }}}
+
+" vim-mappings {{{
+    " Ctrl+Shift+上下移动当前行
+    nnoremap <silent><C-j> :m .+1<CR>==
+    nnoremap <silent><C-k> :m .-2<CR>==
+    inoremap <silent><C-j> <Esc>:m .+1<CR>==gi
+    inoremap <silent><C-k> <Esc>:m .-2<CR>==gi
+    " 上下移动选中的行
+    vnoremap <silent><C-j> :m '>+1<CR>gv=gv
+    vnoremap <silent><C-k> :m '<-2<CR>gv=gv
+    " Use tab for indenting in visual mode
+    xnoremap <Tab> >gv|
+    xnoremap <S-Tab> <gv
+    nnoremap > >>_
+    nnoremap < <<_
+    " press <F7> whenever you want to format
+    " your file(re-indent your entire file)
+    map <F7> mzgg=G`z
+" }}}
