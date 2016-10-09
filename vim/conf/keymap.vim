@@ -27,6 +27,9 @@ nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>c <Plug>Kwbd
 noremap <silent> <leader><leader>v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
+" space open/closes folds
+nnoremap <space> za
+
 " Q: Closes the window
 " nnoremap Q :q<cr>
 
