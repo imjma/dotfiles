@@ -33,6 +33,8 @@ bindApps = function(hotkey, apps)
     elseif #app > 0 then
       if string.find(app, "com.") then
         hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
+      elseif string.find(app, "net.") then
+        hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
       else
         hotkey:bind({}, key, function() launch(app); hotkey:exit(); end)
       end
@@ -48,7 +50,9 @@ local key2App = {
     ['t'] = 'iTerm',
     ['g'] = 'Google Chrome',
     ['m'] = 'Airmail 3',
+    ['n'] = 'net.elasticthreads.nv',
     ['s'] = 'Slack',
+    ['i'] = 'com.rafifyalda.flume-mac',
     ['1'] = 'com.googlecode.iterm2',
     ['2'] = 'com.google.Chrome',
 }
