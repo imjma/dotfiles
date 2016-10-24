@@ -1,0 +1,41 @@
+source ~/.zplug/init.zsh
+
+zplug "zplug/zplug"
+
+zplug "zsh-users/zsh-completions"
+
+# Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git",   from:oh-my-zsh
+
+# Also prezto
+zplug "modules/prompt", from:prezto
+
+# Set the priority when loading
+# e.g., zsh-syntax-highlighting must be loaded
+# after executing compinit command and sourcing other plugins
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
+# Can manage local plugins
+# zplug "~/.zsh", from:local
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+# Customize to your needs...
+
+for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
+
+# User configuration
+[[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
+[[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
