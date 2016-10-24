@@ -41,6 +41,9 @@ Plug 'tpope/vim-rails'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
+" Coffeescript
+Plug 'kchmck/vim-coffee-script'
+
 " Enhance
 " Plug 'godlygeek/tabular'
 Plug 'matze/vim-move'
