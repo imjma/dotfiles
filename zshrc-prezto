@@ -15,11 +15,5 @@ fi
 for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
 
 # User configuration
-
+[[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
