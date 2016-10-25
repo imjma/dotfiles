@@ -55,6 +55,7 @@ else
 endif
 
 " Colorscheme
+set background=dark
 " colorscheme material-theme
 " colorscheme base16-default
 " colorscheme base16-tomorrow
@@ -63,8 +64,10 @@ endif
 " colorscheme solarized
 " colorscheme seti
 " colorscheme molokai
-colorscheme seoul256
-set background=dark
+" colorscheme seoul256
+
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 
 " Turn on relative number mode
 set relativenumber

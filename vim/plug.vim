@@ -28,6 +28,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'sts10/vim-mustard'
 Plug 'junegunn/seoul256.vim'
 Plug 'ajh17/Spacegray.vim'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 
 " Language
 Plug 'scrooloose/syntastic'
