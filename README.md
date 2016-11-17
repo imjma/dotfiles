@@ -4,6 +4,8 @@
 
 	git pull && git submodule update --init --recursive
 
+  brew install reattach-to-user-namespace
+
 ## ZSH
 
 - oh-my-zsh
