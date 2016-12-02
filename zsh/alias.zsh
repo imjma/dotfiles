@@ -11,3 +11,5 @@ fi
 
 # copy directory
 alias cpd="cp -avR"
+
+alias fs="foreman start -f"
