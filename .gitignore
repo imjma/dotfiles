@@ -16,6 +16,8 @@ vim/bundle/*
 *.swp
 vim/.netrwhist
 vim/tmp
+vim/autoload/*
+vim/plugged/*
 
 karabiner.d/log/
 
