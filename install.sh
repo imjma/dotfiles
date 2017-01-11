@@ -8,7 +8,7 @@
 
 dir=$HOME/dotfiles                    # dotfiles directory
 # files=".bashrc .bash_profile .zshrc .gitconfig .vimrc .vim .tmux.conf .tigrc"    # list of files/folders to symlink in homedir
-files="gitconfig vimrc vim tmux.conf tigrc"    # list of files/folders to symlink in homedir
+files="gitconfig vimrc vim tmux.conf tigrc irbrc"    # list of files/folders to symlink in homedir
 
 ##########
 # change to the dotfiles directory
@@ -50,4 +50,4 @@ done
 # zplug
 export ZPLUG_HOME=$HOME/.zplug
 ln -s $dir/zshrc-zplug $HOME/.zshrc
-ln -s $dir/dotfiles/zsh/zplug $HOME/.zplug
+ln -s $dir/dotfiles/zsh/zplug/ $HOME/.zplug
