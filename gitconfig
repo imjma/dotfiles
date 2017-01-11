@@ -109,3 +109,5 @@
   editor = vim
 [pull]
   rebase = true
+[commit]
+  gpgsign = true
