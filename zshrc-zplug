@@ -12,7 +12,7 @@ zplug "tarruda/zsh-autosuggestions",            defer:2
 zplug "zsh-users/zsh-syntax-highlighting",      defer:2
 
 # Make sure to use double quotes
-zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-history-substring-search", defer:3
 
 # Supports oh-my-zsh plugins and the like
 zplug "plugins/git",   from:oh-my-zsh
@@ -31,7 +31,7 @@ zplug "modules/prompt",     from:prezto
 # k is the new l, yo
 zplug "supercrabtree/k"
 
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
+# zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Can manage local plugins
 # zplug "~/.zsh", from:local
@@ -54,3 +54,8 @@ for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
 # User configuration
 [[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+export NVM_DIR="/Users/jma/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

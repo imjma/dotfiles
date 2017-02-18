@@ -8,6 +8,8 @@ local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 -- A global variable for the Hyper Mode
 k = hs.hotkey.modal.new({}, "F17")
 
+-- osascript -e 'id of app "Finder"'
+
 k:bind({}, 'f', nil, function() hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'f') end)
 
 launch = function(appname)
@@ -31,13 +33,14 @@ bindApps = function(hotkey, apps)
     if type(app) == 'function' then
       hotkey:bind({}, key, app)
     elseif #app > 0 then
-      if string.find(app, "com.") then
-        hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
-      elseif string.find(app, "net.") then
-        hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
-      else
-        hotkey:bind({}, key, function() launch(app); hotkey:exit(); end)
-      end
+      hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
+      -- if string.find(app, "com.") then
+        -- hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
+      -- elseif string.find(app, "net.") then
+        -- hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
+      -- else
+        -- hotkey:bind({}, key, function() launch(app); hotkey:exit(); end)
+      -- end
     end
     -- hotkey:bind({}, key, function() launch(app); hotkey:exit(); end)
   end
@@ -45,14 +48,12 @@ end
 
 -- launch and focus applications
 local key2App = {
-    ['w'] = 'Safari',
-    ['e'] = 'Atom',
-    ['t'] = 'iTerm',
-    ['g'] = 'Google Chrome',
-    ['m'] = 'Airmail 3',
+    ['w'] = 'com.apple.Safari',
+    ['t'] = 'com.googlecode.iterm2',
+    ['g'] = 'com.google.Chrome',
+    ['m'] = 'com.freron.MailMate',
     ['n'] = 'net.elasticthreads.nv',
-    ['s'] = 'Slack',
-    ['i'] = 'com.rafifyalda.flume-mac',
+    ['s'] = 'com.tinyspeck.slackmacgap',
     ['1'] = 'com.googlecode.iterm2',
     ['2'] = 'com.google.Chrome',
 }
@@ -61,8 +62,8 @@ bindApps(k, key2App)
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
 a = hs.hotkey.modal.new({}, "F16")
 apps = {
-  ['d'] = 'Tweetbot',
-  ['f'] = 'Finder',
+  ['d'] = 'com.tapbots.TweetbotMac',
+  ['f'] = 'com.apple.finder',
 }
 bindApps(a, apps)
 
@@ -86,4 +87,4 @@ releasedF18 = function()
 end
 
 -- Bind the Hyper key
-f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
+F18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)

@@ -1,4 +1,9 @@
 {
+    "global": {
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": false
+    },
     "profiles": [
         {
             "devices": [],
@@ -20,9 +25,10 @@
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "left_control",
-                "left_control": "f19"
+                "left_control": "f18"
             },
             "virtual_hid_keyboard": {
+                "caps_lock_delay_milliseconds": 0,
                 "keyboard_type": "ansi"
             }
         }
