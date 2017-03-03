@@ -41,6 +41,7 @@ nnoremap W :w<cr>
 " ========================================
 " map semicolon to colon to avoid the extra shift keypress
 nmap ;; :
+imap ii <Esc>
 
 "
 " alias yw to yank the entire word 'yank inner word'
