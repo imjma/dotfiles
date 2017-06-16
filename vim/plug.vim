@@ -30,6 +30,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 
 " Language
 Plug 'scrooloose/syntastic'

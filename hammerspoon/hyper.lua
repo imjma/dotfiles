@@ -5,17 +5,9 @@ local hyper      = {'ctrl', 'cmd', 'alt'}
 -- local hyper      = {'ctrl', 'cmd', 'alt', 'shift'}
 local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 
--- A global variable for the Hyper Mode
-k = hs.hotkey.modal.new({}, "F17")
-
 -- osascript -e 'id of app "Finder"'
-
-k:bind({}, 'f', nil, function() hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'f') end)
-
-launch = function(appname)
-  hs.application.launchOrFocus(appname)
-  k.triggered = true
-end
+-- A global variable for the Hyper Mode
+k = hs.hotkey.modal.new(hyperShift, 'f')
 
 toggleApp = function(id)
   local app = hs.application.frontmostApplication()
@@ -25,7 +17,7 @@ toggleApp = function(id)
   else
     hs.application.launchOrFocusByBundleID(id)
   end
-  k.triggered = true
+  k:exit()
 end
 
 bindApps = function(hotkey, apps)
@@ -33,17 +25,10 @@ bindApps = function(hotkey, apps)
     if type(app) == 'function' then
       hotkey:bind({}, key, app)
     elseif #app > 0 then
-      hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
-      -- if string.find(app, "com.") then
-        -- hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
-      -- elseif string.find(app, "net.") then
-        -- hotkey:bind({}, key, function() toggleApp(app); hotkey:exit(); end)
-      -- else
-        -- hotkey:bind({}, key, function() launch(app); hotkey:exit(); end)
-      -- end
+      hotkey:bind({}, key, function() toggleApp(app) end)
     end
-    -- hotkey:bind({}, key, function() launch(app); hotkey:exit(); end)
   end
+  hotkey:bind({}, 'escape', function() hotkey:exit() end)
 end
 
 -- launch and focus applications
@@ -60,74 +45,9 @@ local key2App = {
 bindApps(k, key2App)
 
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
-a = hs.hotkey.modal.new({}, "F16")
+a = hs.hotkey.modal.new(hyperShift, 'a')
 apps = {
   ['d'] = 'com.tapbots.TweetbotMac',
   ['f'] = 'com.apple.finder',
 }
 bindApps(a, apps)
-
-pressedA = function() a:enter() end
-releasedA = function() end
-k:bind({}, 'a', nil, pressedA, releasedA)
-
--- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
-pressedF18 = function()
-  k.triggered = false
-  k:enter()
-end
-
--- Leave Hyper Mode when F18 (Hyper/Capslock) is pressed,
---   send ESCAPE if no other keys are pressed.
-releasedF18 = function()
-  k:exit()
-  if not k.triggered then
-    hs.eventtap.keyStroke({}, 'ESCAPE')
-  end
-end
-
--- Bind the Hyper key
-F18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
-
--- send escape on short ctrl press
-ctrl_table = {
-    sends_escape = true,
-    last_mods = {}
-}
-
-control_key_timer = hs.timer.delayed.new(0.15, function()
-    ctrl_table["send_escape"] = false
-    -- log.i("timer fired")
-    -- control_key_timer:stop()
-end
-)
-
-last_mods = {}
-
-control_handler = function(evt)
-  local new_mods = evt:getFlags()
-  if last_mods["ctrl"] == new_mods["ctrl"] then
-      return false
-  end
-  if not last_mods["ctrl"] then
-    -- log.i("control pressed")
-    last_mods = new_mods
-    ctrl_table["send_escape"] = true
-    -- log.i("starting timer")
-    control_key_timer:start()
-  else
-    -- log.i("contrtol released")
-    -- log.i(ctrl_table["send_escape"])
-    if ctrl_table["send_escape"] then
-      -- log.i("send escape key...")
-      hs.eventtap.keyStroke({}, "ESCAPE")
-    end
-    last_mods = new_mods
-    control_key_timer:stop()
-  end
-  return false
-end
-
--- control_tap = hs.eventtap.new({12}, control_handler)
-
--- control_tap:start()

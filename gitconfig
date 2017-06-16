@@ -1,7 +1,6 @@
 [user]
   name = Jie Ma
   email = codejma@gmail.com
-	signingkey = 93C4BBA2AD94878C
 [mergetool]
   prompt = false
   keepBackup = false
@@ -96,6 +95,7 @@
   ignore = update-index --assume-unchanged
   unignore = update-index --no-assume-unchanged
   ignored = !git ls-files -v | grep ^[a-z]
+  dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [apply]
@@ -107,7 +107,11 @@
 [core]
   autocrlf = false
   editor = vim
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [pull]
   rebase = true
-[commit]
-  gpgsign = true
+[color "diff-highlight"]
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+  oldNormal = red bold
