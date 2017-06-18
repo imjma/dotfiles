@@ -43,6 +43,7 @@ zstyle ':prezto:load' pmodule \
   'tmux' \
   'syntax-highlighting' \
   'history-substring-search' \
+  'autosuggestions' \
   'ssh' \
   'prompt'
 
@@ -168,3 +169,6 @@ zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Integrate with iTerm2.
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+
+zstyle ':prezto:module:autosuggestions' color 'yes'
+# zstyle ':prezto:module:autosuggestions:color' found ''
