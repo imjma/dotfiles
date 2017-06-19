@@ -1,0 +1,56 @@
+# Load the oh-my-zsh's library
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle git-extras
+antigen bundle tmuxinator
+antigen bundle command-not-found
+antigen bundle tmux
+antigen bundle tig
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-history-substring-search
+
+antigen bundle rupa/z
+antigen bundle supercrabtree/k
+antigen bundle djui/alias-tips
+
+# For SSH, starting ssh-agent is annoying
+antigen bundle ssh-agent
+
+# Develop
+antigen bundle sublime
+antigen bundle vagrant
+antigen bundle github
+
+# Ruby
+antigen bundle rbenv
+
+# Node Plugins
+antigen bundle coffee
+antigen bundle node
+antigen bundle npm
+antigen bundle nvm
+
+# PHP
+antigen bundle laravel
+antigen bundle laravel5
+
+# OS specific plugins
+if [[ $('uname') == 'Darwin' ]]; then
+    antigen bundle gem
+    antigen bundle osx
+elif [[ $('uname') == 'Linux' ]]; then
+    # None so far...
+elif [[ $('uname') == 'Cygwin' ]]; then
+    antigen bundle cygwin
+fi
+
+# Load the theme
+# antigen theme steeef
+antigen theme jdavis/zsh-files themes/jdavis
+
+# Tell antigen that you're done
+antigen apply
