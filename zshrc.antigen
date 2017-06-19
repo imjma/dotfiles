@@ -1,7 +1,14 @@
-if [[ ! -f $HOME/.antigen.zsh ]]; then
-  curl -L git.io/antigen > $HOME/.antigen.zsh
+ANTIGEN_ZSH=$HOME/antigen.zsh
+ANTIGEN_RC=$HOME/.antigenrc
+
+if [[ ! -f $ANTIGEN_ZSH ]]; then
+  curl -L git.io/antigen > $ANTIGEN_ZSH
 fi
 
-source $HOME/.antigen.zsh
+source $ANTIGEN_ZSH
 
-antigen init .antigenrc
+if [[ ! -f $ANTIGEN_RC ]]; then
+  ln -s $HOME/dotfiles/antigenrc $ANTIGEN_RC
+fi
+
+antigen init $ANTIGEN_RC
