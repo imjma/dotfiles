@@ -1,8 +1,9 @@
-ANTIGEN_ZSH=$HOME/antigen.zsh
+ANTIGEN_BASE=$HOME/.antigen
+ANTIGEN_ZSH=$ANTIGEN_BASE/.antigen.zsh
 ANTIGEN_RC=$HOME/.antigenrc
 
 if [[ ! -f $ANTIGEN_ZSH ]]; then
-  curl -L git.io/antigen > $ANTIGEN_ZSH
+  mkdir -p $ANTIGEN_BASE && curl -L git.io/antigen > $ANTIGEN_ZSH
 fi
 
 source $ANTIGEN_ZSH
