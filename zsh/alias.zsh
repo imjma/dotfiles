@@ -3,7 +3,7 @@
 ################################################################################
 # alias gci="git commit -a -m"
 
-if [[ `uname` = 'Darwin' ]] && [[ `command -v vim` > /dev/null ]]; then
+if [[ `command -v nvim` > /dev/null ]]; then
   # alias vim="mvim -v"
   # alias vim="nvim"
   alias v="nvim"

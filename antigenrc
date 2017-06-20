@@ -39,12 +39,12 @@ antigen bundle laravel
 antigen bundle laravel5
 
 # OS specific plugins
-if [[ $('uname') == 'Darwin' ]]; then
+if [[ `uname` = 'Darwin' ]]; then
     antigen bundle gem
     antigen bundle osx
-elif [[ $('uname') == 'Linux' ]]; then
+elif [[ `uname` = 'Linux' ]]; then
     # None so far...
-elif [[ $('uname') == 'Cygwin' ]]; then
+elif [[ `uname` = 'Cygwin' ]]; then
     antigen bundle cygwin
 fi
 

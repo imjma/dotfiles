@@ -12,3 +12,7 @@ if [[ ! -f $ANTIGEN_RC ]]; then
 fi
 
 antigen init $ANTIGEN_RC
+
+# User configuration
+[[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
+[[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
