@@ -38,6 +38,37 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Change caps_lock to left_control. Escape if no other key used.",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": {
+                                            "optional": [
+                                                "any"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -68,9 +99,8 @@
                 "f9": "fastforward"
             },
             "name": "Default profile",
-            "selected": true,
+            "selected": false,
             "simple_modifications": {
-                "caps_lock": "left_control",
                 "left_control": "f18"
             },
             "virtual_hid_keyboard": {
@@ -111,6 +141,37 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Change caps_lock to left_control. Escape if no other key used.",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": {
+                                            "optional": [
+                                                "any"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -130,9 +191,8 @@
                 "f9": "fastforward"
             },
             "name": "Filco Minila Air",
-            "selected": false,
+            "selected": true,
             "simple_modifications": {
-                "caps_lock": "left_control",
                 "left_command": "left_option",
                 "left_control": "f18",
                 "left_option": "left_command"

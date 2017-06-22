@@ -9,7 +9,7 @@ local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 -- A global variable for the Hyper Mode
 k = hs.hotkey.modal.new(hyperShift, 'f')
 
-toggleApp = function(id)
+toggleApp = function(hotkey, id)
   local app = hs.application.frontmostApplication()
   -- print(app:bundleID())
   if app and app:bundleID() == id then
@@ -17,7 +17,7 @@ toggleApp = function(id)
   else
     hs.application.launchOrFocusByBundleID(id)
   end
-  k:exit()
+  hotkey:exit()
 end
 
 bindApps = function(hotkey, apps)
@@ -25,7 +25,7 @@ bindApps = function(hotkey, apps)
     if type(app) == 'function' then
       hotkey:bind({}, key, app)
     elseif #app > 0 then
-      hotkey:bind({}, key, function() toggleApp(app) end)
+      hotkey:bind({}, key, function() toggleApp(hotkey, app) end)
     end
   end
   hotkey:bind({}, 'escape', function() hotkey:exit() end)
@@ -49,5 +49,13 @@ a = hs.hotkey.modal.new(hyperShift, 'a')
 apps = {
   ['d'] = 'com.tapbots.TweetbotMac',
   ['f'] = 'com.apple.finder',
+  ['w'] = 'com.apple.Safari',
+  ['t'] = 'com.googlecode.iterm2',
+  ['g'] = 'com.google.Chrome',
+  ['m'] = 'com.freron.MailMate',
+  ['n'] = 'net.elasticthreads.nv',
+  ['s'] = 'com.tinyspeck.slackmacgap',
+  ['1'] = 'com.googlecode.iterm2',
+  ['2'] = 'com.google.Chrome',
 }
 bindApps(a, apps)
