@@ -51,8 +51,13 @@ fi
 # Load the theme
 # antigen theme steeef
 # antigen theme jdavis/zsh-files themes/jdavis
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
+
+# theme pure
+#antigen bundle mafredri/zsh-async
+#antigen bundle sindresorhus/pure
+
+# theme spaceship
+antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 # Tell antigen that you're done
 antigen apply
