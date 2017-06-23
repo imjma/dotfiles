@@ -39,6 +39,7 @@ local key2App = {
     ['m'] = 'com.freron.MailMate',
     ['n'] = 'net.elasticthreads.nv',
     ['s'] = 'com.tinyspeck.slackmacgap',
+    ['z'] = 'todoist.mac.Todoist',
     ['1'] = 'com.googlecode.iterm2',
     ['2'] = 'com.google.Chrome',
 }

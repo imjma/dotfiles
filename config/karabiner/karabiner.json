@@ -99,7 +99,7 @@
                 "f9": "fastforward"
             },
             "name": "Default profile",
-            "selected": false,
+            "selected": true,
             "simple_modifications": {
                 "left_control": "f18"
             },
@@ -191,7 +191,7 @@
                 "f9": "fastforward"
             },
             "name": "Filco Minila Air",
-            "selected": true,
+            "selected": false,
             "simple_modifications": {
                 "left_command": "left_option",
                 "left_control": "f18",

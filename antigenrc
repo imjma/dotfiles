@@ -50,7 +50,9 @@ fi
 
 # Load the theme
 # antigen theme steeef
-antigen theme jdavis/zsh-files themes/jdavis
+# antigen theme jdavis/zsh-files themes/jdavis
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done
 antigen apply
