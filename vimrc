@@ -67,8 +67,9 @@ set background=dark
 " colorscheme seoul256
 
 let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-colorscheme nord
+" colorscheme gruvbox
+" colorscheme nord
+colorscheme spacegray
 
 " Turn on relative number mode
 set relativenumber

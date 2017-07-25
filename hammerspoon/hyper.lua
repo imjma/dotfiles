@@ -7,7 +7,7 @@ local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
 
 -- osascript -e 'id of app "Finder"'
 -- A global variable for the Hyper Mode
-k = hs.hotkey.modal.new(hyperShift, 'f')
+k = hs.hotkey.modal.new(hyperShift, 'k')
 
 toggleApp = function(hotkey, id)
   local app = hs.application.frontmostApplication()
@@ -43,12 +43,14 @@ local key2App = {
     ['1'] = 'com.googlecode.iterm2',
     ['2'] = 'com.google.Chrome',
 }
-bindApps(k, key2App)
+-- bindApps(k, key2App)
 
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
 a = hs.hotkey.modal.new(hyperShift, 'a')
 apps = {
+  ['c'] = 'com.tencent.xinWeChat',
   ['d'] = 'com.tapbots.TweetbotMac',
+  ['e'] = 'com.sublimetext.3',
   ['f'] = 'com.apple.finder',
   ['w'] = 'com.apple.Safari',
   ['t'] = 'com.googlecode.iterm2',

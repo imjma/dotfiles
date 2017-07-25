@@ -13,3 +13,5 @@ fi
 alias cpd="cp -avR"
 
 alias fs="foreman start -f"
+alias vup="vagrant up"
+alias vdown="vagrant halt"

@@ -17,6 +17,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
 Plug 'arcticicestudio/nord-vim'
+Plug 'ajh17/Spacegray.vim'
 
 " Browsing
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -64,12 +65,13 @@ call plug#end()
 " =============================================================================
 
 " Colors 
-colorscheme badwolf
-colorscheme seoul256 
+"colorscheme badwolf
+"colorscheme seoul256 
 
 set background=dark
-colorscheme gruvbox
-colorscheme nord
+"colorscheme gruvbox
+"colorscheme nord
+colorscheme spacegray
 
 syntax enable
 

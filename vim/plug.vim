@@ -43,6 +43,7 @@ Plug 'tpope/vim-rails'
 " JavaScript
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'elzr/vim-json'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
@@ -60,7 +61,8 @@ Plug 'terryma/vim-multiple-cursors'
 " Navigation
 Plug 'easymotion/vim-easymotion'
 Plug 'zhaocai/GoldenView.Vim'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
+Plug 'Shougo/vimfiler.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
