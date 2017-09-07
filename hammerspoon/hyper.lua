@@ -62,3 +62,13 @@ apps = {
   ['2'] = 'com.google.Chrome',
 }
 bindApps(a, apps)
+
+-- Move Mouse to center of next Monitor
+hs.hotkey.bind(hyperShift, '`', function()
+    local screen = hs.mouse.getCurrentScreen()
+    local nextScreen = screen:next()
+    local rect = nextScreen:fullFrame()
+    local center = hs.geometry.rectMidPoint(rect)
+
+    hs.mouse.setAbsolutePosition(center)
+end)
