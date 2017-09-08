@@ -31,20 +31,6 @@ bindApps = function(hotkey, apps)
   hotkey:bind({}, 'escape', function() hotkey:exit() end)
 end
 
--- launch and focus applications
-local key2App = {
-    ['w'] = 'com.apple.Safari',
-    ['t'] = 'com.googlecode.iterm2',
-    ['g'] = 'com.google.Chrome',
-    ['m'] = 'com.freron.MailMate',
-    ['n'] = 'net.elasticthreads.nv',
-    ['s'] = 'com.tinyspeck.slackmacgap',
-    ['z'] = 'todoist.mac.Todoist',
-    ['1'] = 'com.googlecode.iterm2',
-    ['2'] = 'com.google.Chrome',
-}
--- bindApps(k, key2App)
-
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
 a = hs.hotkey.modal.new(hyperShift, 'a')
 apps = {
@@ -55,7 +41,7 @@ apps = {
   ['w'] = 'com.apple.Safari',
   ['t'] = 'com.googlecode.iterm2',
   ['g'] = 'com.google.Chrome',
-  ['m'] = 'com.freron.MailMate',
+  ['m'] = 'com.apple.mail',
   ['n'] = 'net.elasticthreads.nv',
   ['s'] = 'com.tinyspeck.slackmacgap',
   ['1'] = 'com.googlecode.iterm2',
@@ -72,3 +58,11 @@ hs.hotkey.bind(hyperShift, '`', function()
 
     hs.mouse.setAbsolutePosition(center)
 end)
+
+-- launch and focus applications
+local key2BundleID = {
+    ['p'] = 'com.jetbrains.PhpStorm'
+}
+for key, bundleID in pairs(key2BundleID) do
+    hs.hotkey.bind(hyperShift, key, function() hs.application.launchOrFocusByBundleID(bundleID) end)
+end
