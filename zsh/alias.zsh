@@ -1,5 +1,5 @@
 ################################################################################
-# Alias 
+# Alias
 ################################################################################
 # alias gci="git commit -a -m"
 
@@ -15,6 +15,9 @@ alias wip="git add . && git commit -m 'wip'"
 # copy directory
 alias cpd="cp -avR"
 alias copy="rsync -avv --stats --human-readable --itemize-changes --progress --partial"
+
+# search text
+alias grepcur="grep -rnw . -e"
 
 # vagrant
 alias vup="vagrant up"
