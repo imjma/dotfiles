@@ -34,6 +34,7 @@ end
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
 a = hs.hotkey.modal.new(hyperShift, 'a')
 apps = {
+  ['b'] = 'net.shinyfrog.bear',
   ['c'] = 'com.tencent.xinWeChat',
   ['d'] = 'com.tapbots.TweetbotMac',
   ['e'] = 'com.sublimetext.3',
