@@ -1,27 +1,12 @@
-[submodule "zsh/prezto"]
-	path = zsh/prezto
-	url = https://github.com/sorin-ionescu/prezto.git
-[submodule "vim/bundle/Vundle.vim"]
-	path = vim/bundle/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim.git
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "zsh/zim"]
-	path = zsh/zim
-	url = https://github.com/Eriner/zim.git
-[submodule "zsh/zplug"]
-	path = zsh/zplug
-	url = https://github.com/zplug/zplug
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "tmux-sensible"]
 	path = tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
-[submodule "zsh/zgen"]
-	path = zsh/zgen
-	url = https://github.com/tarjoilija/zgen.git
 [submodule "zsh/antigen"]
 	path = zsh/antigen
 	url = https://github.com/zsh-users/antigen.git

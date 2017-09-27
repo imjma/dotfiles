@@ -15,14 +15,12 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-history-substring-search
 
 antigen bundle rupa/z
-antigen bundle supercrabtree/k
 antigen bundle djui/alias-tips
 
 # For SSH, starting ssh-agent is annoying
 antigen bundle ssh-agent
 
 # Develop
-antigen bundle sublime
 antigen bundle vagrant
 antigen bundle github
 
