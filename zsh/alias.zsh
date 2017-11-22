@@ -33,6 +33,7 @@ alias pf="vendor/bin/phpunit --filter"
 alias c="composer"
 alias cu='composer update'
 alias ci='composer install'
+alias cr='composer require'
 alias cda='composer dump-autoload -o'
 
 # laravel
