@@ -9,9 +9,12 @@ fi
 antigen init $ANTIGEN_RC
 
 # User configuration
+
+for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
+
 [[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
