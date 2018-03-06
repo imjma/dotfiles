@@ -36,6 +36,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplete.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'fatih/vim-go'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
