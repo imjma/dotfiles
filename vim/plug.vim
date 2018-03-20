@@ -33,10 +33,11 @@ Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
 
 " Language
-Plug 'scrooloose/syntastic'
+" Plug 'vim-syntastic/syntastic'
 Plug 'Shougo/neocomplete.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go'
+Plug 'w0rp/ale'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'

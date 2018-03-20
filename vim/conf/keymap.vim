@@ -148,7 +148,7 @@ nmap <silent> // :nohlsearch<CR>
 " Intelligent Window Killer
 " ============================
 
-" Use Q to intelligently close a window 
+" Use Q to intelligently close a window
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
@@ -174,7 +174,7 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
-" this is helpful to paste someone the path you're looking at 
+" this is helpful to paste someone the path you're looking at
 nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
 nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 
@@ -250,3 +250,8 @@ endfunction
     " your file(re-indent your entire file)
     map <F7> mzgg=G`z
 " }}}
+
+" Language specific keymaps
+" Go
+au FileType go nmap <leader>gt :GoDeclsDir<cr>
+au FileType go nmap <leader>gct :GoCoverageToggle -short<cr>
