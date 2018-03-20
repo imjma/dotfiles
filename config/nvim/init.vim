@@ -18,6 +18,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ajh17/Spacegray.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Browsing
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -27,6 +28,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'zhaocai/GoldenView.Vim'
 Plug 'rking/ag.vim'
 
+" Status bar mods
+Plug 'bling/vim-airline'
+
 " Edit
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -34,6 +38,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
+Plug 'terryma/vim-multiple-cursors'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -42,9 +47,14 @@ Plug 'airblade/vim-gitgutter'
 " Interface
 
 " Lint
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 
 " Lang
+Plug 'editorconfig/editorconfig-vim'
+Plug 'majutsushi/tagbar'
+Plug 'honza/vim-snippets'
+
 " Ruby
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
@@ -54,7 +64,30 @@ Plug 'mxw/vim-jsx'
 Plug 'justinj/vim-react-snippets'
 Plug 'SirVer/ultisnips'
 
-Plug 'honza/vim-snippets'
+" Go
+Plug 'sebdah/vim-delve'
+
+" Language support
+Plug 'aklt/plantuml-syntax'                    " PlantUML syntax highlighting
+Plug 'cespare/vim-toml'                        " toml syntax highlighting
+Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
+Plug 'dag/vim-fish'                            " Fish syntax highlighting
+Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
+Plug 'fatih/vim-go'                            " Go support
+Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
+Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
+Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
+Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
+Plug 'leafgarland/typescript-vim'              " TypeScript syntax highlighting
+Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
+Plug 'mxw/vim-jsx'                             " JSX syntax highlighting
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' } " Go auto completion
+Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
+Plug 'plasticboy/vim-markdown'                 " Markdown syntax highlighting
+Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
+Plug 'tclh123/vim-thrift'                      " Thrift syntax highlighting
+Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
+Plug 'zchee/deoplete-jedi'                     " Go auto completion
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -64,9 +97,9 @@ call plug#end()
 " Basic Settings {{{
 " =============================================================================
 
-" Colors 
+" Colors
 "colorscheme badwolf
-"colorscheme seoul256 
+"colorscheme seoul256
 
 set background=dark
 "colorscheme gruvbox
@@ -338,11 +371,11 @@ nnoremap <silent> <leader>z :bp<CR>
 nnoremap <silent> <leader>x :bn<CR>
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
-" this is helpful to paste someone the path you're looking at 
+" this is helpful to paste someone the path you're looking at
 nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
 nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 
-" Use Q to intelligently close a window 
+" Use Q to intelligently close a window
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
@@ -414,7 +447,7 @@ let g:UltiSnipsExpandTrigger        = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger   = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpBackwardTrigger  = "<Plug>(ultisnips_backward)"
 let g:UltiSnipsListSnippets         = "<Plug>(ultisnips_list)"
-let g:UltiSnipsRemoveSelectModeMappings = 0 
+let g:UltiSnipsRemoveSelectModeMappings = 0
 
 vnoremap <expr> <Plug>(ultisnip_expand_or_jump_result) g:ulti_expand_or_jump_res?'':"\<Tab>"
 inoremap <expr> <Plug>(ultisnip_expand_or_jump_result) g:ulti_expand_or_jump_res?'':"\<Tab>"
