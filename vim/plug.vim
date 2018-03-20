@@ -33,6 +33,12 @@ Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
 Plug 'NLKNguyen/papercolor-theme'
 
+" Vim only plugins
+if !has('nvim')
+    Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
+    Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
+endif
+
 " Language
 Plug 'editorconfig/editorconfig-vim'
 Plug 'honza/vim-snippets'
@@ -95,12 +101,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'zhaocai/GoldenView.Vim'
 " Plug 'scrooloose/nerdtree'
 Plug 'Shougo/vimfiler.vim'
-
-" Vim only plugins
-if !has('nvim')
-    Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
-    Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
-endif
 
 " Add plugins to &runtimepath
 call plug#end()
