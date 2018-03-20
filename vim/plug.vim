@@ -65,6 +65,8 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'sebdah/vim-delve'
 
 " Language support
+Plug 'StanAngeloff/php.vim'                    " PHP syntax highlighting
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'} " PHP auto completion
 Plug 'aklt/plantuml-syntax'                    " PlantUML syntax highlighting
 Plug 'cespare/vim-toml'                        " toml syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting

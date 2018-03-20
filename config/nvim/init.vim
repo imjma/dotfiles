@@ -68,6 +68,8 @@ Plug 'SirVer/ultisnips'
 Plug 'sebdah/vim-delve'
 
 " Language support
+Plug 'StanAngeloff/php.vim'                    " PHP syntax highlighting
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'} " PHP auto completion
 Plug 'aklt/plantuml-syntax'                    " PlantUML syntax highlighting
 Plug 'cespare/vim-toml'                        " toml syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
@@ -104,7 +106,8 @@ call plug#end()
 set background=dark
 "colorscheme gruvbox
 "colorscheme nord
-colorscheme spacegray
+"colorscheme spacegray
+colorscheme PaperColor
 
 syntax enable
 
@@ -430,6 +433,15 @@ if has('nvim')
     "            \ deoplete#mappings#manual_complete()
 endif
 
+" Disable deoplete when in multi cursor mode
+function! Multiple_cursors_before()
+    let b:deoplete_disable_auto_complete = 1
+endfunction
+
+function! Multiple_cursors_after()
+    let b:deoplete_disable_auto_complete = 0
+endfunction
+
 " }}}
 " =============================================================================
 " nvim-completion-manager {{{
@@ -518,10 +530,27 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " ============================================================================
 
 nnoremap <leader>d :NERDTreeToggle<CR>
+
+" Close vim if NERDTree is the only opened window.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" }}}
+" Files to ignore
+let NERDTreeIgnore = [
+    \ '\~$',
+    \ '\.pyc$',
+    \ '^\.DS_Store$',
+    \ '^node_modules$',
+    \ '^.ropeproject$',
+    \ '^__pycache__$'
+\]
 
+" Show hidden files by default.
+let NERDTreeShowHidden = 1
+
+" Allow NERDTree to change session root.
+let g:NERDTreeChDirMode = 2
+
+" }}}
 " =============================================================================
 " vim-easy-align {{{
 " =============================================================================
@@ -566,15 +595,15 @@ nmap gaa ga_
 " ===============================================================================
 " syntastic {{{
 " ===============================================================================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
 
 " }}}
 " =============================================================================
@@ -657,6 +686,60 @@ command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 
 " }}}
 " =============================================================================
+" Plugin: bling/vim-airline {{{
+" =============================================================================
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_section_warning = '✗'
+let g:airline_section_error = '⚠'
+let g:airline#extensions#tagbar#enabled = 0
+
+"Tabline
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_section_warning = '✗'
+let g:airline_section_error = '⚠'
+
+" }}}
+" =============================================================================
+" Plugin: plasticboy/vim-markdown {{{
+" =============================================================================
+
+" Disable folding
+let g:vim_markdown_folding_disabled = 1
+
+" Auto shrink the TOC, so that it won't take up 50% of the screen
+let g:vim_markdown_toc_autofit = 1
+
+" }}}
+" =============================================================================
+" Plugin: sebdah/vim-delve {{{
+" =============================================================================
+
+" Set the Delve backend.
+let g:delve_backend = "native"
+
+" }}}
+" =============================================================================
+" Plugin: terryma/vim-multiple-cursors {{{
+" =============================================================================
+
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
+" Switch to multicursor mode with ,mc
+let g:multi_cursor_start_key=',mc'
+
+" }}}
+" =============================================================================
 " atuocmd {{{
 " =============================================================================
 
@@ -701,6 +784,108 @@ augroup tmux " {{{
         autocmd VimLeave * call system('tmux set-window automatic-rename on')
     endif
 augroup END " }}}
+
+" }}}
+" =============================================================================
+" Language: Golang {{{
+" =============================================================================
+
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+
+" Run goimports when running gofmt
+let g:go_fmt_command = "goimports"
+
+" Enable syntax highlighting per default
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+
+" Show type information
+let g:go_auto_type_info = 1
+
+" Highlight variable uses
+let g:go_auto_sameids = 1
+
+" Fix for location list when vim-go is used together with Syntastic
+let g:go_list_type = "quickfix"
+
+" gometalinter configuration
+let g:go_metalinter_command = ""
+let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_enabled = [
+    \ 'deadcode',
+    \ 'gas',
+    \ 'goconst',
+    \ 'gocyclo',
+    \ 'golint',
+    \ 'gosimple',
+    \ 'ineffassign',
+    \ 'vet',
+    \ 'vetshadow'
+\]
+
+" Set whether the JSON tags should be snakecase or camelcase.
+let g:go_addtags_transform = "snakecase"
+
+" }}}
+" =============================================================================
+" Language: gitconfig {{{
+" =============================================================================
+
+au FileType gitconfig set noexpandtab
+au FileType gitconfig set shiftwidth=2
+au FileType gitconfig set softtabstop=2
+au FileType gitconfig set tabstop=2
+
+" }}}
+" =============================================================================
+" Language: JavaScript {{{
+" =============================================================================
+
+au FileType javascript set expandtab
+au FileType javascript set shiftwidth=2
+au FileType javascript set softtabstop=2
+au FileType javascript set tabstop=2
+
+" }}}
+" =============================================================================
+" Language: JSON {{{
+" =============================================================================
+
+au FileType json set expandtab
+au FileType json set shiftwidth=2
+au FileType json set softtabstop=2
+au FileType json set tabstop=2
+
+" }}}
+" =============================================================================
+" Language: Markdown {{{
+" =============================================================================
+
+au FileType markdown setlocal spell
+au FileType markdown set expandtab
+au FileType markdown set shiftwidth=4
+au FileType markdown set softtabstop=4
+au FileType markdown set tabstop=4
+au FileType markdown set syntax=markdown
+
+" }}}
+" =============================================================================
+" Language: Ruby {{{
+" =============================================================================
+
+au FileType ruby set expandtab
+au FileType ruby set shiftwidth=2
+au FileType ruby set softtabstop=2
+au FileType ruby set tabstop=2
 
 " }}}
 " =============================================================================
