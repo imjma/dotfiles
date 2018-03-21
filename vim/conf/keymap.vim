@@ -22,7 +22,7 @@ nnoremap <leader>a :Ag<space>
 " nnoremap <leader>d :NERDTreeToggle<CR>
 " nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>\ :TagbarToggle<CR>
-nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+" nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>c <Plug>Kwbd
 noremap <silent> <leader><leader>v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>

@@ -37,6 +37,7 @@ Plug 'NLKNguyen/papercolor-theme'
 if !has('nvim')
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
     Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 " Language

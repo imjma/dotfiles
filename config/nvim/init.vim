@@ -62,7 +62,7 @@ Plug 'tpope/vim-rails'
 " React
 Plug 'mxw/vim-jsx'
 Plug 'justinj/vim-react-snippets'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
 " Go
 Plug 'sebdah/vim-delve'
@@ -110,12 +110,6 @@ set background=dark
 colorscheme PaperColor
 
 syntax enable
-
-" Spaces & Tabs
-set tabstop=2     " number of visual spaces per TAB
-set softtabstop=2 " number of spaces in tab when editing
-set shiftwidth=2
-set expandtab     " tabs are spaces
 
 " UI
 
@@ -295,6 +289,15 @@ set modelines=2
 " Keybindings
 let mapleader=","       " leader is comma
 
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <leader>l :Align
+nnoremap <leader>a :Ag<space>
+" nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
+
 " map semicolon to colon to avoid the extra shift keypress
 nmap ;; :
 
@@ -302,7 +305,8 @@ nmap ;; :
 cnoremap w!! w !sudo tee % >/dev/null
 
 " turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+" nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <silent> // :nohlsearch<CR>
 
 " Movement
 " move vertically by visual line
@@ -416,6 +420,25 @@ function! ToggleShowlinenum()
     endif
 endfunction
 
+" }}}
+
+" vim-mappings {{{
+    " Ctrl+Shift+上下移动当前行
+    nnoremap <silent><C-j> :m .+1<CR>==
+    nnoremap <silent><C-k> :m .-2<CR>==
+    inoremap <silent><C-j> <Esc>:m .+1<CR>==gi
+    inoremap <silent><C-k> <Esc>:m .-2<CR>==gi
+    " 上下移动选中的行
+    vnoremap <silent><C-j> :m '>+1<CR>gv=gv
+    vnoremap <silent><C-k> :m '<-2<CR>gv=gv
+    " Use tab for indenting in visual mode
+    xnoremap <Tab> >gv|
+    xnoremap <S-Tab> <gv
+    nnoremap > >>_
+    nnoremap < <<_
+    " press <F7> whenever you want to format
+    " your file(re-indent your entire file)
+    map <F7> mzgg=G`z
 " }}}
 
 " }}}
@@ -702,6 +725,13 @@ let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_section_warning = '✗'
 let g:airline_section_error = '⚠'
+
+" }}}
+" =============================================================================
+" Plugin: majutsushi/tagbar {{{
+" =============================================================================
+
+nnoremap <leader>\ :TagbarToggle<CR>
 
 " }}}
 " =============================================================================
