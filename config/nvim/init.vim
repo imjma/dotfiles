@@ -83,7 +83,7 @@ Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighti
 Plug 'leafgarland/typescript-vim'              " TypeScript syntax highlighting
 Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'mxw/vim-jsx'                             " JSX syntax highlighting
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' } " Go auto completion
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
 Plug 'plasticboy/vim-markdown'                 " Markdown syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
@@ -726,6 +726,9 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline_section_warning = '✗'
 let g:airline_section_error = '⚠'
 
+"Colorscheme
+" let g:airline_theme='papercolor'
+
 " }}}
 " =============================================================================
 " Plugin: majutsushi/tagbar {{{
@@ -767,6 +770,63 @@ let g:multi_cursor_quit_key='<Esc>'
 
 " Switch to multicursor mode with ,mc
 let g:multi_cursor_start_key=',mc'
+
+" }}}
+" =============================================================================
+" Plugin: w0rp/ale {{{
+" =============================================================================
+
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+
+" }}}
+" =============================================================================
+" Plugin: fatih/vim-go {{{
+" =============================================================================
+
+" Run goimports when running gofmt
+let g:go_fmt_command = "goimports"
+
+" Enable syntax highlighting per default
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+
+" Show type information
+let g:go_auto_type_info = 1
+
+" Highlight variable uses
+let g:go_auto_sameids = 1
+
+" Fix for location list when vim-go is used together with Syntastic
+let g:go_list_type = "quickfix"
+
+" gometalinter configuration
+let g:go_metalinter_command = ""
+let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_enabled = [
+    \ 'deadcode',
+    \ 'gas',
+    \ 'goconst',
+    \ 'gocyclo',
+    \ 'golint',
+    \ 'gosimple',
+    \ 'ineffassign',
+    \ 'vet',
+    \ 'vetshadow'
+\]
+
+" Set whether the JSON tags should be snakecase or camelcase.
+let g:go_addtags_transform = "snakecase"
 
 " }}}
 " =============================================================================
@@ -825,45 +885,8 @@ au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
-" Run goimports when running gofmt
-let g:go_fmt_command = "goimports"
-
-" Enable syntax highlighting per default
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-
-" Show type information
-let g:go_auto_type_info = 1
-
-" Highlight variable uses
-let g:go_auto_sameids = 1
-
-" Fix for location list when vim-go is used together with Syntastic
-let g:go_list_type = "quickfix"
-
-" gometalinter configuration
-let g:go_metalinter_command = ""
-let g:go_metalinter_deadline = "5s"
-let g:go_metalinter_enabled = [
-    \ 'deadcode',
-    \ 'gas',
-    \ 'goconst',
-    \ 'gocyclo',
-    \ 'golint',
-    \ 'gosimple',
-    \ 'ineffassign',
-    \ 'vet',
-    \ 'vetshadow'
-\]
-
-" Set whether the JSON tags should be snakecase or camelcase.
-let g:go_addtags_transform = "snakecase"
+au FileType go nmap <leader>gt :GoDeclsDir<cr>
+au FileType go nmap <leader>gct :GoCoverageToggle -short<cr>
 
 " }}}
 " =============================================================================

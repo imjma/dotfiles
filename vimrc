@@ -67,9 +67,10 @@ set background=dark
 " colorscheme seoul256
 
 let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme nord
 " colorscheme spacegray
+colorscheme PaperColor
 
 " Turn on relative number mode
 set relativenumber
@@ -291,7 +292,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 "===============================================================================
 let g:gitgutter_enabled = 0
 
-let g:jsx_ext_required = 0 
+let g:jsx_ext_required = 0
 
 " =============================================================================
 " atuocmd {{{
