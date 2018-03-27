@@ -229,6 +229,8 @@ set foldmethod=indent   " fold based on indent level
 
 " space open/closes folds
 nnoremap <space> za
+nnoremap z] zo]z
+nnoremap z[ zo[z
 
 " }}}
 
