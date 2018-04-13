@@ -889,6 +889,7 @@ au FileType go set tabstop=4
 
 au FileType go nmap <leader>gt :GoDeclsDir<cr>
 au FileType go nmap <leader>gct :GoCoverageToggle -short<cr>
+au FileType go nmap <leader>gd <Plug>(go-def)
 
 " }}}
 " =============================================================================

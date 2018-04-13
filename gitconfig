@@ -116,3 +116,5 @@
   newNormal = green bold
   newHighlight = green bold 22
   oldNormal = red bold
+[credential]
+	helper = osxkeychain
