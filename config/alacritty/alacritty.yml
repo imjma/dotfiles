@@ -41,24 +41,24 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Iosevka
+    family: Fantasque Sans Mono
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: Iosevka
+    family: Fantasque Sans Mono
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: Iosevka
+    family: Fantasque Sans Mono
     # Style can be specified to pick a specific face.
     # style: Italic
 
   # Point size of the font
-  size: 12.0
+  size: 14.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -85,40 +85,36 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Base16 Darktooth - alacritty color config
-# Jason Milkins (https://github.com/jasonm23)
+# Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:
-    background: '0x1d2021'
-    foreground: '0xa89984'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x1d2021'
-    cursor: '0xa89984'
+    # hard contrast: background = '0x1d2021'
+    background: '0x282828'
+    # soft contrast: background = '0x32302f'
+    foreground: '0xebdbb2'
 
   # Normal colors
   normal:
-    black:   '0x1d2021'
-    red:     '0xfb543f'
-    green:   '0x95c085'
-    yellow:  '0xfac03b'
-    blue:    '0x0d6678'
-    magenta: '0x8f4673'
-    cyan:    '0x8ba59b'
+    black:   '0x282828'
+    red:     '0xcc241d'
+    green:   '0x98971a'
+    yellow:  '0xd79921'
+    blue:    '0x458588'
+    magenta: '0xb16286'
+    cyan:    '0x689d6a'
     white:   '0xa89984'
 
   # Bright colors
   bright:
-    black:   '0x665c54'
-    red:     '0xfe8625'
-    green:   '0x32302f'
-    yellow:  '0x504945'
-    blue:    '0x928374'
-    magenta: '0xd5c4a1'
-    cyan:    '0xa87322'
-    white:   '0xa89984'
+    black:   '0x928374'
+    red:     '0xfb4934'
+    green:   '0xb8bb26'
+    yellow:  '0xfabd2f'
+    blue:    '0x83a598'
+    magenta: '0xd3869b'
+    cyan:    '0x8ec07c'
+    white:   '0xebdbb2'
 
 # Visual Bell
 #

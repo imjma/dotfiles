@@ -100,14 +100,12 @@ call plug#end()
 " =============================================================================
 
 " Colors
-"colorscheme badwolf
-"colorscheme seoul256
-
 set background=dark
-"colorscheme gruvbox
-"colorscheme nord
-"colorscheme spacegray
-colorscheme PaperColor
+" colorscheme seoul256
+" colorscheme PaperColor
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 
 syntax enable
 
@@ -963,3 +961,4 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 " }}}
+"
