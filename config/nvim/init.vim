@@ -102,10 +102,10 @@ call plug#end()
 " Colors
 set background=dark
 " colorscheme seoul256
-" colorscheme PaperColor
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+colorscheme PaperColor
+" let g:gruvbox_invert_selection = 0
+" let g:gruvbox_contrast_dark = 'hard'
+" colorscheme gruvbox
 
 syntax enable
 
