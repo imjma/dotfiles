@@ -297,6 +297,7 @@ noremap <leader>l :Align
 nnoremap <leader>a :Ag<space>
 " nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
+" nnoremap <leader>a :ALEEnable<CR>
 
 " map semicolon to colon to avoid the extra shift keypress
 nmap ;; :
@@ -763,10 +764,13 @@ let g:delve_backend = "native"
 let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " Switch to multicursor mode with ,mc
 let g:multi_cursor_start_key=',mc'
@@ -777,12 +781,47 @@ let g:multi_cursor_start_key=',mc'
 " =============================================================================
 
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'
+" let g:ale_sign_error = '⤫'
+" let g:ale_sign_warning = '⚠'
+
+" Using special space: U+2000 (EN QUAD)
+let g:ale_set_loclist=1
+let g:ale_sign_error=' ●'
+let g:ale_sign_warning=' ●'
+let g:ale_lint_on_text_changed='never'
+let g:ale_lint_on_enter=1
+let g:ale_lint_on_save=1
+let g:ale_lint_on_filetype_changed=1
+let g:ale_set_highlights=1
+let g:ale_set_signs=1
+
+nmap [w <plug>(ale_previous_wrap)
+nmap ]w <plug>(ale_next_wrap)
+nmap üw <plug>(ale_previous_wrap)
+nmap ¨w <plug>(ale_next_wrap)
+
+augroup Ale
+    autocmd!
+    autocmd VimEnter * ALEDisable
+augroup END
 
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 
+" }}}
+" =============================================================================
+" gitgutter {{{
+" =============================================================================
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterUndoHunk
+nmap ]c <Plug>GitGutterNextHunk
+nmap [c <Plug>GitGutterPrevHunk
+
+let g:gitgutter_sign_added='┃'
+let g:gitgutter_sign_modified='┃'
+let g:gitgutter_sign_removed='◢'
+let g:gitgutter_sign_removed_first_line='◥'
+let g:gitgutter_sign_modified_removed='◢'
 " }}}
 " =============================================================================
 " Plugin: fatih/vim-go {{{
