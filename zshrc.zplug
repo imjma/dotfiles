@@ -1,6 +1,7 @@
-source ~/.zplug/init.zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
-zplug "zplug/zplug"
+zplug "zsh-users/zsh-history-substring-search"
 
 zplug "zsh-users/zsh-completions"
 
@@ -11,27 +12,23 @@ zplug "tarruda/zsh-autosuggestions",            defer:2
 # after executing compinit command and sourcing other plugins
 zplug "zsh-users/zsh-syntax-highlighting",      defer:2
 
-# Make sure to use double quotes
-zplug "zsh-users/zsh-history-substring-search", defer:3
 
 # Supports oh-my-zsh plugins and the like
-zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/git",         from:oh-my-zsh
+zplug "plugins/git_extra",   from:oh-my-zsh
+zplug "plugins/brew",        from:oh-my-zsh
 
 # Also prezto
-zplug "modules/tmux",       from:prezto
-zplug "modules/history",    from:prezto
-zplug "modules/utility",    from:prezto
-zplug "modules/ruby",       from:prezto
-# zplug "modules/ssh",        from:prezto
-zplug "modules/terminal",   from:prezto
-zplug "modules/directory",  from:prezto
-zplug "modules/completion", from:prezto
-zplug "modules/prompt",     from:prezto
 
 # k is the new l, yo
 zplug "supercrabtree/k"
 
 # zstyle ':prezto:module:tmux:auto-start' local 'yes'
+
+zplug "djui/alias-tips"
+zplug "rupa/z", use:z.sh
+
+zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
 # Can manage local plugins
 # zplug "~/.zsh", from:local
@@ -40,14 +37,19 @@ zplug "supercrabtree/k"
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
-        echo; zplug install
+	echo; zplug install
     fi
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 
 # Customize to your needs...
+# for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
+[[ -e $HOME/dotfiles/zsh/alias.zsh ]] && source $HOME/dotfiles/zsh/alias.zsh
+[[ -e $HOME/dotfiles/zsh/git.zsh ]] && source $HOME/dotfiles/zsh/git.zsh
+
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 # User configuration
 [[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf

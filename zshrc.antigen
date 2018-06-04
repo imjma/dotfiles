@@ -1,6 +1,8 @@
 ANTIGEN_RC=$HOME/.antigenrc
 
-source $HOME/dotfiles/zsh/antigen/antigen.zsh
+# source $HOME/dotfiles/zsh/antigen/antigen.zsh
+# source /usr/local/share/antigen/antigen.zsh
+source $HOME/antigen.zsh
 
 if [[ ! -f $ANTIGEN_RC ]]; then
   ln -s $HOME/dotfiles/antigenrc $ANTIGEN_RC

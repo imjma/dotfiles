@@ -6,8 +6,6 @@ antigen bundle git-extras
 antigen bundle tmuxinator
 antigen bundle command-not-found
 antigen bundle tmux
-antigen bundle tig
-antigen bundle brew
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -18,27 +16,29 @@ antigen bundle rupa/z
 antigen bundle djui/alias-tips
 
 # For SSH, starting ssh-agent is annoying
-antigen bundle ssh-agent
+# antigen bundle ssh-agent
 
 # Develop
-antigen bundle vagrant
-antigen bundle github
+# antigen bundle vagrant
+# antigen bundle github
 
 # Ruby
 antigen bundle rbenv
 
 # Node Plugins
-antigen bundle coffee
-antigen bundle node
+# antigen bundle coffee
+# antigen bundle node
 antigen bundle npm
-antigen bundle nvm
+# antigen bundle nvm
 
 # PHP
-antigen bundle laravel
-antigen bundle laravel5
+# antigen bundle laravel
+# antigen bundle laravel5
 
 # OS specific plugins
 if [[ `uname` = 'Darwin' ]]; then
+    antigen bundle brew
+    antigen bundle brew-cask
     antigen bundle gem
     antigen bundle osx
 elif [[ `uname` = 'Linux' ]]; then
