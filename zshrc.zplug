@@ -1,4 +1,5 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
+#export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "zsh-users/zsh-history-substring-search"
@@ -19,12 +20,12 @@ zplug "plugins/git_extra",   from:oh-my-zsh
 zplug "plugins/brew",        from:oh-my-zsh
 
 # Also prezto
-# zplug "modules/tmux",       from:prezto
-# zplug "modules/history",    from:prezto
+zplug "modules/tmux",       from:prezto
+zplug "modules/history",    from:prezto
 zplug "modules/utility",    from:prezto
 # zplug "modules/ruby",       from:prezto
 zplug "modules/ssh",        from:prezto
-# zplug "modules/terminal",   from:preto
+# zplug "modules/terminal",   from:prezto
 # zplug "modules/directory",  from:prezto
 # zplug "modules/completion", from:prezto
 # zplug "modules/prompt",     from:prezto
@@ -32,7 +33,7 @@ zplug "modules/ssh",        from:prezto
 # k is the new l, yo
 zplug "supercrabtree/k"
 
-# zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 zplug "djui/alias-tips"
 zplug "rupa/z", use:z.sh
@@ -63,3 +64,5 @@ zplug load
 # User configuration
 [[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

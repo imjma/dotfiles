@@ -17,8 +17,8 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 100
-    lines: 50
+    columns: 200
+    lines: 100
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
@@ -29,7 +29,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: true
+  decorations: false
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
@@ -63,15 +63,19 @@ font:
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 0.0
-    y: 5.0
+    x: 0
+    y: 5
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
+
+  # Scale the font size based on the monitor's DPI. This will lead to bigger text on HiDPI
+  # screens and make reading text a little easier.
+  scale_with_dpi: true
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -116,6 +120,18 @@ colors:
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
 
+  # Dim colors (Optional)
+  dim:
+    black:   '0x333333'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xdddddd'
+
+
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -143,7 +159,7 @@ visual_bell:
   duration: 0
 
 # Background opacity
-background_opacity: 0.98
+background_opacity: 1.0
 
 # Mouse bindings
 #
@@ -195,7 +211,7 @@ hide_cursor_when_typing: false
 # - Block
 # - Underline
 # - Beam
-cursor_style: Block
+cursor_style: Beam
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -248,6 +264,8 @@ shell:
 key_bindings:
   - { key: V,        mods: Command, action: Paste                        }
   - { key: C,        mods: Command, action: Copy                         }
+  - { key: Paste,                   action: Paste                        }
+  - { key: Copy,                    action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
