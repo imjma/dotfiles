@@ -9,7 +9,15 @@ call plug#begin('~/.config/nvim/plugged')
 "   UpdateRemotePlugins
 " endfunction
 " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/nvim-completion-manager'
+Plug 'ncm2/ncm2'
+" ncm2 requires nvim-yarp
+Plug 'roxma/nvim-yarp'
+" some completion sources
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-go'
 
 " Colorscheme
 Plug 'sjl/badwolf'
@@ -37,7 +45,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
 
 " Git
@@ -76,7 +84,7 @@ Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'dag/vim-fish'                            " Fish syntax highlighting
 Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
 Plug 'fatih/vim-go'                            " Go support
-Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
+" Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
 Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
@@ -88,8 +96,7 @@ Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
 Plug 'plasticboy/vim-markdown'                 " Markdown syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'tclh123/vim-thrift'                      " Thrift syntax highlighting
-Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
-Plug 'zchee/deoplete-jedi'                     " Go auto completion
+" Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -444,62 +451,47 @@ endfunction
 
 " }}}
 " =============================================================================
-" deoplete {{{
-" =============================================================================
-" enable it in neovim only
-if has('nvim')
-    " Use deoplete.
-    let g:deoplete#enable_at_startup = 1
-
-    " <tab> do completion
-    " inoremap <silent><expr> <Tab>
-    "             \ pumvisible() ? "\<C-n>" :
-    "            \ deoplete#mappings#manual_complete()
-endif
-
-" Disable deoplete when in multi cursor mode
-function! Multiple_cursors_before()
-    let b:deoplete_disable_auto_complete = 1
-endfunction
-
-function! Multiple_cursors_after()
-    let b:deoplete_disable_auto_complete = 0
-endfunction
-
-" }}}
-" =============================================================================
 " nvim-completion-manager {{{
 " =============================================================================
-" don't give |ins-completion-menu| messages.  For example,
-" '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
 set shortmess+=c
 
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
 " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
+" Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-let g:UltiSnipsExpandTrigger        = "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger   = "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpBackwardTrigger  = "<Plug>(ultisnips_backward)"
-let g:UltiSnipsListSnippets         = "<Plug>(ultisnips_list)"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-
-vnoremap <expr> <Plug>(ultisnip_expand_or_jump_result) g:ulti_expand_or_jump_res?'':"\<Tab>"
-inoremap <expr> <Plug>(ultisnip_expand_or_jump_result) g:ulti_expand_or_jump_res?'':"\<Tab>"
-imap <silent> <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<C-r>=UltiSnips#ExpandSnippetOrJump()\<cr>\<Plug>(ultisnip_expand_or_jump_result)")
-xmap <Tab> <Plug>(ultisnips_expand)
-smap <Tab> <Plug>(ultisnips_expand)
-
-vnoremap <expr> <Plug>(ultisnips_backwards_result) g:ulti_jump_backwards_res?'':"\<S-Tab>"
-inoremap <expr> <Plug>(ultisnips_backwards_result) g:ulti_jump_backwards_res?'':"\<S-Tab>"
-imap <silent> <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<C-r>=UltiSnips#JumpBackwards()\<cr>\<Plug>(ultisnips_backwards_result)")
-xmap <S-Tab> <Plug>(ultisnips_backward)
-smap <S-Tab> <Plug>(ultisnips_backward)
-
-" optional mapping provided by NCM. If you press `<c-u>` and nothing has been
-" typed, it will popup a list of snippets available
-inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+" wrap existing omnifunc
+" Note that omnifunc does not run in background and may probably block the
+" editor. If you don't want to be blocked by omnifunc too often, you could
+" add 180ms delay before the omni wrapper:
+"  'on_complete': ['ncm2#on_complete#delay', 180,
+"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+au User Ncm2Plugin call ncm2#register_source({
+        \ 'name' : 'css',
+        \ 'priority': 9,
+        \ 'subscope_enable': 1,
+        \ 'scope': ['css','scss'],
+        \ 'mark': 'css',
+        \ 'word_pattern': '[\w\-]+',
+        \ 'complete_pattern': ':\s*',
+        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+        \ })
 
 " }}}
 " =============================================================================

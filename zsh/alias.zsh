@@ -23,7 +23,7 @@ alias grepcur="grep -rnw . -e"
 alias vup="vagrant up"
 alias vdown="vagrant halt"
 alias vssh="vagrant ssh"
-alias vgo="vagrant up & vagrant ssh"
+alias vus="vagrant up & vagrant ssh"
 
 # php
 alias p="vendor/bin/phpunit"
