@@ -33,7 +33,7 @@ zplug "modules/ssh",        from:prezto
 # k is the new l, yo
 zplug "supercrabtree/k"
 
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
+# zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 zplug "djui/alias-tips"
 zplug "rupa/z", use:z.sh

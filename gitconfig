@@ -30,7 +30,6 @@
   # branch
   b = branch -v                     # branch (verbose)
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
-  bcleand = "!f() { git branch --merged ${1-develop} | grep -v " ${1-master}$" | grep -v " ${1-develop}$" | xargs git branch -d; }; f"
 
   # commit
   c = commit -m                     # commit with message
