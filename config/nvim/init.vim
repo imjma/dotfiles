@@ -47,6 +47,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
+" Plug 'jiangmiao/auto-pairs'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -63,6 +64,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
 
+" Snippets
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
+
 " Ruby
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
@@ -70,7 +75,6 @@ Plug 'tpope/vim-rails'
 " React
 Plug 'mxw/vim-jsx'
 Plug 'justinj/vim-react-snippets'
-" Plug 'SirVer/ultisnips'
 
 " Go
 Plug 'sebdah/vim-delve'
