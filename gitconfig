@@ -106,7 +106,7 @@
   default = upstream
 [core]
   autocrlf = false
-  editor = vim
+  editor = nvim
   pager = diff-so-fancy | less --tabs=4 -RFX
 [pull]
   rebase = true
