@@ -41,7 +41,9 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'autosuggestions' \
   'ssh' \
+  'homebrew' \
   'contrib-prompt' \
+  'alias-tips' \
   'prompt'
 
 #
@@ -230,3 +232,8 @@ zstyle ':prezto:module:prompt' theme 'spaceship'
 # before deleting or overwriting files. Set to 'no' to disable this safer
 # behavior.
 # zstyle ':prezto:module:utility' safe-ops 'yes'
+
+# 
+# alias-tips
+#
+zstyle ":prezto:module:alias-tips" text "Alias tip: "
