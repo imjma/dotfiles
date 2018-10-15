@@ -1,6 +1,7 @@
 [user]
   name = Jie Ma
   email = codejma@gmail.com
+	signingkey = 7948C9C14BFBDF2B
 [mergetool]
   prompt = false
   keepBackup = false
