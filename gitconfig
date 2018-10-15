@@ -118,3 +118,5 @@
   oldNormal = red bold
 [credential]
 	helper = osxkeychain
+[commit]
+	gpgsign = true
