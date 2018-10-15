@@ -133,3 +133,9 @@ chunkc tiling::rule --owner Finder --name Copy --state float &
 chunkc tiling::rule --owner \"App Store\" --state float &
 chunkc tiling::rule --owner Emacs --except "^$" --state tile &
 chunkc tiling::rule --owner Lightroom --state float &
+chunkc tiling::rule --owner 1Password --state float &
+chunkc tiling::rule --owner \"The Unarchiver\" --state float &
+# chunkc tiling::rule --owner kitty --state sticky --level 3 --grid-layout 1:1:0:0:1:1 &
+chunkc tiling::rule --owner kitty --role AXWindow --subrole AXDialog --state tile &
+chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile &
+chunkc tiling::rule --owner Tweetbot --except \"Main\" --state float &
