@@ -139,3 +139,4 @@ chunkc tiling::rule --owner \"The Unarchiver\" --state float &
 chunkc tiling::rule --owner kitty --role AXWindow --subrole AXDialog --state tile &
 chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile &
 chunkc tiling::rule --owner Tweetbot --except \"Main\" --state float &
+chunkc tiling::rule --owner Drafts --name Window --state float &
