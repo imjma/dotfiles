@@ -82,19 +82,19 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Menlo for Powerline
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
     # style: Regular
 
   # Italic font face
   bold:
-    family: Menlo
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
     # style: Bold
 
   # Italic font face
   italic:
-    family: Menlo
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
     # style: Italic
 
