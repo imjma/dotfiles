@@ -82,19 +82,19 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Dank Mono
+    family: Menlo for Powerline
     # The `style` can be specified to pick a specific face.
     # style: Regular
 
   # Italic font face
   bold:
-    family: Dank Mono
+    family: Menlo
     # The `style` can be specified to pick a specific face.
     # style: Bold
 
   # Italic font face
   italic:
-    family: Dank Mono
+    family: Menlo
     # The `style` can be specified to pick a specific face.
     # style: Italic
 
@@ -290,10 +290,10 @@ live_config_reload: true
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
 # Entries in `shell.args` are passed unmodified as arguments to the shell.
 #
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: /usr/local/bin/zsh
+  args:
+    - --login
 
 # Key bindings
 #
@@ -320,6 +320,12 @@ live_config_reload: true
 #
 #   A full list with available key codes can be found here:
 #   https://docs.rs/glutin/*/glutin/enum.VirtualKeyCode.html#variants
+#
+#   Instead of using the name of the keys, the `key` field also supports using
+#   the scancode of the desired key. Scancodes have to be specified as a
+#   decimal number.
+#   This command will allow you to display the hex scancodes for certain keys:
+#     `showkey --scancodes`
 #
 # Values for `mods`:
 #   - Command
