@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 
 " Browsing
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -38,8 +39,13 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 call plug#end()
 " }}}
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 set background=dark
-colorscheme PaperColor
+" colorscheme PaperColor
+colorscheme gruvbox
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_dark = 'soft'
 syntax enable
 
 " Default show linenumber
@@ -129,7 +135,7 @@ set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " fold based on indent level
 
 " space open/closes folds
-nnoremap <space> za
+" nnoremap space> za
 nnoremap z] zo]z
 nnoremap z[ zo[z
 " }}}
@@ -150,7 +156,7 @@ set nostartofline    " Keep the cursor on the same column
 set modelines=2
 
 " Keybindings {{{
-let mapleader=","       " leader is comma
+let mapleader=" "       " leader is comma
 
 " edit vimrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -585,10 +591,14 @@ au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
 au FileType go nmap <leader>gt :GoDeclsDir<cr>
-au FileType go nmap <leader>gct :GoCoverageToggle -short<cr>
+au FileType go nmap <leader>gc :GoCoverageToggle -short<cr>
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
 au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+au FileType go nmap <Leader>gi <Plug>(go-info)
+
+set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 " }}}
 
