@@ -477,27 +477,29 @@ command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 
-let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
 let g:airline_section_warning = '✗'
 let g:airline_section_error = '⚠'
 let g:airline#extensions#tagbar#enabled = 0
 
 "Tabline
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline_section_warning = '✗'
-let g:airline_section_error = '⚠'
+" let g:airline#extensions#tabline#enabled = 0
+" let g:airline#extensions#syntastic#enabled = 1
+" let g:airline_section_warning = '✗'
+" let g:airline_section_error = '⚠'
 
 "Colorscheme
-let g:airline_theme='papercolor'
+" let g:airline_theme='papercolor'
 
 " }}}
 
 " Plugin: w0rp/ale {{{
 
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'
+" let g:ale_sign_error = '⤫'
+" let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 
 " Using special space: U+2000 (EN QUAD)
 let g:ale_set_loclist=1
@@ -597,8 +599,8 @@ au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
 au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
 au FileType go nmap <Leader>gi <Plug>(go-info)
 
-set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
-autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+" set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+" autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 " }}}
 
