@@ -84,7 +84,7 @@
 # ]
 
 # open kitty terminal
-alt - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+# alt - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 # close focused window
 shift + alt - q : chunkc tiling::window --close

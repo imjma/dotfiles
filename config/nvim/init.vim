@@ -19,6 +19,8 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'tpope/vim-surround'
+Plug 'Shougo/echodoc.vim'
 
 " Status bar mods
 Plug 'bling/vim-airline'
@@ -40,6 +42,7 @@ call plug#end()
 " }}}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set shell=/usr/local/bin/zsh
 
 set background=dark
 " colorscheme PaperColor
@@ -86,10 +89,13 @@ function! UseRelNum()
     endif
 endfunction
 
-set showcmd                 " show command in bottom bar
+" set showcmd                 " show command in bottom bar
+set noshowcmd
 set cursorline              " highlight current line
 hi CursorLine gui=underline cterm=underline
 filetype plugin indent on          " load filetype-specific indent files
+
+set cmdheight=2 " for echodoc
 
 set wildmenu                " visual autocomplete for command menu
 set wildmode=list:longest
@@ -156,7 +162,7 @@ set nostartofline    " Keep the cursor on the same column
 set modelines=2
 
 " Keybindings {{{
-let mapleader=" "       " leader is comma
+let mapleader="\ "       " leader is comma
 
 " edit vimrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -322,6 +328,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
 
 " }}}
 
@@ -498,8 +507,8 @@ let g:airline#extensions#tagbar#enabled = 0
 " Error and warning signs.
 " let g:ale_sign_error = '⤫'
 " let g:ale_sign_warning = '⚠'
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+" let g:ale_sign_error = '>>'
+" let g:ale_sign_warning = '--'
 
 " Using special space: U+2000 (EN QUAD)
 let g:ale_set_loclist=1
@@ -594,6 +603,7 @@ au FileType go set tabstop=4
 
 au FileType go nmap <leader>gt :GoDeclsDir<cr>
 au FileType go nmap <leader>gc :GoCoverageToggle -short<cr>
+au FileType go nmap <leader>gr :GoReferrers<cr>
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
 au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
