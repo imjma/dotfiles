@@ -2,7 +2,14 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-tagprefix'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-go'
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
@@ -17,13 +24,15 @@ Plug 'rking/ag.vim'
 
 " Editing
 Plug 'scrooloose/nerdcommenter'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-surround'
 Plug 'Shougo/echodoc.vim'
+Plug 'SirVer/ultisnips'
 
 " Status bar mods
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -35,7 +44,7 @@ Plug 'w0rp/ale'
 " Language
 Plug 'fatih/vim-go' 
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -91,6 +100,7 @@ endfunction
 
 " set showcmd                 " show command in bottom bar
 set noshowcmd
+set noshowmode
 set cursorline              " highlight current line
 hi CursorLine gui=underline cterm=underline
 filetype plugin indent on          " load filetype-specific indent files
@@ -285,15 +295,73 @@ nnoremap N Nzzzv
 
 " }}}
 
+" Plugin: ncm2/ncm2 {{{
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-tmux'
+" Plug 'ncm2/ncm2-path'
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" wrap existing omnifunc
+" Note that omnifunc does not run in background and may probably block the
+" editor. If you don't want to be blocked by omnifunc too often, you could
+" add 180ms delay before the omni wrapper:
+"  'on_complete': ['ncm2#on_complete#delay', 180,
+"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+" au User Ncm2Plugin call ncm2#register_source({
+"     \ 'name' : 'css',
+"     \ 'priority': 9, 
+"     \ 'subscope_enable': 1,
+"     \ 'scope': ['css','scss'],
+"     \ 'mark': 'css',
+"     \ 'word_pattern': '[\w\-]+',
+"     \ 'complete_pattern': ':\s*',
+"     \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+"     \ })
+
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" c-j c-k for moving in snippet
+" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+" }}}
+
 " Plugin: deoplete {{{
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " }}}
 
 " Plugin: zchee/deoplete-go {{{
 " neocomplete like
-set completeopt+=noinsert
+" set completeopt+=noinsert
 " deoplete.nvim recommend
-set completeopt+=noselect
+" set completeopt+=noselect
 
 " Path to python interpreter for neovim
 let g:python3_host_prog  = '/usr/local/bin/python3'
@@ -311,26 +379,26 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <expr><TAB>
-\ pumvisible() ? "\<C-n>" :
-\ neosnippet#expandable_or_jumpable() ?
-\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
 
 " Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
+" let g:neosnippet#enable_snipmate_compatibility = 1
 
 " }}}
 
@@ -483,13 +551,13 @@ command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 
 " Plugin: bling/vim-airline {{{
 
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#branch#enabled = 1
+" let g:airline_powerline_fonts = 0
+" let g:airline#extensions#branch#enabled = 1
 
 " let g:airline#extensions#syntastic#enabled = 1
-let g:airline_section_warning = '✗'
-let g:airline_section_error = '⚠'
-let g:airline#extensions#tagbar#enabled = 0
+" let g:airline_section_warning = '✗'
+" let g:airline_section_error = '⚠'
+" let g:airline#extensions#tagbar#enabled = 0
 
 "Tabline
 " let g:airline#extensions#tabline#enabled = 0
@@ -499,6 +567,21 @@ let g:airline#extensions#tagbar#enabled = 0
 
 "Colorscheme
 " let g:airline_theme='papercolor'
+
+" }}}
+
+" Plugin: itchyny/lightline.vim {{{
+
+set laststatus=2
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 " }}}
 
@@ -532,7 +615,7 @@ nmap ¨w <plug>(ale_next_wrap)
 " augroup END
 
 " Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
 
 " }}}
 
