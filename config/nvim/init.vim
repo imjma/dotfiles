@@ -183,6 +183,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Exit on j
+imap jj <Esc>
+
 nnoremap <leader>a :Ag<space>
 
 " map semicolon to colon to avoid the extra shift keypress
