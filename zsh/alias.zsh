@@ -9,15 +9,12 @@ if [[ `command -v nvim` > /dev/null ]]; then
   alias v="nvim"
 fi
 # git
-alias nah="git reset --hard;git clean -df"
-alias wip="git add . && git commit -m 'wip'"
+# alias nah="git reset --hard;git clean -df"
+# alias wip="git add . && git commit -m 'wip'"
 
 # copy directory
 alias cpd="cp -avR"
 alias copy="rsync -avv --stats --human-readable --itemize-changes --progress --partial"
-
-# search text
-alias grepcur="grep -rnw . -e"
 
 # vagrant
 alias vup="vagrant up"
@@ -52,3 +49,9 @@ mkcdir () {
 
 # from: http://stackoverflow.com/a/12495234/4921402
 alias gcfa="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} fetch \;"
+
+# override prezto ultity alias with exa
+# https://the.exa.website
+alias ll='exa -lh'        # Lists human readable sizes.
+alias lt='exa --long --tree'
+

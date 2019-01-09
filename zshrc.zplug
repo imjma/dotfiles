@@ -36,7 +36,7 @@ zplug "supercrabtree/k"
 # zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 zplug "djui/alias-tips"
-zplug "rupa/z", use:z.sh
+# zplug "rupa/z", use:z.sh
 
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
@@ -57,12 +57,13 @@ zplug load
 # Customize to your needs...
 # for config_file ($HOME/dotfiles/zsh/*.zsh) source $config_file
 [[ -e $HOME/dotfiles/zsh/alias.zsh ]] && source $HOME/dotfiles/zsh/alias.zsh
-[[ -e $HOME/dotfiles/zsh/git.zsh ]] && source $HOME/dotfiles/zsh/git.zsh
+# [[ -e $HOME/dotfiles/zsh/git.zsh ]] && source $HOME/dotfiles/zsh/git.zsh
 
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
+[[ -e $HOME/.zshrc.plugin ]] && source $HOME/.zshrc.plugin
 
 # User configuration
 [[ -e $HOME/.zshrc.conf ]] && source $HOME/.zshrc.conf
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
