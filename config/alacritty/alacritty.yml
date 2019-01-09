@@ -87,19 +87,19 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Dank Mono
+    family: PragmataPro Mono
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
   bold:
-    family: Dank Mono
+    family: PragmataPro Mono
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
   italic:
-    family: Dank Mono
+    family: PragmataPro Mono
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
@@ -326,7 +326,7 @@ shell:
 # arguments (`command`).
 #
 # Example:
-#   `- { key: V, mods: Command, action: Paste }`
+#   `- { key: V, mods: Control|Shift, action: Paste }`
 #
 # Available fields:
 #   - key
@@ -381,6 +381,7 @@ shell:
 #   - Hide
 #   - Quit
 #   - ClearLogNotice
+#   - SpawnNewInstance
 #
 # Values for `command`:
 #   The `command` field must be a map containing a `program` string and
