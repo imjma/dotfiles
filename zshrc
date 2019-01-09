@@ -82,6 +82,44 @@ setopt inc_append_history
 setopt share_history 
 
 # ===================
+#    KEY BINDINGS
+# ===================
+# Use emacs-like key bindings by default:
+bindkey -e
+
+# [Ctrl-r] - Search backward incrementally for a specified string. The string
+# may begin with ^ to anchor the search to the beginning of the line.
+bindkey '^r' history-incremental-search-backward      
+
+if [[ "${terminfo[kpp]}" != "" ]]; then
+  bindkey "${terminfo[kpp]}" up-line-or-history       # [PageUp] - Up a line of history
+fi
+
+if [[ "${terminfo[knp]}" != "" ]]; then
+  bindkey "${terminfo[knp]}" down-line-or-history     # [PageDown] - Down a line of history
+fi
+
+if [[ "${terminfo[khome]}" != "" ]]; then
+  bindkey "${terminfo[khome]}" beginning-of-line      # [Home] - Go to beginning of line
+fi
+
+if [[ "${terminfo[kend]}" != "" ]]; then
+  bindkey "${terminfo[kend]}"  end-of-line            # [End] - Go to end of line
+fi
+if [[ "${terminfo[kcbt]}" != "" ]]; then
+  bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
+fi
+
+bindkey '^?' backward-delete-char                     # [Backspace] - delete backward
+if [[ "${terminfo[kdch1]}" != "" ]]; then
+  bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
+else
+  bindkey "^[[3~" delete-char
+  bindkey "^[3;5~" delete-char
+  bindkey "\e[3~" delete-char
+fi
+
+# ===================
 #    MISC SETTINGS
 # ===================
 

@@ -367,7 +367,11 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 " set completeopt+=noselect
 
 " Path to python interpreter for neovim
-let g:python3_host_prog  = '/usr/local/bin/python3'
+if has("mac")
+  let g:python3_host_prog  = '/usr/local/bin/python3'
+else
+  let g:python3_host_prog  = '/usr/bin/python3'
+endif
 " Skip the check of neovim module
 let g:python3_host_skip_check = 1
 
