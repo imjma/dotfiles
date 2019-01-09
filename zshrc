@@ -39,6 +39,7 @@ export LANG="en_US.UTF-8"
 #    EXPORT
 # =============
 export PATH="/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
+export GOPATH=$HOME/go
 
 export EDITOR="neovim"
 export LSCOLORS=cxBxhxDxfxhxhxhxhxcxcx
