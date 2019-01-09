@@ -59,6 +59,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
+SPACESHIP_VI_MODE_SHOW=false
 
 # =============
 #    HISTORY
