@@ -105,7 +105,7 @@ set cursorline              " highlight current line
 hi CursorLine gui=underline cterm=underline
 filetype plugin indent on          " load filetype-specific indent files
 
-set cmdheight=2 " for echodoc
+" set cmdheight=2 " for echodoc
 
 set wildmenu                " visual autocomplete for command menu
 set wildmode=list:longest
