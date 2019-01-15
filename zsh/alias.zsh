@@ -52,6 +52,8 @@ alias gcfa="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} fetch 
 
 # override prezto ultity alias with exa
 # https://the.exa.website
-alias ll='exa -lh'        # Lists human readable sizes.
+alias l='exa -a'
+alias ll='exa -lgh'        # Lists human readable sizes.
 alias lt='exa --long --tree'
-
+alias la='exa -lagh'
+alias lg='exa -lagh --git'
