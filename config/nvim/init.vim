@@ -273,7 +273,7 @@ nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
 nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 
 " These mappings will make it so that going to the next one in a search will
-" " center on the line it's found in.
+" center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
