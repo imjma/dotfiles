@@ -92,7 +92,7 @@ font:
     style: Regular
 
   # Bold font face
-  bold:
+  #bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
@@ -100,10 +100,10 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    #style: Bold
 
   # Italic font face
-  italic:
+  #italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
@@ -111,7 +111,7 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    #style: Italic
 
   # Point size
   size: 12.0
@@ -337,9 +337,9 @@ live_config_reload: true
 #   - (Linux/macOS) /bin/bash --login
 #   - (Windows) powershell
 shell:
-  program: /usr/local/bin/zsh
-  args:
-    - --login
+ program: /usr/local/bin/zsh
+ args:
+   - --login
 
 # Windows 10 ConPTY backend (Windows only)
 #

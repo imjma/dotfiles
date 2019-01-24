@@ -129,6 +129,9 @@ set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
 set splitbelow
 set splitright
 
+set autoread
+" au CursorHold * checktime
+
 " Search
 set hlsearch            " highlight matches
 
