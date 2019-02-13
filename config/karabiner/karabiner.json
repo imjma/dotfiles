@@ -209,7 +209,6 @@
                     {
                         "manipulators": [
                             {
-                                "description": "Change right option to command+control+option+shift for HHKB",
                                 "conditions": [
                                     {
                                         "identifiers": [
@@ -221,6 +220,7 @@
                                         "type": "device_if"
                                     }
                                 ],
+                                "description": "Change right option to command+control+option+shift for HHKB",
                                 "from": {
                                     "key_code": "right_alt",
                                     "modifiers": {
@@ -327,6 +327,36 @@
                         "is_pointing_device": false,
                         "product_id": 615,
                         "vendor_id": 76
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": {
+                                "key_code": "left_control"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": {
+                                "key_code": "caps_lock"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 597,
+                        "vendor_id": 1452
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
