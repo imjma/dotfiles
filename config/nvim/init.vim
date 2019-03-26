@@ -11,8 +11,10 @@ Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-go'
 
+" Color
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
+Plug 'tomasr/molokai'
 
 " Browsing
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -21,6 +23,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'zhaocai/GoldenView.Vim'
 Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 
 " Editing
 Plug 'scrooloose/nerdcommenter'
@@ -55,7 +58,9 @@ set shell=/usr/local/bin/zsh
 
 set background=dark
 " colorscheme PaperColor
-colorscheme gruvbox
+" colorscheme gruvbox
+let g:rehash256 = 1 " Something to do with Molokai?
+colorscheme molokai
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'soft'
 syntax enable
@@ -108,7 +113,7 @@ filetype plugin indent on          " load filetype-specific indent files
 " set cmdheight=2 " for echodoc
 
 set wildmenu                " visual autocomplete for command menu
-set wildmode=list:longest
+set wildmode=list:longest,full " List all options and complete
 set wildignore=*.o,*.obj,*~ " stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -134,6 +139,7 @@ set autoread
 
 " Search
 set hlsearch            " highlight matches
+set ignorecase          " case insensitive
 
 " 120 chars/line {{{
 set textwidth=120
@@ -431,7 +437,15 @@ if has('nvim')
 endif
 
 " search hidden files
-if executable('ag')
+if executable('rg')
+    let $FZF_DEFAULT_COMMAND = 'rg --files --follow -g "!{.git,node_modules}/*" 2>/dev/null'
+    command! -bang -nargs=* Rg
+	  \ call fzf#vim#grep(
+	  \   'rg --column --line-number --no-heading --color=always --smart-case -g "!{*.lock,*-lock.json}" '.shellescape(<q-args>), 1,
+	  \   <bang>0 ? fzf#vim#with_preview('up:40%')
+	  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+	  \   <bang>0)
+elseif executable('ag')
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 else
     let $FZF_DEFAULT_COMMAND = 'find -L'
@@ -455,6 +469,41 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+" FZF color scheme updater from https://github.com/junegunn/fzf.vim/issues/59
+function! s:update_fzf_colors()
+  let rules =
+  \ { 'fg':      [['Normal',       'fg']],
+    \ 'bg':      [['Normal',       'bg']],
+    \ 'hl':      [['String',       'fg']],
+    \ 'fg+':     [['CursorColumn', 'fg'], ['Normal', 'fg']],
+    \ 'bg+':     [['CursorColumn', 'bg']],
+    \ 'hl+':     [['String',       'fg']],
+    \ 'info':    [['PreProc',      'fg']],
+    \ 'prompt':  [['Conditional',  'fg']],
+    \ 'pointer': [['Exception',    'fg']],
+    \ 'marker':  [['Keyword',      'fg']],
+    \ 'spinner': [['Label',        'fg']],
+    \ 'header':  [['Comment',      'fg']] }
+  let cols = []
+  for [name, pairs] in items(rules)
+    for pair in pairs
+      let code = synIDattr(synIDtrans(hlID(pair[0])), pair[1])
+      if !empty(name) && code != ''
+        call add(cols, name.':'.code)
+        break
+      endif
+    endfor
+  endfor
+  let s:orig_fzf_default_opts = get(s:, 'orig_fzf_default_opts', $FZF_DEFAULT_OPTS)
+  let $FZF_DEFAULT_OPTS = s:orig_fzf_default_opts .
+        \ (empty(cols) ? '' : (' --color='.join(cols, ',')))
+endfunction
+
+augroup _fzf
+  autocmd!
+  autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
+augroup END
 
 " }}}
 
@@ -505,7 +554,7 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 " Plugin: goldenview {{{
 
 let g:goldenview__enable_default_mapping = 0
-" let g:goldenview__enable_at_startup = 0
+let g:goldenview__enable_at_startup = 0
 let g:goldenview__ignore_urule = {
             \  'filetype': [
             \    'nerdtree',
@@ -559,6 +608,11 @@ command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 
 " }}}
 
+" Plugin: ack.vim {{{
+" Tell ack.vim to use ripgrep instead
+let g:ackprg = 'rg --vimgrep --no-heading'
+" }}}
+
 " Plugin: bling/vim-airline {{{
 
 " let g:airline_powerline_fonts = 0
@@ -584,29 +638,84 @@ command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
 
 set laststatus=2
 
+" let g:lightline = {
+"       \ 'component_function': {
+"       \   'filename': 'LightLineFilename'
+"       \ }
+"       \ }
+" function! LightLineFilename()
+"   return expand('%')
+" endfunction
+
 let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename'
-      \ }
-      \ }
-function! LightLineFilename()
-  return expand('%')
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
 endfunction
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  let g:lightline.colorscheme = g:colors_name
+  call lightline#init()
+endfunction
+
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
 
 " }}}
 
 " Plugin: w0rp/ale {{{
 
 " Error and warning signs.
-" let g:ale_sign_error = '⤫'
-" let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
 " let g:ale_sign_error = '>>'
 " let g:ale_sign_warning = '--'
 
 " Using special space: U+2000 (EN QUAD)
 let g:ale_set_loclist=1
-let g:ale_sign_error=' ●'
-let g:ale_sign_warning=' ●'
+" let g:ale_sign_error=' ●'
+" let g:ale_sign_warning=' ●'
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_enter=1
 let g:ale_lint_on_save=1
@@ -614,10 +723,12 @@ let g:ale_lint_on_filetype_changed=1
 let g:ale_set_highlights=1
 let g:ale_set_signs=1
 
-nmap [w <plug>(ale_previous_wrap)
-nmap ]w <plug>(ale_next_wrap)
-nmap üw <plug>(ale_previous_wrap)
-nmap ¨w <plug>(ale_next_wrap)
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
+nmap ]w :ALENextWrap<CR>
+nmap [w :ALEPreviousWrap<CR>
+nmap <Leader>f <Plug>(ale_fix)
 
 " augroup Ale
 "     autocmd!
