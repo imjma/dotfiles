@@ -3,13 +3,14 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-tagprefix'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-go'
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-path'
+" Plug 'ncm2/ncm2-tagprefix'
+" Plug 'ncm2/ncm2-ultisnips'
+" Plug 'ncm2/ncm2-go'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " Color
 Plug 'NLKNguyen/papercolor-theme'
@@ -75,6 +76,18 @@ else
     set number relativenumber
 endif
 
+" Toggle showing linenumber
+nnoremap <silent> <leader>n :call ToggleShowlinenum()<CR>
+function! ToggleShowlinenum()
+    if (g:noshowlinenumber == 0)
+        setlocal nonumber norelativenumber
+        let g:noshowlinenumber = 1
+    else
+        setlocal number relativenumber
+        let g:noshowlinenumber = 0
+    endif
+endfunction
+
 " Use absolute linenum in Insert mode; relative linenum in Normal mode
 autocmd FocusLost,InsertEnter * :call UseAbsNum()
 autocmd FocusGained,InsertLeave * :call UseRelNum()
@@ -110,7 +123,7 @@ set cursorline              " highlight current line
 hi CursorLine gui=underline cterm=underline
 filetype plugin indent on          " load filetype-specific indent files
 
-" set cmdheight=2 " for echodoc
+set cmdheight=2 " for echodoc
 
 set wildmenu                " visual autocomplete for command menu
 set wildmode=list:longest,full " List all options and complete
@@ -195,7 +208,7 @@ noremap <C-l> <C-w>l
 " Exit on j
 imap jj <Esc>
 
-nnoremap <leader>a :Ag<space>
+nnoremap <leader>a :Rg!<space>
 
 " map semicolon to colon to avoid the extra shift keypress
 nmap ;; :
@@ -310,7 +323,7 @@ nnoremap N Nzzzv
 " Plugin: ncm2/ncm2 {{{
 
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " IMPORTANTE: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
@@ -331,11 +344,12 @@ inoremap <c-c> <ESC>
 " When the <Enter> key is pressed while the popup menu is visible, it only
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " wrap existing omnifunc
 " Note that omnifunc does not run in background and may probably block the
@@ -356,12 +370,13 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Press enter key to trigger snippet expansion
 " The parameters are the same as `:help feedkeys()`
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 " c-j c-k for moving in snippet
 " let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
+"
+" let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+" let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " }}}
 
@@ -554,7 +569,7 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 " Plugin: goldenview {{{
 
 let g:goldenview__enable_default_mapping = 0
-let g:goldenview__enable_at_startup = 0
+let g:goldenview__enable_at_startup = 1
 let g:goldenview__ignore_urule = {
             \  'filetype': [
             \    'nerdtree',
@@ -770,7 +785,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 
 " Show type information
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 
 " Highlight variable uses
 let g:go_auto_sameids = 1

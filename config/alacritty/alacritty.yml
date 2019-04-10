@@ -94,6 +94,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
+    #family: monospace
     family: PragmataPro Mono
 
     # The `style` can be specified to pick a specific face.
@@ -127,8 +128,8 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
-    x: 1
-    y: 5
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -314,13 +315,15 @@ mouse:
     #   - (macOS) open
     #   - (Linux) xdg-open
     #   - (Windows) explorer
-    #launcher: xdg-open
+    #launcher:
+    #  program: xdg-open
+    #  args: []
 
     # URL modifiers
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
-    modifiers: None
+    modifiers: Control
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
@@ -358,7 +361,7 @@ live_config_reload: true
 shell:
   program: /usr/local/bin/zsh
   args:
-    - --login
+   - --login
 
 # Windows 10 ConPTY backend (Windows only)
 #
@@ -438,6 +441,8 @@ alt_send_esc: true
 #   - ResetFontSize
 #   - ScrollPageUp
 #   - ScrollPageDown
+#   - ScrollLineUp
+#   - ScrollLineDown
 #   - ScrollToTop
 #   - ScrollToBottom
 #   - ClearHistory
@@ -466,11 +471,14 @@ key_bindings:
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # (macOS only)
   #- { key: Key0,   mods: Command, action: ResetFontSize    }
   #- { key: Equals, mods: Command, action: IncreaseFontSize }
+  #- { key: Add,    mods: Command, action: IncreaseFontSize }
   #- { key: Minus,  mods: Command, action: DecreaseFontSize }
   #- { key: K,      mods: Command, action: ClearHistory     }
   #- { key: K,      mods: Command, chars: "\x0c"            }
