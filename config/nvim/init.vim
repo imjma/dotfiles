@@ -156,6 +156,7 @@ set ignorecase          " case insensitive
 
 " 120 chars/line {{{
 set textwidth=120
+set nowrap
 " if exists('&colorcolumn')
 "     set colorcolumn=120
 "     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -192,6 +193,8 @@ set diffopt=filler,iwhite    " in diff mode ignore whitespace changes and align
 
 set nostartofline    " Keep the cursor on the same column
 set modelines=2
+
+set clipboard=unnamed
 
 " Keybindings {{{
 let mapleader="\ "       " leader is comma
@@ -520,6 +523,7 @@ augroup _fzf
   autocmd VimEnter,ColorScheme * call <sid>update_fzf_colors()
 augroup END
 
+let g:fzf_files_options = "--preview 'bat --color \"always\" {}'"
 " }}}
 
 " Plugin: nerdtree {{{

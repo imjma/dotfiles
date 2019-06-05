@@ -35,7 +35,7 @@ chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
 #       and automatically reload any '.so' file that is changed.
 #
 
-chunkc core::hotload 0
+chunkc core::hotload 1
 
 #
 # NOTE: the following are config variables for the chunkwm-tiling plugin.
@@ -49,10 +49,10 @@ chunkc set custom_bar_offset_left        0
 chunkc set custom_bar_offset_right       0
 
 chunkc set global_desktop_mode           bsp
-chunkc set global_desktop_offset_top     5
-chunkc set global_desktop_offset_bottom  5
-chunkc set global_desktop_offset_left    10
-chunkc set global_desktop_offset_right   10
+chunkc set global_desktop_offset_top     15
+chunkc set global_desktop_offset_bottom  15
+chunkc set global_desktop_offset_left    15
+chunkc set global_desktop_offset_right   15
 chunkc set global_desktop_offset_gap     10
 
 #
@@ -71,7 +71,7 @@ chunkc set desktop_padding_step_size     10.0
 chunkc set desktop_gap_step_size         5.0
 
 chunkc set bsp_spawn_left                1
-chunkc set bsp_optimal_ratio             1.618
+chunkc set bsp_optimal_ratio             1.5
 chunkc set bsp_split_mode                optimal
 chunkc set bsp_split_ratio               0.5
 
@@ -80,6 +80,7 @@ chunkc set window_focus_cycle            monitor
 
 chunkc set mouse_follows_focus           intrinsic
 chunkc set window_float_next             0
+chunkc set window_float_center           1
 chunkc set window_region_locked          1
 
 chunkc set mouse_move_window             \"fn 1\"
@@ -88,6 +89,7 @@ chunkc set mouse_motion_interval         35
 
 chunkc set preselect_border_color        0xffd75f5f
 chunkc set preselect_border_width        5
+chunkc set preselect_border_radius       0
 
 #
 # NOTE: these settings require chwm-sa.
@@ -106,7 +108,7 @@ chunkc set window_use_cgs_move           0
 
 chunkc set focused_border_color          0xff0f6288
 chunkc set focused_border_width          5
-chunkc set focused_border_radius         0
+chunkc set focused_border_radius         5
 chunkc set focused_border_skip_floating  0
 chunkc set focused_border_skip_monocle   0
 
@@ -123,7 +125,7 @@ chunkc set ffm_standby_on_float          1
 
 chunkc core::load border.so
 chunkc core::load tiling.so
-# chunkc core::load ffm.so
+chunkc core::load ffm.so
 
 #
 # NOTE: sample rules for the tiling plugin
