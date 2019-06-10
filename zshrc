@@ -210,3 +210,8 @@ esac
 
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
+
+# fnm
+eval "$(fnm env --multi)"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
