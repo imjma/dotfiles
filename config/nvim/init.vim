@@ -15,16 +15,20 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Color
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'tomasr/molokai'
+Plug 'ryanoasis/vim-devicons'
 
 " Browsing
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'zhaocai/GoldenView.Vim'
 Plug 'rking/ag.vim'
 Plug 'mileszs/ack.vim'
+Plug 'Yggdroot/indentLine'
 
 " Editing
 Plug 'scrooloose/nerdcommenter'
@@ -37,6 +41,7 @@ Plug 'SirVer/ultisnips'
 " Status bar mods
 " Plug 'bling/vim-airline'
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -46,7 +51,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 
 " Language
-Plug 'fatih/vim-go' 
+Plug 'fatih/vim-go'
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Plug 'zchee/deoplete-go', { 'do': 'make'}
 
@@ -59,9 +64,9 @@ set shell=/usr/local/bin/zsh
 
 set background=dark
 " colorscheme PaperColor
-" colorscheme gruvbox
+colorscheme gruvbox8
 let g:rehash256 = 1 " Something to do with Molokai?
-colorscheme molokai
+" colorscheme molokai
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'soft'
 syntax enable
@@ -197,7 +202,7 @@ set modelines=2
 set clipboard=unnamed
 
 " Keybindings {{{
-let mapleader="\ "       " leader is comma
+let mapleader="\<Space>"       " leader is comma
 
 " edit vimrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -362,7 +367,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
 " au User Ncm2Plugin call ncm2#register_source({
 "     \ 'name' : 'css',
-"     \ 'priority': 9, 
+"     \ 'priority': 9,
 "     \ 'subscope_enable': 1,
 "     \ 'scope': ['css','scss'],
 "     \ 'mark': 'css',
@@ -656,6 +661,7 @@ let g:ackprg = 'rg --vimgrep --no-heading'
 " Plugin: itchyny/lightline.vim {{{
 
 set laststatus=2
+set showtabline=2
 
 " let g:lightline = {
 "       \ 'component_function': {
@@ -667,22 +673,29 @@ set laststatus=2
 " endfunction
 
 let g:lightline = {
-\ 'colorscheme': 'wombat',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
+	\ 'colorscheme': 'gruvbox8',
+	\ 'active': {
+		\   'left': [['mode', 'paste'], ['filename', 'modified']],
+		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+		\ },
+	\ 'tabline': {
+		\   'left': [['buffers']],
+		\   'right': [['thinkvim']],
+		\ },
+	\ 'component_expand': {
+		\   'linter_warnings': 'LightlineLinterWarnings',
+		\   'linter_errors': 'LightlineLinterErrors',
+		\   'linter_ok': 'LightlineLinterOK',
+		\   'buffers': 'lightline#bufferline#buffers'
+		\ },
+	\ 'component_type': {
+		\   'readonly': 'error',
+		\   'linter_warnings': 'warning',
+		\   'linter_errors': 'error',
+		\   'buffers': 'tabsel'
+		\ },
+	\ }
+
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -720,6 +733,8 @@ augroup _lightline
   autocmd User ALELint call s:MaybeUpdateLightline()
   autocmd ColorScheme * call s:UpdateLightlineColorScheme()
 augroup END
+
+let g:lightline#bufferline#show_number  = 2
 
 " }}}
 
@@ -874,3 +889,82 @@ au FileType markdown set tabstop=4
 au FileType markdown set syntax=markdown
 
 " }}}
+
+" Defx
+
+nnoremap <silent> <Leader>e
+                \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+
+call defx#custom#option('_', {
+	\ 'columns': 'indent:git:icons:filename',
+	\ 'winwidth': 30,
+	\ 'split': 'vertical',
+	\ 'direction': 'topleft',
+	\ 'show_ignored_files': 0,
+	\ })
+
+autocmd FileType defx call s:defx_my_settings()
+	function! s:defx_my_settings() abort
+	  " Define mappings
+	  nnoremap <silent><buffer><expr> <CR>
+	  \ defx#do_action('open')
+	  nnoremap <silent><buffer><expr> c
+	  \ defx#do_action('copy')
+	  nnoremap <silent><buffer><expr> m
+	  \ defx#do_action('move')
+	  nnoremap <silent><buffer><expr> p
+	  \ defx#do_action('paste')
+	  nnoremap <silent><buffer><expr> l
+	  \ defx#do_action('open')
+	  nnoremap <silent><buffer><expr> E
+	  \ defx#do_action('open', 'vsplit')
+	  nnoremap <silent><buffer><expr> P
+	  \ defx#do_action('open', 'pedit')
+	  nnoremap <silent><buffer><expr> o
+	  \ defx#do_action('open_or_close_tree')
+	  nnoremap <silent><buffer><expr> K
+	  \ defx#do_action('new_directory')
+	  nnoremap <silent><buffer><expr> N
+	  \ defx#do_action('new_file')
+	  nnoremap <silent><buffer><expr> M
+	  \ defx#do_action('new_multiple_files')
+	  nnoremap <silent><buffer><expr> C
+	  \ defx#do_action('toggle_columns',
+	  \                'mark:indent:icon:filename:type:size:time')
+	  nnoremap <silent><buffer><expr> S
+	  \ defx#do_action('toggle_sort', 'time')
+	  nnoremap <silent><buffer><expr> d
+	  \ defx#do_action('remove')
+	  nnoremap <silent><buffer><expr> r
+	  \ defx#do_action('rename')
+	  nnoremap <silent><buffer><expr> !
+	  \ defx#do_action('execute_command')
+	  nnoremap <silent><buffer><expr> x
+	  \ defx#do_action('execute_system')
+	  nnoremap <silent><buffer><expr> yy
+	  \ defx#do_action('yank_path')
+	  nnoremap <silent><buffer><expr> .
+	  \ defx#do_action('toggle_ignored_files')
+	  nnoremap <silent><buffer><expr> ;
+	  \ defx#do_action('repeat')
+	  nnoremap <silent><buffer><expr> h
+	  \ defx#do_action('cd', ['..'])
+	  nnoremap <silent><buffer><expr> ~
+	  \ defx#do_action('cd')
+	  nnoremap <silent><buffer><expr> q
+	  \ defx#do_action('quit')
+	  nnoremap <silent><buffer><expr> <Space>
+	  \ defx#do_action('toggle_select') . 'j'
+	  nnoremap <silent><buffer><expr> *
+	  \ defx#do_action('toggle_select_all')
+	  nnoremap <silent><buffer><expr> j
+	  \ line('.') == line('$') ? 'gg' : 'j'
+	  nnoremap <silent><buffer><expr> k
+	  \ line('.') == 1 ? 'G' : 'k'
+	  nnoremap <silent><buffer><expr> <C-l>
+	  \ defx#do_action('redraw')
+	  nnoremap <silent><buffer><expr> <C-g>
+	  \ defx#do_action('print')
+	  nnoremap <silent><buffer><expr> cd
+	  \ defx#do_action('change_vim_cwd')
+	endfunction
