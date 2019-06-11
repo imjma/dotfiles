@@ -10,8 +10,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'ncm2/ncm2-tagprefix'
 " Plug 'ncm2/ncm2-ultisnips'
 " Plug 'ncm2/ncm2-go'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
 " Color
 Plug 'NLKNguyen/papercolor-theme'
@@ -1139,3 +1139,13 @@ function! s:my_denite_file_rec_goroot() abort
         \ [{'name': 'file/rec', 'args': [goroot]}],
         \ {'input': '.go'})
 endfunction
+
+
+let g:indentline_enabled = 1
+let g:indentline_char='┆'
+let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind']
+let g:indentLine_concealcursor = 'niv'
+let g:indentLine_color_term = 96
+let g:indentLine_color_gui= '#725972'
+let g:indentLine_showFirstIndentLevel =1
+autocmd Filetype json let g:indentLine_setConceal = 0
