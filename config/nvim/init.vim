@@ -17,6 +17,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'taigacute/gruvbox9'
 Plug 'tomasr/molokai'
 Plug 'ryanoasis/vim-devicons'
 
@@ -55,21 +56,23 @@ Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'jparise/vim-graphql'
+
 
 " Add plugins to &runtimepath
 call plug#end()
 " }}}
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set shell=/usr/local/bin/zsh
+" set shell=/usr/local/bin/zsh
 
 set background=dark
 " colorscheme PaperColor
-colorscheme gruvbox8
+colorscheme gruvbox9
 let g:rehash256 = 1 " Something to do with Molokai?
 " colorscheme molokai
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_contrast_dark = 'soft'
+" let g:gruvbox_invert_selection = 0
+" let g:gruvbox_contrast_dark = 'soft'
 syntax enable
 
 " Default show linenumber
@@ -239,6 +242,7 @@ nnoremap <silent> vv <C-w>v
 
 " Closing splits
 nnoremap <leader>q :close<cr>
+nnoremap <leader>bq :bd<cr>
 
 " alias yw to yank the entire word 'yank inner word'
 " even if the cursor is halfway inside the word
@@ -534,26 +538,26 @@ let g:fzf_files_options = "--preview 'bat --color \"always\" {}'"
 
 " Plugin: nerdtree {{{
 
-nnoremap <leader>d :NERDTreeToggle<CR>
+" nnoremap <leader>d :NERDTreeToggle<CR>
 
 " Close vim if NERDTree is the only opened window.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Files to ignore
-let NERDTreeIgnore = [
-    \ '\~$',
-    \ '\.pyc$',
-    \ '^\.DS_Store$',
-    \ '^node_modules$',
-    \ '^.ropeproject$',
-    \ '^__pycache__$'
-\]
+" let NERDTreeIgnore = [
+"     \ '\~$',
+"     \ '\.pyc$',
+"     \ '^\.DS_Store$',
+"     \ '^node_modules$',
+"     \ '^.ropeproject$',
+"     \ '^__pycache__$'
+" \]
 
 " Show hidden files by default.
-let NERDTreeShowHidden = 1
+" let NERDTreeShowHidden = 1
 
 " Allow NERDTree to change session root.
-let g:NERDTreeChDirMode = 2
+" let g:NERDTreeChDirMode = 2
 
 " }}}
 
@@ -674,7 +678,7 @@ set showtabline=2
 " endfunction
 
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox8',
+	\ 'colorscheme': 'gruvbox9',
 	\ 'active': {
 		\   'left': [['mode', 'paste'], ['filename', 'modified']],
 		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
@@ -737,6 +741,17 @@ augroup END
 
 let g:lightline#bufferline#show_number  = 2
 
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
 " }}}
 
 " Plugin: w0rp/ale {{{
@@ -763,7 +778,9 @@ highlight link ALEErrorSign Title
 
 nmap ]w :ALENextWrap<CR>
 nmap [w :ALEPreviousWrap<CR>
-nmap <Leader>f <Plug>(ale_fix)
+nmap <Leader>f :ALEFix<CR>
+" vmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format)
 
 " augroup Ale
 "     autocmd!
@@ -890,6 +907,9 @@ au FileType markdown set tabstop=4
 au FileType markdown set syntax=markdown
 
 " }}}
+
+" COC
+autocmd FileType go let b:coc_pairs_disabled = ['<']
 
 " Defx
 
@@ -1149,3 +1169,4 @@ let g:indentLine_color_term = 96
 let g:indentLine_color_gui= '#725972'
 let g:indentLine_showFirstIndentLevel =1
 autocmd Filetype json let g:indentLine_setConceal = 0
+

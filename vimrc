@@ -66,7 +66,7 @@ set background=dark
 " colorscheme molokai
 " colorscheme seoul256
 
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 " colorscheme gruvbox
 " colorscheme nord
 " colorscheme spacegray
