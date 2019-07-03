@@ -5,7 +5,6 @@ tap "homebrew/services"
 brew "ansible"
 brew "awscli"
 brew "bat"
-brew "dep"
 brew "diff-so-fancy"
 brew "direnv"
 brew "exa"
@@ -38,6 +37,8 @@ cask "font-menlo-for-powerline"
 cask "font-roboto-condensed"
 cask "font-robotomono-nerd-font"
 cask "font-robotomono-nerd-font-mono"
+cask "iina"
+cask "pock"
 mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
 mas "The Unarchiver", id: 425424353
