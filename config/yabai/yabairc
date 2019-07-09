@@ -12,7 +12,7 @@ yabai -m config status_bar_space_icon        
 yabai -m config status_bar_clock_icon        
 
 # global settings
-yabai -m config mouse_follows_focus          off
+yabai -m config mouse_follows_focus          on
 yabai -m config focus_follows_mouse          off
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               off
@@ -38,5 +38,13 @@ yabai -m config bottom_padding               20
 yabai -m config left_padding                 20
 yabai -m config right_padding                20
 yabai -m config window_gap                   10
+
+# float apps
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^1Password$" manage=off
+yabai -m rule --add app="^Drafts$" manage=off
+
+# float tweetbot non main windows
+yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off
 
 echo "yabai configuration loaded.."
