@@ -30,6 +30,7 @@ alias gf='git fetch'
 alias gfo='git fetch origin'
 alias gl='git pull'
 alias gm='git merge'
+alias gnb='git checkout -b'
 alias gp='git push'
 alias gr='git remote'
 alias grba='git rebase --abort'
@@ -75,6 +76,7 @@ alias ggpur='git pull --rebase origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggsup='git branch --set-upstream-to=origin/$(current_branch)'
 alias gpsup='git push --set-upstream origin $(current_branch)'
+alias gbclean='git bclean $(current_branch)'
 
 # Pretty log messages
 function _git_log_prettily(){
