@@ -90,11 +90,17 @@ fi
 
 VIM_PLUG_FILE="${HOME}/.vim/autoload/plug.vim"
 if [ ! -f "${VIM_PLUG_FILE}" ]; then
-  echo " ==> Installing vim-plug"
+  echo " ==> Installing vim-plug for vim"
   curl -fLo ${VIM_PLUG_FILE} --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
-  echo " ==> Installing Python client to Neovim"
+NVIM_PLUG_FILE="${HOME}/.local/share/nvim/site/autoload/plug.vim"
+if [ ! -f "${NVIM_PLUG_FILE}" ]; then
+  echo " ==> Installing vim-plug for neovim"
+  curl -fLo ${NVIM_PLUG_FILE} --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echo " ==> Installing Python client to neovim"
   pip2 install pynvim
   pip3 install pynvim
 fi
