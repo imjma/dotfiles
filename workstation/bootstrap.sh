@@ -44,8 +44,11 @@ if ! [ -x "$(command -v go)" ]; then
   export PATH="/usr/local/go/bin:$PATH"
 fi
 
-echo " ==> Installing nodejs"
-curl -sL install-node.now.sh/lts -y | bash
+# install nodejs
+if ! [ -x "$(command -v node)" ]; then
+  echo " ==> Installing nodejs"
+  curl -sL install-node.now.sh/lts | bash -s -- -y
+fi
 
 # install zsh plugins
 if [ ! -d "${HOME}/.zsh" ]; then
