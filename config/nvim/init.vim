@@ -64,6 +64,13 @@ set splitright
 set hlsearch            " highlight matches
 set ignorecase          " case insensitive
 
+set nofoldenable
+
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent   " fold based on indent level
+
 " I dislike visual bell as well.
 set novisualbell
 
@@ -141,6 +148,11 @@ nnoremap <silent> // :nohlsearch<CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+" space open/closes folds
+" nnoremap space> za
+nnoremap z] zo]z
+nnoremap z[ zo[z<Paste>
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
@@ -232,12 +244,80 @@ nnoremap < <<_
 map <F7> mzgg=G`z
 
 " coc
-nmap <silent> <leader>d :call CocAction('jumpDefinition')<CR>
-nmap <silent> <leader>r :call CocAction('jumpReferences')<CR>
-nmap <silent> <leader>f :call CocAction('format')<CR>
+" Some servers have issues with backup files
+set nobackup
+set nowritebackup
 
-" for go
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+nmap <silent> <space>k :call CocAction('format')<CR>
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " coc-lists
 nmap <silent> <leader>p :CocList files<CR>
+
+" for go
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
