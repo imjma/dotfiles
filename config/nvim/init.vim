@@ -2,6 +2,34 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
+" Skip vim plugins {{{
+let g:loaded_rrhelper = 1
+" Skip loading menu.vim, saves ~100ms
+let g:did_install_default_menus = 1
+" }}}<Paste>
+
+" Python {{{
+" This must be here becasue it makes loading vim VERY SLOW otherwise
+if has('nvim')
+  let g:python_host_skip_check = 1
+  let g:python3_host_skip_check = 1
+  if executable('python2')
+    let g:python_host_prog = exepath('python2')
+  endif
+  if executable('python3')
+    let g:python3_host_prog = exepath('python3')
+  endif
+endif
+" }}}
+
+" call plug#begin('~/.config/nvim/plugged')
+
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+" Plug 'taigacute/gruvbox9'
+" Plug 'tpope/vim-commentary'
+
+" call plug#end()
+
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -18,6 +46,10 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('Shougo/neosnippet-snippets')
   call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
   call dein#add('taigacute/gruvbox9')
+  call dein#add('tpope/vim-commentary', {
+    \ 'on_cmd': 'Commentary',
+    \ 'on_map': 'gc',
+  \ })
 
   " Required:
   call dein#end()
@@ -29,16 +61,11 @@ filetype plugin indent on
 syntax enable
 
 " If you want to install not installed plugins on startup.
-" if dein#check_install()
-"  call dein#install()
-" endif
-
-" Path to python interpreter for neovim
-if has("mac")
-  let g:python3_host_prog  = '/usr/local/bin/python3'
-else
-  let g:python3_host_prog  = '/usr/bin/python3'
+if dein#check_install()
+  call dein#install()
 endif
+
+let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets']
 
 set background=dark
 colorscheme gruvbox9
@@ -321,3 +348,5 @@ nmap <silent> <leader>p :CocList files<CR>
 
 " for go
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+"   vim -c 'set t_te=' -c 'set t_ti=' -c 'map <space>' -c q | sort
