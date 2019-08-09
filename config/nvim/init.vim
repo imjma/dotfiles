@@ -82,6 +82,11 @@ endif
 
 
 set cursorline              " highlight current line
+set wildmenu                " visual autocomplete for command menu
+set wildmode=list:longest,full " List all options and complete
+
+set backspace=indent,eol,start
+set scrolloff=10             " at least 5 visible lines of text above and below
 
 " Open split panes to right and bottom
 set splitbelow
