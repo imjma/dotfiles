@@ -46,6 +46,7 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('Shougo/neosnippet-snippets')
   call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
   call dein#add('taigacute/gruvbox9')
+  call dein#add('fatih/vim-go')
   call dein#add('tpope/vim-commentary', {
     \ 'on_cmd': 'Commentary',
     \ 'on_map': 'gc',
@@ -350,6 +351,9 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " coc-lists
 nmap <silent> <leader>p :CocList files<CR>
+
+" vim-go
+let g:go_def_mapping_enabled = 0
 
 " for go
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
