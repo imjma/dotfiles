@@ -6,7 +6,7 @@ endif
 let g:loaded_rrhelper = 1
 " Skip loading menu.vim, saves ~100ms
 let g:did_install_default_menus = 1
-" }}}<Paste>
+" }}}
 
 " Python {{{
 " This must be here becasue it makes loading vim VERY SLOW otherwise
@@ -88,6 +88,9 @@ set wildmode=list:longest,full " List all options and complete
 
 set backspace=indent,eol,start
 set scrolloff=10             " at least 5 visible lines of text above and below
+
+set list
+" set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
 
 " Open split panes to right and bottom
 set splitbelow
@@ -351,6 +354,15 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " coc-lists
 nmap <silent> <leader>p :CocList files<CR>
+
+" coc-git
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
 
 " vim-go
 let g:go_def_mapping_enabled = 0
