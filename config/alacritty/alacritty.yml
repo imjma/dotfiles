@@ -119,7 +119,7 @@ font:
     #   - (Linux) monospace
     #   - (Windows) Consolas
     # family: PragmataPro Mono
-    family: Fira Code
+    family: Hack
 
     # The `style` can be specified to pick a specific face.
     #style: Regular

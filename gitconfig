@@ -35,9 +35,9 @@
   # commit
   c = commit -m                     # commit with message
   ca = commit -am                   # commit all with message
+  cmr = commit --reuse-message HEAD
   ci = commit                       # commit
   amend = commit --amend            # ammend your last commit
-  ammend = commit --amend           # ammend your last commit
 
   # checkout
   co = checkout                     # checkout
