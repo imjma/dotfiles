@@ -367,6 +367,8 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " coc-lists
 nmap <silent> <leader>p :CocList files<CR>
+nmap <silent> <leader>w :exe 'CocList -I --normal -nmap <space>/ :CocList grep<space>-input='.expand('<cword>').' words'<CR>
+nmap <leader>/ :CocList grep<space>
 
 " coc-git
 " navigate chunks of current buffer
