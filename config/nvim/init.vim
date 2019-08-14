@@ -50,6 +50,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
   call dein#add('taigacute/gruvbox9')
   call dein#add('sjl/badwolf')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('mengelbrecht/lightline-bufferline')
+  call dein#add('wellle/targets.vim')
   call dein#add('fatih/vim-go')
   call dein#add('tpope/vim-commentary', {
     \ 'on_cmd': 'Commentary',
@@ -61,7 +64,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
   call dein#add('ryanoasis/vim-devicons')
-
   call dein#add('jparise/vim-graphql')
 
   " Required:
@@ -457,6 +459,86 @@ autocmd FileType defx call s:defx_my_settings()
 	  nnoremap <silent><buffer><expr> cd
 	  \ defx#do_action('change_vim_cwd')
 	endfunction
+
+" lightline.vim
+"
+set laststatus=2
+set showtabline=2
+
+let g:lightline = {
+	\ 'colorscheme': 'gruvbox9',
+	\ 'active': {
+		\   'left': [['mode', 'paste'], ['filename', 'modified']],
+		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+		\ },
+	\ 'tabline': {
+		\   'left': [['buffers']],
+		\   'right': [['thinkvim']],
+		\ },
+	\ 'component_expand': {
+		\   'linter_warnings': 'LightlineLinterWarnings',
+		\   'linter_errors': 'LightlineLinterErrors',
+		\   'linter_ok': 'LightlineLinterOK',
+		\   'buffers': 'lightline#bufferline#buffers'
+		\ },
+	\ 'component_type': {
+		\   'readonly': 'error',
+		\   'linter_warnings': 'warning',
+		\   'linter_errors': 'error',
+		\   'buffers': 'tabsel'
+		\ },
+	\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  let g:lightline.colorscheme = g:colors_name
+  call lightline#init()
+endfunction
+
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
+
+let g:lightline#bufferline#show_number  = 2
+
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " vim-go
 let g:go_def_mapping_enabled = 0

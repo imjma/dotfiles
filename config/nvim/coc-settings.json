@@ -1,5 +1,16 @@
 {
   "suggest.minTriggerInputLength": 2,
+  "list.normalMappings": {
+    "t": "action:tabe",
+    "v": "action:vsplit",
+    "s": "action:split",
+    "d": "expr:GetDeleteAction"
+  },
+  "list.insertMappings": {
+    "<C-t>": "action:tabe",
+    "<C-v>": "action:vsplit",
+    "<C-w>": "command:wincmd k"
+  },
   "languageserver": {
     "golang": {
       "command": "gopls",
