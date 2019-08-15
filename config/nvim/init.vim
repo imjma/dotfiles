@@ -82,6 +82,8 @@ endif
 
 let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets']
 
+" set t_Co=256
+" set termguicolors
 set background=dark
 " colorscheme gruvbox9
 colorscheme badwolf
@@ -96,31 +98,48 @@ else
     set number relativenumber
 endif
 
-
-set cursorline              " highlight current line
-set wildmenu                " visual autocomplete for command menu
-set wildmode=list:longest,full " List all options and complete
-
+" general
+set autoread
 set backspace=indent,eol,start
-set scrolloff=10             " at least 5 visible lines of text above and below
-
-set list
-" set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
-
-" Open split panes to right and bottom
-set splitbelow
-set splitright
-
-" Search
-set hlsearch            " highlight matches
-set ignorecase          " case insensitive
-
-set nofoldenable
-
+set clipboard=unnamed
+set cmdheight=2 " Better display for messages
+set cursorline              " highlight current line
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
-set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " fold based on indent level
+set foldnestmax=10      " 10 nested fold max
+set hlsearch            " highlight matches
+set ignorecase          " case insensitive
+set laststatus=2
+set lazyredraw
+set list
+" set listchars=tab:¦\ ,trail:⋅,extends:»j,precedes:«,nbsp:␣
+set nobackup
+set nofoldenable
+set noswapfile
+set nowritebackup
+set ruler
+set scrolloff=10             " at least 5 visible lines of text above and below
+set shortmess+=c " don't give |ins-completion-menu| messages.
+set showtabline=2
+set signcolumn=yes " always show signcolumns
+set splitbelow " Open split panes to bottom
+set splitright " Open split panes to right
+set updatetime=300 " You will have bad coc experience for diagnostic messages when it's default 4000.
+set wildmenu                " visual autocomplete for command menu
+set wildmode=list:longest,full " List all options and complete
+set wildignore+=*.gem
+set wildignore+=*.git*
+set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*DS_Store*
+set wildignore+=*node_modules*
+set wildignore+=*sass-cache*
+set wildignore+=*vim/backups*
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=vendor/cache/**
+set wildignore=*.o,*.obj,*~ " stuff to ignore when tab completing
 
 " I dislike visual bell as well.
 set novisualbell
@@ -132,8 +151,7 @@ if v:version >= 703
   set undodir=/tmp//,.
 endif
 
-set clipboard=unnamed
-
+" key mappings
 let mapleader="\<Space>"
 
 " Toggle showing linenumber
@@ -295,21 +313,6 @@ nnoremap < <<_
 map <F7> mzgg=G`z
 
 " coc
-" Some servers have issues with backup files
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -385,6 +388,8 @@ nmap ]g <Plug>(coc-git-nextchunk)
 
 nnoremap <silent> <Leader>e
                 \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+nnoremap <silent> <Leader>E
+                \ :<C-u>Defx -search=`expand('%:p')` -buffer-name=tab`tabpagenr()`<CR>
 
 call defx#custom#option('_', {
 	\ 'columns': 'indent:git:icons:filename',
@@ -398,7 +403,7 @@ autocmd FileType defx call s:defx_my_settings()
 	function! s:defx_my_settings() abort
 	  " Define mappings
 	  nnoremap <silent><buffer><expr> <CR>
-	  \ defx#do_action('open')
+	  \ defx#do_action('open', 'botright vsplit')
 	  nnoremap <silent><buffer><expr> c
 	  \ defx#do_action('copy')
 	  nnoremap <silent><buffer><expr> m
@@ -461,9 +466,6 @@ autocmd FileType defx call s:defx_my_settings()
 	endfunction
 
 " lightline.vim
-"
-set laststatus=2
-set showtabline=2
 
 let g:lightline = {
 	\ 'colorscheme': 'gruvbox9',
