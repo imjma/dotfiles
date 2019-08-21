@@ -48,22 +48,32 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('Shougo/neosnippet.vim')
   "call dein#add('Shougo/neosnippet-snippets')
   call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
-  call dein#add('taigacute/gruvbox9')
-  call dein#add('sjl/badwolf')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('mengelbrecht/lightline-bufferline')
-  call dein#add('wellle/targets.vim')
-  call dein#add('fatih/vim-go')
-  call dein#add('tpope/vim-commentary', {
-    \ 'on_cmd': 'Commentary',
-    \ 'on_map': 'gc',
-  \ })
   call dein#add('Shougo/defx.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
+
+  " theme
+  call dein#add('taigacute/gruvbox9')
+  call dein#add('sjl/badwolf')
+  call dein#add('ayu-theme/ayu-vim')
+
+  " interface
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('mengelbrecht/lightline-bufferline')
   call dein#add('ryanoasis/vim-devicons')
+  call dein#add('Yggdroot/indentLine')
+
+  " text
+  call dein#add('tpope/vim-commentary', {
+    \ 'on_cmd': 'Commentary',
+    \ 'on_map': 'gc',
+  \ })
+  call dein#add('wellle/targets.vim')
+  
+  " language
+  call dein#add('fatih/vim-go')
   call dein#add('jparise/vim-graphql')
 
   " Required:
@@ -83,7 +93,7 @@ endif
 let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets']
 
 " set t_Co=256
-" set termguicolors
+set termguicolors
 set background=dark
 " colorscheme gruvbox9
 colorscheme badwolf
@@ -467,10 +477,14 @@ autocmd FileType defx call s:defx_my_settings()
 
 " lightline.vim
 
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 let g:lightline = {
 	\ 'colorscheme': 'gruvbox9',
 	\ 'active': {
-		\   'left': [['mode', 'paste'], ['filename', 'modified']],
+		\   'left': [['mode', 'paste'], ['cocstatus', 'currentfunction', 'filename', 'modified']],
 		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
 		\ },
 	\ 'tabline': {
@@ -488,6 +502,10 @@ let g:lightline = {
 		\   'linter_warnings': 'warning',
 		\   'linter_errors': 'error',
 		\   'buffers': 'tabsel'
+		\ },
+	\ 'component_function': {
+		\  'cocstatus': 'coc#status',
+		\  'currentfunction': 'CocCurrentFunction'
 		\ },
 	\ }
 
@@ -560,5 +578,14 @@ let g:go_addtags_transform = "snakecase"
 
 " for go
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+let g:indentline_enabled = 1
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind']
+let g:indentLine_concealcursor = 'niv'
+let g:indentLine_color_term = 96
+let g:indentLine_color_gui= '#725972'
+let g:indentLine_showFirstIndentLevel =1
+autocmd Filetype json let g:indentLine_setConceal = 0
 
 "  vim -c 'set t_te=' -c 'set t_ti=' -c 'map <space>' -c q | sort

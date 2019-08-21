@@ -121,6 +121,7 @@ font:
     family: PragmataPro Mono
     # family: Hack
     # family: Iosevka
+    # family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
