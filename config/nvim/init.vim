@@ -64,6 +64,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('mengelbrecht/lightline-bufferline')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('Yggdroot/indentLine')
+  " call dein#add('roman/golden-ratio')
 
   " text
   call dein#add('tpope/vim-commentary', {
@@ -75,6 +76,7 @@ if dein#load_state('~/.cache/dein')
   " language
   call dein#add('fatih/vim-go')
   call dein#add('jparise/vim-graphql')
+  call dein#add('tpope/vim-surround')
 
   " Required:
   call dein#end()
@@ -378,7 +380,7 @@ nmap <silent> <space>k :call CocAction('format')<CR>
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
 
 " coc-lists
 nmap <silent> <leader>p :CocList files<CR>
