@@ -57,7 +57,9 @@ if dein#load_state('~/.cache/dein')
   " theme
   call dein#add('taigacute/gruvbox9')
   call dein#add('sjl/badwolf')
-  call dein#add('ayu-theme/ayu-vim')
+
+  " browsing
+  call dein#add('christoomey/vim-tmux-navigator')
 
   " interface
   call dein#add('itchyny/lightline.vim')
@@ -124,7 +126,7 @@ set hlsearch            " highlight matches
 set ignorecase          " case insensitive
 set laststatus=2
 set lazyredraw
-set list
+" set list
 " set listchars=tab:¦\ ,trail:⋅,extends:»j,precedes:«,nbsp:␣
 set nobackup
 set nofoldenable
@@ -307,22 +309,6 @@ nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Ctrl+Shift+上下移动当前行
-nnoremap <silent><C-J> :m .+1<CR>==
-nnoremap <silent><C-K> :m .-2<CR>==
-inoremap <silent><C-J> <Esc>:m .+1<CR>==gi
-inoremap <silent><C-K> <Esc>:m .-2<CR>==gi
-" 上下移动选中的行
-vnoremap <silent><C-J> :m '>+1<CR>gv=gv
-vnoremap <silent><C-K> :m '<-2<CR>gv=gv
-" Use tab for indenting in visual mode
-xnoremap <Tab> >gv|
-xnoremap <S-Tab> <gv
-nnoremap > >>_
-nnoremap < <<_
-" press <F7> whenever you want to format
-" your file(re-indent your entire file)
-map <F7> mzgg=G`z
 
 " coc
 
@@ -609,9 +595,10 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 
 let g:indentline_enabled = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind']
+let g:indentLine_fileTypeExclude = ['defx', 'denite', 'startify', 'tagbar', 'vista_kind']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_color_term = 96
 let g:indentLine_color_gui= '#725972'
-let g:indentLine_showFirstIndentLevel =1
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_leadingSpaceEnabled = 1
 autocmd Filetype json let g:indentLine_setConceal = 0
