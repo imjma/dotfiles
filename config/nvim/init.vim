@@ -66,7 +66,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('mengelbrecht/lightline-bufferline')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('Yggdroot/indentLine')
-  call dein#add('nathanaelkane/vim-indent-guides')
+  " call dein#add('nathanaelkane/vim-indent-guides')
   " call dein#add('roman/golden-ratio')
 
   " text
@@ -114,11 +114,13 @@ else
 endif
 
 " general
+set autoindent
 set autoread
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cmdheight=2 " Better display for messages
 set cursorline              " highlight current line
+set expandtab
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldmethod=indent   " fold based on indent level
@@ -127,8 +129,8 @@ set hlsearch            " highlight matches
 set ignorecase          " case insensitive
 set laststatus=2
 set lazyredraw
-" set list
-" set listchars=tab:¦\ ,trail:⋅,extends:»j,precedes:«,nbsp:␣
+set list
+set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
 set nobackup
 set nofoldenable
 set noswapfile
@@ -138,11 +140,10 @@ set scrolloff=10             " at least 5 visible lines of text above and below
 set shortmess+=c " don't give |ins-completion-menu| messages.
 set showtabline=2
 set signcolumn=yes " always show signcolumns
+set smartindent
 set splitbelow " Open split panes to bottom
 set splitright " Open split panes to right
 set updatetime=300 " You will have bad coc experience for diagnostic messages when it's default 4000.
-set wildmenu                " visual autocomplete for command menu
-set wildmode=list:longest,full " List all options and complete
 set wildignore+=*.gem
 set wildignore+=*.git*
 set wildignore+=*.png,*.jpg,*.gif
@@ -155,6 +156,8 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=vendor/cache/**
 set wildignore=*.o,*.obj,*~ " stuff to ignore when tab completing
+set wildmenu                " visual autocomplete for command menu
+set wildmode=list:longest,full " List all options and complete
 
 " I dislike visual bell as well.
 set novisualbell
