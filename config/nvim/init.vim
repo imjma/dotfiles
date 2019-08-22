@@ -72,7 +72,7 @@ if dein#load_state('~/.cache/dein')
     \ 'on_map': 'gc',
   \ })
   call dein#add('wellle/targets.vim')
-  
+
   " language
   call dein#add('fatih/vim-go')
   call dein#add('jparise/vim-graphql')
@@ -308,13 +308,13 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Ctrl+Shift+上下移动当前行
-nnoremap <silent><C-j> :m .+1<CR>==
-nnoremap <silent><C-k> :m .-2<CR>==
-inoremap <silent><C-j> <Esc>:m .+1<CR>==gi
-inoremap <silent><C-k> <Esc>:m .-2<CR>==gi
+nnoremap <silent><C-J> :m .+1<CR>==
+nnoremap <silent><C-K> :m .-2<CR>==
+inoremap <silent><C-J> <Esc>:m .+1<CR>==gi
+inoremap <silent><C-K> <Esc>:m .-2<CR>==gi
 " 上下移动选中的行
-vnoremap <silent><C-j> :m '>+1<CR>gv=gv
-vnoremap <silent><C-k> :m '<-2<CR>gv=gv
+vnoremap <silent><C-J> :m '>+1<CR>gv=gv
+vnoremap <silent><C-K> :m '<-2<CR>gv=gv
 " Use tab for indenting in visual mode
 xnoremap <Tab> >gv|
 xnoremap <S-Tab> <gv
@@ -377,6 +377,31 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 nmap <silent> <space>k :call CocAction('format')<CR>
+
+" coc-snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Using CocList
 " Show all diagnostics
@@ -550,6 +575,7 @@ augroup _lightline
 augroup END
 
 let g:lightline#bufferline#show_number  = 2
+let g:lightline#bufferline#filename_modifier = ':t'
 
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
@@ -589,5 +615,3 @@ let g:indentLine_color_term = 96
 let g:indentLine_color_gui= '#725972'
 let g:indentLine_showFirstIndentLevel =1
 autocmd Filetype json let g:indentLine_setConceal = 0
-
-"  vim -c 'set t_te=' -c 'set t_ti=' -c 'map <space>' -c q | sort
