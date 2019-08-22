@@ -66,6 +66,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('mengelbrecht/lightline-bufferline')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('Yggdroot/indentLine')
+  call dein#add('nathanaelkane/vim-indent-guides')
   " call dein#add('roman/golden-ratio')
 
   " text
@@ -602,3 +603,11 @@ let g:indentLine_color_gui= '#725972'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_leadingSpaceEnabled = 1
 autocmd Filetype json let g:indentLine_setConceal = 0
+
+" vim-indent-guides
+" let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=234
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=238
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
