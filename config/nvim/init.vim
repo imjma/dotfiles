@@ -134,6 +134,7 @@ set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
 set nobackup
 set nofoldenable
 set noswapfile
+set nowrap
 set nowritebackup
 set ruler
 set scrolloff=10             " at least 5 visible lines of text above and below
