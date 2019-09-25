@@ -134,7 +134,7 @@ set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
 set nobackup
 set nofoldenable
 set noswapfile
-set nowrap
+" set nowrap
 set nowritebackup
 set ruler
 set scrolloff=10             " at least 5 visible lines of text above and below
@@ -440,7 +440,7 @@ autocmd FileType defx call s:defx_my_settings()
 	  \ defx#do_action('paste')
 	  nnoremap <silent><buffer><expr> l
 	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> E
+	  nnoremap <silent><buffer><expr> <C-v>
 	  \ defx#do_action('open', 'vsplit')
 	  nnoremap <silent><buffer><expr> P
 	  \ defx#do_action('open', 'pedit')

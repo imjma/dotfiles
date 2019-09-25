@@ -44,6 +44,8 @@ yabai -m config window_gap                   10
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Drafts$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^iTunes$" manage=off
  
 # float tweetbot non main windows
 yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off
