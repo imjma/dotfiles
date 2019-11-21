@@ -60,6 +60,7 @@ if dein#load_state('~/.cache/dein')
 
   " browsing
   call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('psliwka/vim-smoothie')
 
   " interface
   call dein#add('itchyny/lightline.vim')
@@ -75,11 +76,13 @@ if dein#load_state('~/.cache/dein')
     \ 'on_map': 'gc',
   \ })
   call dein#add('wellle/targets.vim')
+  call dein#add('terryma/vim-multiple-cursors')
 
   " language
   call dein#add('fatih/vim-go')
   call dein#add('jparise/vim-graphql')
   call dein#add('tpope/vim-surround')
+  call dein#add('liuchengxu/vista.vim')
 
   " Required:
   call dein#end()
@@ -431,7 +434,7 @@ autocmd FileType defx call s:defx_my_settings()
 	function! s:defx_my_settings() abort
 	  " Define mappings
 	  nnoremap <silent><buffer><expr> <CR>
-	  \ defx#do_action('open', 'botright vsplit')
+	  \ defx#do_action('open')
 	  nnoremap <silent><buffer><expr> c
 	  \ defx#do_action('copy')
 	  nnoremap <silent><buffer><expr> m
@@ -502,7 +505,7 @@ endfunction
 let g:lightline = {
 	\ 'colorscheme': 'gruvbox9',
 	\ 'active': {
-		\   'left': [['mode', 'paste'], ['cocstatus', 'currentfunction', 'filename', 'modified']],
+		\   'left': [['mode', 'paste'], ['cocstatus', 'currentfunction', 'filename', 'modified', 'method']],
 		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
 		\ },
 	\ 'tabline': {
@@ -523,7 +526,8 @@ let g:lightline = {
 		\ },
 	\ 'component_function': {
 		\  'cocstatus': 'coc#status',
-		\  'currentfunction': 'CocCurrentFunction'
+		\  'currentfunction': 'CocCurrentFunction',
+		\  'method': 'NearestMethodOrFunction'
 		\ },
 	\ }
 
@@ -615,3 +619,19 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=238
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
+
+" vista.vim
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+nmap <leader>t :Vista!!<CR>
+let g:vista_executive_for = {
+      \ 'go': 'coc',
+      \ }
+nnoremap <silent><leader>vf :Vista finder coc<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista#renderer#enable_icon = 1
+let g:vista_sidebar_width = 50

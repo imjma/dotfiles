@@ -49,5 +49,6 @@ yabai -m rule --add app="^iTunes$" manage=off
  
 # float tweetbot non main windows
 yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off
+yabai -m rule --add app="^Tweetbot$" title="" manage=off
 
 echo "yabai configuration loaded.."
