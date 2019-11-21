@@ -1,3 +1,4 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -11,7 +12,7 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: xterm-256color
 
-window:
+#window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -48,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless
+  #decorations: buttonless
 
   # Startup Mode (changes require restart)
   #
@@ -86,15 +87,6 @@ window:
   # scrollback is enabled (history > 0).
   #multiplier: 3
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  #faux_multiplier: 3
-
   # Scroll to the bottom when new text is written to the terminal.
   #auto_scroll: false
 
@@ -117,7 +109,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Dank Mono
+    #family: monospace
+    family: IBM Plex Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -383,7 +376,7 @@ shell:
   # Record all characters and escape sequences as test data.
   #ref_test: false
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
