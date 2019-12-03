@@ -6,3 +6,6 @@ require './hyper'
 
 -- app
 require './app'
+
+-- window
+require './window'
