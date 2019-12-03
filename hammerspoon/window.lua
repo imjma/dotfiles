@@ -12,6 +12,6 @@ hs.hotkey.bind({'ctrl', 'alt', 'shift'}, 'c', function()
 
     f.y = max.y
     f.h = max.h
-    win:setFrame(f, 0)
+    win:setFrameInScreenBounds(f, 0)
     win:centerOnScreen()
 end)
