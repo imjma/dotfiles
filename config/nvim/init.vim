@@ -101,9 +101,9 @@ endif
 let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets']
 
 " set t_Co=256
-set termguicolors
 set background=dark
 " colorscheme gruvbox9
+let g:badwolf_darkgutter = 1
 colorscheme badwolf
 
 " Default show linenumber
