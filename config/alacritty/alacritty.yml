@@ -107,9 +107,10 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: monospace
-    family: PragmataPro Mono
+    # family: PragmataPro Mono
     # family: JetBrainsMono Nerd Font
     # family: Dank Mono
+    family: FantasqueSansMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
