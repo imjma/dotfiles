@@ -57,6 +57,7 @@ if dein#load_state('~/.cache/dein')
   " theme
   call dein#add('taigacute/gruvbox9')
   call dein#add('sjl/badwolf')
+  call dein#add('fatih/molokai')
 
   " browsing
   call dein#add('christoomey/vim-tmux-navigator')
@@ -84,6 +85,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-surround')
   call dein#add('liuchengxu/vista.vim')
 
+  call dein#add("camspiers/animate.vim")
+  call dein#add("camspiers/lens.vim")
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -103,8 +107,9 @@ let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', '
 " set t_Co=256
 set background=dark
 " colorscheme gruvbox9
-let g:badwolf_darkgutter = 1
-colorscheme badwolf
+" let g:badwolf_darkgutter = 1
+" colorscheme badwolf
+colorscheme molokai
 
 " Default show linenumber
 if !exists('g:noshowlinenumber')
@@ -123,6 +128,8 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 set cmdheight=2 " Better display for messages
 set cursorline              " highlight current line
+hi clear CursorLine
+hi CursorLine gui=underline cterm=underline
 set expandtab
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
@@ -635,3 +642,10 @@ nnoremap <silent><leader>vf :Vista finder coc<CR>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 50
+
+let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
+
+nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
