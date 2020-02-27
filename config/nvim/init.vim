@@ -82,8 +82,10 @@ if dein#load_state('~/.cache/dein')
   " language
   call dein#add('fatih/vim-go')
   call dein#add('jparise/vim-graphql')
-  call dein#add('tpope/vim-surround')
   call dein#add('liuchengxu/vista.vim')
+
+  call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-fugitive')
 
   call dein#add("camspiers/animate.vim")
   call dein#add("camspiers/lens.vim")
@@ -512,7 +514,7 @@ endfunction
 let g:lightline = {
 	\ 'colorscheme': 'gruvbox9',
 	\ 'active': {
-		\   'left': [['mode', 'paste'], ['cocstatus', 'currentfunction', 'filename', 'modified', 'method']],
+		\   'left': [['mode', 'paste'], ['gitbranch', 'cocstatus', 'currentfunction', 'filename', 'modified', 'method']],
 		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
 		\ },
 	\ 'tabline': {
@@ -534,7 +536,8 @@ let g:lightline = {
 	\ 'component_function': {
 		\  'cocstatus': 'coc#status',
 		\  'currentfunction': 'CocCurrentFunction',
-		\  'method': 'NearestMethodOrFunction'
+		\  'method': 'NearestMethodOrFunction',
+		\  'gitbranch': 'FugitiveHead'
 		\ },
 	\ }
 
@@ -649,3 +652,7 @@ nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
 nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+
+" ==================== Fugitive ====================
+vnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gb :Gblame<CR>
