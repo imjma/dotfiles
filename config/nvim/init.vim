@@ -55,8 +55,8 @@ if dein#load_state('~/.cache/dein')
   endif
 
   " theme
-  call dein#add('taigacute/gruvbox9')
-  call dein#add('sjl/badwolf')
+  " call dein#add('taigacute/gruvbox9')
+  " call dein#add('sjl/badwolf')
   call dein#add('fatih/molokai')
 
   " browsing
@@ -67,6 +67,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('itchyny/lightline.vim')
   call dein#add('mengelbrecht/lightline-bufferline')
   call dein#add('ryanoasis/vim-devicons')
+  call dein#add('kristijanhusak/defx-icons')
   call dein#add('Yggdroot/indentLine')
   " call dein#add('nathanaelkane/vim-indent-guides')
   " call dein#add('roman/golden-ratio')
@@ -432,7 +433,7 @@ nnoremap <silent> <Leader>E
                 \ :<C-u>Defx -search=`expand('%:p')` -buffer-name=tab`tabpagenr()`<CR>
 
 call defx#custom#option('_', {
-	\ 'columns': 'indent:git:icons:filename',
+	\ 'columns': 'icons:indent:git:filename:type',
 	\ 'winwidth': 30,
 	\ 'split': 'vertical',
 	\ 'direction': 'topleft',
@@ -512,7 +513,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox9',
+	\ 'colorscheme': 'molokai',
 	\ 'active': {
 		\   'left': [['mode', 'paste'], ['gitbranch', 'cocstatus', 'currentfunction', 'filename', 'modified', 'method']],
 		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
@@ -646,7 +647,8 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 50
 
-let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
+let g:lens#disabled_filetypes = ['nerdtree', 'fzf', 'defx']
+let g:lens#animate = 0
 
 nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
 nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
