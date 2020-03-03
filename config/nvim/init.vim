@@ -538,7 +538,8 @@ let g:lightline = {
 		\  'cocstatus': 'coc#status',
 		\  'currentfunction': 'CocCurrentFunction',
 		\  'method': 'NearestMethodOrFunction',
-		\  'gitbranch': 'FugitiveHead'
+		\  'gitbranch': 'FugitiveHead',
+		\  'filename': 'LightlineFilename'
 		\ },
 	\ }
 
@@ -548,12 +549,14 @@ function! LightlineLinterWarnings() abort
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
 endfunction
+
 function! LightlineLinterErrors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
 endfunction
+
 function! LightlineLinterOK() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -572,6 +575,15 @@ endfunction
 function! s:UpdateLightlineColorScheme()
   let g:lightline.colorscheme = g:colors_name
   call lightline#init()
+endfunction
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
 endfunction
 
 augroup _lightline
@@ -620,7 +632,7 @@ let g:indentLine_concealcursor = 'niv'
 let g:indentLine_color_term = 96
 let g:indentLine_color_gui= '#725972'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_leadingSpaceEnabled = 1
+" let g:indentLine_leadingSpaceEnabled = 1
 autocmd Filetype json let g:indentLine_setConceal = 0
 
 " vim-indent-guides
