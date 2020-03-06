@@ -109,6 +109,7 @@ font:
     #family: monospace
     family: FantasqueSansMono Nerd Font Mono
     # family: Cozette
+    # family: SF Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
