@@ -22,96 +22,56 @@ if has('nvim')
 endif
 " }}}
 
-" call plug#begin('~/.config/nvim/plugged')
-
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-" Plug 'taigacute/gruvbox9'
-" Plug 'tpope/vim-commentary'
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-
-" call plug#end()
-
-" Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
-  call dein#add('Shougo/defx.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-
-  " theme
-  " call dein#add('taigacute/gruvbox9')
-  " call dein#add('sjl/badwolf')
-  call dein#add('fatih/molokai')
-
-  " browsing
-  call dein#add('christoomey/vim-tmux-navigator')
-  call dein#add('psliwka/vim-smoothie')
-
-  " interface
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('mengelbrecht/lightline-bufferline')
-  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('kristijanhusak/defx-icons')
-  call dein#add('Yggdroot/indentLine')
-  " call dein#add('nathanaelkane/vim-indent-guides')
-  " call dein#add('roman/golden-ratio')
-
-  " text
-  call dein#add('tpope/vim-commentary', {
-    \ 'on_cmd': 'Commentary',
-    \ 'on_map': 'gc',
-  \ })
-  call dein#add('wellle/targets.vim')
-  call dein#add('terryma/vim-multiple-cursors')
-
-  " language
-  call dein#add('fatih/vim-go')
-  call dein#add('jparise/vim-graphql')
-  call dein#add('liuchengxu/vista.vim')
-
-  call dein#add('tpope/vim-surround')
-  call dein#add('tpope/vim-fugitive')
-
-  call dein#add("camspiers/animate.vim")
-  call dein#add("camspiers/lens.vim")
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+if has('nvim')
+  call plug#begin(stdpath('data') . '/plugged')
+else
+  call plug#begin('~/.vim/plugged')
 endif
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'fatih/molokai'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'psliwka/vim-smoothie'
+Plug 'ryanoasis/vim-devicons'
+Plug 'kristijanhusak/defx-icons'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-commentary'
+
+Plug 'wellle/targets.vim'
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'fatih/vim-go'
+Plug 'jparise/vim-graphql'
+Plug 'liuchengxu/vista.vim'
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'itchyny/vim-gitbranch'
+
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
+
+" Initialize plugin system
+call plug#end()
 
 " Required:
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
 let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets']
 
 " set t_Co=256
 set background=dark
-" colorscheme gruvbox9
-" let g:badwolf_darkgutter = 1
-" colorscheme badwolf
 colorscheme molokai
 
 " Default show linenumber
@@ -140,7 +100,7 @@ set foldmethod=indent   " fold based on indent level
 set foldnestmax=10      " 10 nested fold max
 set hlsearch            " highlight matches
 set ignorecase          " case insensitive
-set laststatus=2
+set laststatus=0
 set lazyredraw
 set list
 set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
@@ -150,9 +110,10 @@ set noswapfile
 " set nowrap
 set nowritebackup
 set ruler
+set rulerformat=%60(%=%m\ %#Identifier#%t\ %#Label#%{gitbranch#name()}%#Normal#\ %l:%c\ `%#Identifier#o%#Normal#´%)
 set scrolloff=10             " at least 5 visible lines of text above and below
 set shortmess+=c " don't give |ins-completion-menu| messages.
-set showtabline=2
+" set showtabline=2
 set signcolumn=yes " always show signcolumns
 set smartindent
 set splitbelow " Open split panes to bottom
@@ -436,7 +397,7 @@ call defx#custom#option('_', {
 	\ 'columns': 'icons:indent:git:filename:type',
 	\ 'winwidth': 30,
 	\ 'split': 'vertical',
-	\ 'direction': 'topleft',
+	\ 'direction': 'tBufWritePostopleft',
 	\ 'show_ignored_files': 0,
 	\ })
 
@@ -505,106 +466,6 @@ autocmd FileType defx call s:defx_my_settings()
 	  nnoremap <silent><buffer><expr> cd
 	  \ defx#do_action('change_vim_cwd')
 	endfunction
-
-" lightline.vim
-
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
-let g:lightline = {
-	\ 'colorscheme': 'molokai',
-	\ 'active': {
-		\   'left': [['mode', 'paste'], ['gitbranch', 'cocstatus', 'currentfunction', 'filename', 'modified', 'method']],
-		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-		\ },
-	\ 'tabline': {
-		\   'left': [['buffers']],
-		\   'right': [['thinkvim']],
-		\ },
-	\ 'component_expand': {
-		\   'linter_warnings': 'LightlineLinterWarnings',
-		\   'linter_errors': 'LightlineLinterErrors',
-		\   'linter_ok': 'LightlineLinterOK',
-		\   'buffers': 'lightline#bufferline#buffers'
-		\ },
-	\ 'component_type': {
-		\   'readonly': 'error',
-		\   'linter_warnings': 'warning',
-		\   'linter_errors': 'error',
-		\   'buffers': 'tabsel'
-		\ },
-	\ 'component_function': {
-		\  'cocstatus': 'coc#status',
-		\  'currentfunction': 'CocCurrentFunction',
-		\  'method': 'NearestMethodOrFunction',
-		\  'gitbranch': 'FugitiveHead',
-		\  'filename': 'LightlineFilename'
-		\ },
-	\ }
-
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-endfunction
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
-
-" Update and show lightline but only if it's visible (e.g., not in Goyo)
-function! s:MaybeUpdateLightline()
-  if exists('#lightline')
-    call lightline#update()
-  end
-endfunction
-
-" Update the lightline scheme from the colorscheme. Hopefully.
-function! s:UpdateLightlineColorScheme()
-  let g:lightline.colorscheme = g:colors_name
-  call lightline#init()
-endfunction
-
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
-endfunction
-
-augroup _lightline
-  autocmd!
-  autocmd User ALELint call s:MaybeUpdateLightline()
-  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
-augroup END
-
-let g:lightline#bufferline#show_number  = 2
-let g:lightline#bufferline#filename_modifier = ':t'
-
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " vim-go
 let g:go_def_mapping_enabled = 0
