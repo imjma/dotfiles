@@ -288,7 +288,6 @@ nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-
 " coc
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -374,6 +373,7 @@ nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
 
 " coc-lists
 nmap <silent> <leader>p :CocList files<CR>
+nmap <silent> <leader><CR> :CocList buffers<CR>
 nmap <silent> <leader>w :exe 'CocList -I --normal -nmap <space>/ :CocList grep<space>-input='.expand('<cword>').' words'<CR>
 nmap <leader>/ :CocList grep<space>
 
