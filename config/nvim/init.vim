@@ -397,8 +397,11 @@ call defx#custom#option('_', {
 	\ 'columns': 'icons:indent:git:filename:type',
 	\ 'winwidth': 30,
 	\ 'split': 'vertical',
-	\ 'direction': 'tBufWritePostopleft',
+	\ 'direction': 'topleft',
 	\ 'show_ignored_files': 0,
+	\ 'toggle': 1,
+	\ 'resume': 1,
+	\ 'buffer_name': 'defxplorer',
 	\ })
 
 autocmd FileType defx call s:defx_my_settings()
