@@ -142,9 +142,9 @@ font:
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 3
+  #offset:
+  #  x: 0
+  #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -171,6 +171,33 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
+
+# Colors (Molokai Dark)
+colors:
+  # Default colors
+  primary:
+    background: '0x1B1D1E'
+    foreground: '0xF8F8F2'
+  # Normal colors
+  normal:
+    black:   '0x333333'
+    red:     '0xC4265E'
+    green:   '0x86B42B'
+    yellow:  '0xB3B42B'
+    blue:    '0x6A7EC8'
+    magenta: '0x8C6BC8'
+    cyan:    '0x56ADBC'
+    white:   '0xE3E3DD'
+  # Bright colors
+  bright:
+    black:   '0x666666'
+    red:     '0xF92672'
+    green:   '0xA6E22E'
+    yellow:  '0xE2E22E'
+    blue:    '0x819AFF'
+    magenta: '0xAE81FF'
+    cyan:    '0x66D9EF'
+    white:   '0xF8F8F2'
 
 # Colors (Tomorrow Night Bright)
 #colors:
