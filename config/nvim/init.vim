@@ -32,18 +32,20 @@ else
 endif
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+"   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/defx.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" Plug 'vifm/vifm.vim'
+Plug 'mcchrish/nnn.vim'
 Plug 'fatih/molokai'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'psliwka/vim-smoothie'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kristijanhusak/defx-icons'
+" Plug 'kristijanhusak/defx-icons'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 
@@ -56,7 +58,7 @@ Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-Plug 'itchyny/vim-gitbranch'
+Plug 'itchyny/lightline.vim'
 
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
@@ -100,17 +102,18 @@ set foldmethod=indent   " fold based on indent level
 set foldnestmax=10      " 10 nested fold max
 set hlsearch            " highlight matches
 set ignorecase          " case insensitive
-set laststatus=0
+set laststatus=2
 set lazyredraw
 set list
 set listchars=tab:¦\ ,trail:⋅,extends:»,precedes:«,nbsp:␣
 set nobackup
 set nofoldenable
+set noshowmode
 set noswapfile
 " set nowrap
 set nowritebackup
 set ruler
-set rulerformat=%60(%=%m\ %#Identifier#%t\ %#Label#%{gitbranch#name()}%#Normal#\ %l:%c\ `%#Identifier#o%#Normal#´%)
+" set rulerformat=%60(%=%m\ %#Identifier#%t\ %#Label#%{gitbranch#name()}%#Normal#\ %l:%c\ `%#Identifier#o%#Normal#´%)
 set scrolloff=10             " at least 5 visible lines of text above and below
 set shortmess+=c " don't give |ins-completion-menu| messages.
 " set showtabline=2
@@ -388,87 +391,87 @@ nmap ]g <Plug>(coc-git-nextchunk)
 
 " defx
 
-nnoremap <silent> <Leader>e
-                \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent> <Leader>E
-                \ :<C-u>Defx -search=`expand('%:p')` -buffer-name=tab`tabpagenr()`<CR>
+" nnoremap <silent> <Leader>e
+"                 \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+" nnoremap <silent> <Leader>E
+"                 \ :<C-u>Defx -search=`expand('%:p')` -buffer-name=tab`tabpagenr()`<CR>
 
-call defx#custom#option('_', {
-	\ 'columns': 'icons:indent:git:filename:type',
-	\ 'winwidth': 30,
-	\ 'split': 'vertical',
-	\ 'direction': 'topleft',
-	\ 'show_ignored_files': 0,
-	\ 'toggle': 1,
-	\ 'resume': 1,
-	\ 'buffer_name': 'defxplorer',
-	\ })
+" call defx#custom#option('_', {
+" 	\ 'columns': 'icons:indent:git:filename:type',
+" 	\ 'winwidth': 30,
+" 	\ 'split': 'vertical',
+" 	\ 'direction': 'topleft',
+" 	\ 'show_ignored_files': 0,
+" 	\ 'toggle': 1,
+" 	\ 'resume': 1,
+" 	\ 'buffer_name': 'defxplorer',
+" 	\ })
 
-autocmd FileType defx call s:defx_my_settings()
-	function! s:defx_my_settings() abort
-	  " Define mappings
-	  nnoremap <silent><buffer><expr> <CR>
-	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> c
-	  \ defx#do_action('copy')
-	  nnoremap <silent><buffer><expr> m
-	  \ defx#do_action('move')
-	  nnoremap <silent><buffer><expr> p
-	  \ defx#do_action('paste')
-	  nnoremap <silent><buffer><expr> l
-	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> <C-v>
-	  \ defx#do_action('open', 'vsplit')
-	  nnoremap <silent><buffer><expr> P
-	  \ defx#do_action('open', 'pedit')
-	  nnoremap <silent><buffer><expr> o
-	  \ defx#do_action('open_or_close_tree')
-	  nnoremap <silent><buffer><expr> K
-	  \ defx#do_action('new_directory')
-	  nnoremap <silent><buffer><expr> N
-	  \ defx#do_action('new_file')
-	  nnoremap <silent><buffer><expr> M
-	  \ defx#do_action('new_multiple_files')
-	  nnoremap <silent><buffer><expr> C
-	  \ defx#do_action('toggle_columns',
-	  \                'mark:indent:icon:filename:type:size:time')
-	  nnoremap <silent><buffer><expr> S
-	  \ defx#do_action('toggle_sort', 'time')
-	  nnoremap <silent><buffer><expr> d
-	  \ defx#do_action('remove')
-	  nnoremap <silent><buffer><expr> r
-	  \ defx#do_action('rename')
-	  nnoremap <silent><buffer><expr> !
-	  \ defx#do_action('execute_command')
-	  nnoremap <silent><buffer><expr> x
-	  \ defx#do_action('execute_system')
-	  nnoremap <silent><buffer><expr> yy
-	  \ defx#do_action('yank_path')
-	  nnoremap <silent><buffer><expr> .
-	  \ defx#do_action('toggle_ignored_files')
-	  nnoremap <silent><buffer><expr> ;
-	  \ defx#do_action('repeat')
-	  nnoremap <silent><buffer><expr> h
-	  \ defx#do_action('cd', ['..'])
-	  nnoremap <silent><buffer><expr> ~
-	  \ defx#do_action('cd')
-	  nnoremap <silent><buffer><expr> q
-	  \ defx#do_action('quit')
-	  nnoremap <silent><buffer><expr> <Space>
-	  \ defx#do_action('toggle_select') . 'j'
-	  nnoremap <silent><buffer><expr> *
-	  \ defx#do_action('toggle_select_all')
-	  nnoremap <silent><buffer><expr> j
-	  \ line('.') == line('$') ? 'gg' : 'j'
-	  nnoremap <silent><buffer><expr> k
-	  \ line('.') == 1 ? 'G' : 'k'
-	  nnoremap <silent><buffer><expr> <C-l>
-	  \ defx#do_action('redraw')
-	  nnoremap <silent><buffer><expr> <C-g>
-	  \ defx#do_action('print')
-	  nnoremap <silent><buffer><expr> cd
-	  \ defx#do_action('change_vim_cwd')
-	endfunction
+" autocmd FileType defx call s:defx_my_settings()
+" 	function! s:defx_my_settings() abort
+" 	  " Define mappings
+" 	  nnoremap <silent><buffer><expr> <CR>
+" 	  \ defx#do_action('open')
+" 	  nnoremap <silent><buffer><expr> c
+" 	  \ defx#do_action('copy')
+" 	  nnoremap <silent><buffer><expr> m
+" 	  \ defx#do_action('move')
+" 	  nnoremap <silent><buffer><expr> p
+" 	  \ defx#do_action('paste')
+" 	  nnoremap <silent><buffer><expr> l
+" 	  \ defx#do_action('open')
+" 	  nnoremap <silent><buffer><expr> <C-v>
+" 	  \ defx#do_action('open', 'vsplit')
+" 	  nnoremap <silent><buffer><expr> P
+" 	  \ defx#do_action('open', 'pedit')
+" 	  nnoremap <silent><buffer><expr> o
+" 	  \ defx#do_action('open_or_close_tree')
+" 	  nnoremap <silent><buffer><expr> K
+" 	  \ defx#do_action('new_directory')
+" 	  nnoremap <silent><buffer><expr> N
+" 	  \ defx#do_action('new_file')
+" 	  nnoremap <silent><buffer><expr> M
+" 	  \ defx#do_action('new_multiple_files')
+" 	  nnoremap <silent><buffer><expr> C
+" 	  \ defx#do_action('toggle_columns',
+" 	  \                'mark:indent:icon:filename:type:size:time')
+" 	  nnoremap <silent><buffer><expr> S
+" 	  \ defx#do_action('toggle_sort', 'time')
+" 	  nnoremap <silent><buffer><expr> d
+" 	  \ defx#do_action('remove')
+" 	  nnoremap <silent><buffer><expr> r
+" 	  \ defx#do_action('rename')
+" 	  nnoremap <silent><buffer><expr> !
+" 	  \ defx#do_action('execute_command')
+" 	  nnoremap <silent><buffer><expr> x
+" 	  \ defx#do_action('execute_system')
+" 	  nnoremap <silent><buffer><expr> yy
+" 	  \ defx#do_action('yank_path')
+" 	  nnoremap <silent><buffer><expr> .
+" 	  \ defx#do_action('toggle_ignored_files')
+" 	  nnoremap <silent><buffer><expr> ;
+" 	  \ defx#do_action('repeat')
+" 	  nnoremap <silent><buffer><expr> h
+" 	  \ defx#do_action('cd', ['..'])
+" 	  nnoremap <silent><buffer><expr> ~
+" 	  \ defx#do_action('cd')
+" 	  nnoremap <silent><buffer><expr> q
+" 	  \ defx#do_action('quit')
+" 	  nnoremap <silent><buffer><expr> <Space>
+" 	  \ defx#do_action('toggle_select') . 'j'
+" 	  nnoremap <silent><buffer><expr> *
+" 	  \ defx#do_action('toggle_select_all')
+" 	  nnoremap <silent><buffer><expr> j
+" 	  \ line('.') == line('$') ? 'gg' : 'j'
+" 	  nnoremap <silent><buffer><expr> k
+" 	  \ line('.') == 1 ? 'G' : 'k'
+" 	  nnoremap <silent><buffer><expr> <C-l>
+" 	  \ defx#do_action('redraw')
+" 	  nnoremap <silent><buffer><expr> <C-g>
+" 	  \ defx#do_action('print')
+" 	  nnoremap <silent><buffer><expr> cd
+" 	  \ defx#do_action('change_vim_cwd')
+" 	endfunction
 
 " vim-go
 let g:go_def_mapping_enabled = 0
@@ -491,7 +494,7 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 
 let g:indentline_enabled = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_fileTypeExclude = ['defx', 'denite', 'startify', 'tagbar', 'vista_kind']
+let g:indentLine_fileTypeExclude = ['denite', 'startify', 'tagbar', 'vista_kind']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_color_term = 96
 let g:indentLine_color_gui= '#725972'
@@ -523,7 +526,7 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 50
 
-let g:lens#disabled_filetypes = ['nerdtree', 'fzf', 'defx']
+let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 let g:lens#animate = 0
 
 nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
@@ -534,3 +537,108 @@ nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 " ==================== Fugitive ====================
 vnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gb :Gblame<CR>
+
+" Disable default mappings
+let g:nnn#set_default_mappings = 0
+
+" Then set your own
+nnoremap <silent> <leader>nn :NnnPicker<CR>
+
+" Or override
+" Start nnn in the current file's directory
+nnoremap <leader>n :NnnPicker '%:p:h'<CR>
+
+" Floating window (neovim latest and vim with patch 8.2.191)
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+
+" lightline.vim
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+let g:lightline = {
+	\ 'colorscheme': 'molokai',
+	\ 'active': {
+		\   'left': [['mode', 'paste'], ['gitbranch', 'cocstatus', 'currentfunction', 'filename', 'modified', 'method']],
+		\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+		\ },
+	\ 'tabline': {
+		\   'left': [['buffers']],
+		\   'right': [['thinkvim']],
+		\ },
+	\ 'component_expand': {
+		\   'linter_warnings': 'LightlineLinterWarnings',
+		\   'linter_errors': 'LightlineLinterErrors',
+		\   'linter_ok': 'LightlineLinterOK',
+		\   'buffers': 'lightline#bufferline#buffers'
+		\ },
+	\ 'component_type': {
+		\   'readonly': 'error',
+		\   'linter_warnings': 'warning',
+		\   'linter_errors': 'error',
+		\   'buffers': 'tabsel'
+		\ },
+	\ 'component_function': {
+		\  'cocstatus': 'coc#status',
+		\  'currentfunction': 'CocCurrentFunction',
+		\  'method': 'NearestMethodOrFunction',
+		\  'gitbranch': 'FugitiveHead',
+		\  'filename': 'LightlineFilename'
+		\ },
+	\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  let g:lightline.colorscheme = g:colors_name
+  call lightline#init()
+endfunction
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
+
