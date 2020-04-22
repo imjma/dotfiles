@@ -36,7 +36,7 @@ rm -rf /var/lib/apt/lists/*
 
 # install Go
 if ! [ -x "$(command -v go)" ]; then
-  export GO_VERSION="1.12.7"
+  export GO_VERSION="1.14.2"
   echo " ==> Installing go ${GO_VERSION}"
   wget "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" 
   tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz" 
@@ -61,9 +61,9 @@ if [ ! -d "${HOME}/.zsh" ]; then
   ln -sfn "${HOME}/.zsh/spaceship-prompt/spaceship.zsh" "/usr/local/share/zsh/site-functions/prompt_spaceship_setup"
 
   # https://github.com/gsamokovarov/jump
-  echo " ==> Installing jump plugins"
-  wget https://github.com/gsamokovarov/jump/releases/download/v0.23.0/jump_0.23.0_amd64.deb
-  sudo dpkg -i jump_0.23.0_amd64.deb
+  # echo " ==> Installing jump plugins"
+  # wget https://github.com/gsamokovarov/jump/releases/download/v0.23.0/jump_0.23.0_amd64.deb
+  # sudo dpkg -i jump_0.23.0_amd64.deb
 fi
 
 echo "==> Setting shell to zsh..."
@@ -73,20 +73,21 @@ chsh -s /usr/bin/zsh
 if [ ! -d /root/dotfiles ]; then
   echo "==> Setting up dotfiles"
   cd "/root"
-  git clone https://github.com/0xApe/dotfiles.git
-  
-  cd "/root/dotfiles"
+  git clone https://github.com/imjm/dotfiles.git
 
-  ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
-  ln -sfn $(pwd)/vim "${HOME}/.vim"
-  ln -sfn $(pwd)/zshrc "${HOME}/.zshrc"
-  ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
-  ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"
-  ln -sfn $(pwd)/gitconfig "${HOME}/.gitconfig"
-  ln -sfn $(pwd)/agignore "${HOME}/.agignore"
-  ln -sfn $(pwd)/config "${HOME}/.config"
-  ln -sfn $(pwd)/tmux "${HOME}/.tmux"
 fi
+  
+cd "/root/dotfiles"
+
+ln -sfn $(pwd)/vimrc "${HOME}/.vimrc"
+ln -sfn $(pwd)/vim "${HOME}/.vim"
+ln -sfn $(pwd)/zshrc "${HOME}/.zshrc"
+ln -sfn $(pwd)/tmuxconf "${HOME}/.tmux.conf"
+ln -sfn $(pwd)/tigrc "${HOME}/.tigrc"
+ln -sfn $(pwd)/gitconfig "${HOME}/.gitconfig"
+ln -sfn $(pwd)/agignore "${HOME}/.agignore"
+ln -sfn $(pwd)/config "${HOME}/.config"
+ln -sfn $(pwd)/tmux "${HOME}/.tmux"
 
 VIM_PLUG_FILE="${HOME}/.vim/autoload/plug.vim"
 if [ ! -f "${VIM_PLUG_FILE}" ]; then
