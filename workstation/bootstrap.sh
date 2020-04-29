@@ -5,6 +5,9 @@ sudo add-apt-repository ppa:keithw/mosh-dev -y
 sudo add-apt-repository ppa:jonathonf/vim -y
 sudo add-apt-repository ppa:neovim-ppa/stable -y
 
+sudo apt-get install software-properties-common
+sudo apt-add-repository universe
+
 sudo apt-get update
 sudo apt-get upgrade -y
 
@@ -24,7 +27,6 @@ sudo apt-get install -qq \
   python3-setuptools \
   ripgrep \
   silversearcher-ag \
-  software-properties-common \
   tig \
   tmux \
   unzip \
