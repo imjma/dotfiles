@@ -42,6 +42,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'vifm/vifm.vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'fatih/molokai'
+Plug 'morhetz/gruvbox'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'psliwka/vim-smoothie'
 Plug 'ryanoasis/vim-devicons'
@@ -74,7 +75,8 @@ let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', '
 
 " set t_Co=256
 set background=dark
-colorscheme molokai
+" colorscheme molokai
+colorscheme gruvbox
 
 " Default show linenumber
 if !exists('g:noshowlinenumber')
