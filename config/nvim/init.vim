@@ -71,7 +71,7 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets']
+let g:coc_global_extensions = ['coc-git', 'coc-lists', 'coc-json', 'coc-yaml', 'coc-snippets', 'coc-go']
 
 " set t_Co=256
 set background=dark
@@ -530,6 +530,10 @@ let g:vista_sidebar_width = 50
 
 let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 let g:lens#animate = 0
+
+" Lens {{{
+let g:lens#height_resize_min = 15
+" }}}
 
 nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
 nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>

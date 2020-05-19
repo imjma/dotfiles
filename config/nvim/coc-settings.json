@@ -18,5 +18,6 @@
       "filetypes": ["go"]
     }
   },
-  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"]
+  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
+  "tsserver.npm": "/usr/local/bin/npm"
 }
