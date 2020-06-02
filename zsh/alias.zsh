@@ -57,3 +57,5 @@ alias ll='exa -lgh'        # Lists human readable sizes.
 alias lt='exa --long --tree'
 alias la='exa -lagh'
 alias lg='exa -lagh --git'
+
+alias tmd='tmux new -ADs dev'

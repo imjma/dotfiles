@@ -1,5 +1,7 @@
 {
   "suggest.minTriggerInputLength": 2,
+  "git.realtimeGutters": true,
+  "git.enableGutters": false,
   "list.normalMappings": {
     "t": "action:tabe",
     "v": "action:vsplit",
