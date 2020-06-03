@@ -48,6 +48,7 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
+" basic {{{
 set encoding=utf-8
 
 set clipboard=unnamed
@@ -57,6 +58,7 @@ set ignorecase          " case insensitive
 set cmdheight=2 " Better display for messages
 set signcolumn=yes " always show signcolumns
 set smartcase
+set smarttab
 set scrolloff=10             " at least 5 visible lines of text above and below
 set sidescroll=1
 set sidescrolloff=15 "Keep 15 columns next to the cursor when scrolling horizontally
@@ -95,6 +97,10 @@ set wildignore+=vendor/cache/**
 set wildignore=*.o,*.obj,*~ " stuff to ignore when tab completing
 set wildmenu                " visual autocomplete for command menu
 
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 set autoread
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
@@ -127,6 +133,16 @@ endif
 
 set background=dark
 colorscheme gruvbox
+
+" Special sets for different filetype
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php,go,lua setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml,tpl setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+
+" }}}
 
 " key mappings {{{
 let mapleader="\<Space>"
@@ -422,16 +438,20 @@ let g:coc_global_extensions = [
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
 
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_format_strings = 0
-let g:go_highlight_function_calls = 0
 let g:go_gocode_propose_source = 1
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_structs = 1
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_types = 1
 
 let g:go_modifytags_transform = 'camelcase'
 let g:go_fold_enable = []
