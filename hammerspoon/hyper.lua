@@ -1,17 +1,41 @@
+local This = {}
 
--- Set hyper to ctrl + alt + cmd
--- Set hyperShift to ctrl + alt + cmd + shift
 local hyper      = {'ctrl', 'cmd', 'alt'}
--- local hyper      = {'ctrl', 'cmd', 'alt', 'shift'}
-local hyperShift = {'ctrl', 'alt', 'cmd', 'shift'}
+local hyperShift = {'ctrl', 'alt', 'shift'}
+local hyperCmdShift = {'ctrl', 'alt', 'cmd', 'shift'}
+
+function This.bindHotKey(key, handler)
+    hs.hotkey.bind(hyper, key, handler)
+end
+
+function This.bindShiftHotKey(key, handler)
+    hs.hotkey.bind(hyperShift, key, handler)
+end
+
+function This.bindCmdShiftHotKey(key, handler)
+    hs.hotkey.bind(hyperCmdShift, key, handler)
+end
+
+function This.bindModsHotKey(mods, key, handler)
+    hs.hotkey.bind(mods, key, handler)
+end
+
+This.hyperMode = hs.hotkey.modal.new(hyperCmdShift, 'a')
+
+function This.bindKey(key, handler)
+    This.hyperMode:bind({}, key, handler)
+end
+
+function This.bindShiftKey(key, handler)
+    This.hyperMode:bind({'shift'}, key, handler)
+end
 
 -- osascript -e 'id of app "Finder"'
 -- A global variable for the Hyper Mode
-k = hs.hotkey.modal.new(hyperShift, 'k')
+-- k = hs.hotkey.modal.new(hyperShift, 'k')
 
 toggleApp = function(hotkey, id)
   local app = hs.application.frontmostApplication()
-  -- print(app:bundleID())
   if app and app:bundleID() == id then
     app:hide()
   else
@@ -31,27 +55,39 @@ bindApps = function(hotkey, apps)
   hotkey:bind({}, 'escape', function() hotkey:exit() end)
 end
 
+function This.bindApps(apps)
+  for key, app in pairs(apps) do
+    if type(app) == 'function' then
+      This.bindKey(key, app)
+    elseif #app > 0 then
+      This.bindKey(key, function() toggleApp(This.hyperMode, app) end)
+    end
+  end
+  This.bindKey('escape', function() This.hyperMode:exit() end)
+end
+
+
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
-a = hs.hotkey.modal.new(hyperShift, 'a')
+-- a = hs.hotkey.modal.new(hyperCmdShift, 'a')
 apps = {
-  ['b'] = 'net.shinyfrog.bear',
-  ['c'] = 'com.tencent.xinWeChat',
-  ['d'] = 'com.tapbots.TweetbotMac',
-  ['e'] = 'com.sublimetext.3',
+  -- ['b'] = 'net.shinyfrog.bear',
+  -- ['c'] = 'com.tencent.xinWeChat',
+  -- ['d'] = 'com.tapbots.TweetbotMac',
+  -- ['e'] = 'com.sublimetext.3',
   ['f'] = 'com.apple.finder',
   ['w'] = 'com.apple.Safari',
-  ['t'] = 'com.googlecode.iterm2',
+  ['t'] = 'io.alacritty',
   ['g'] = 'com.google.Chrome',
-  ['m'] = 'com.apple.mail',
-  ['n'] = 'net.elasticthreads.nv',
+  ['m'] = 'com.freron.MailMate',
+  ['n'] = 'notion.id',
   ['s'] = 'com.tinyspeck.slackmacgap',
-  ['1'] = 'com.googlecode.iterm2',
-  ['2'] = 'com.google.Chrome',
+  -- ['1'] = 'com.googlecode.iterm2',
+  -- ['2'] = 'com.google.Chrome',
 }
-bindApps(a, apps)
+-- bindApps(a, apps)
 
 -- Move Mouse to center of next Monitor
-hs.hotkey.bind(hyperShift, '`', function()
+hs.hotkey.bind(hyperCmdShift, '`', function()
     local screen = hs.mouse.getCurrentScreen()
     local nextScreen = screen:next()
     local rect = nextScreen:fullFrame()
@@ -62,8 +98,10 @@ end)
 
 -- launch and focus applications
 local key2BundleID = {
-    ['p'] = 'com.jetbrains.PhpStorm'
+    -- ['p'] = 'com.jetbrains.PhpStorm'
 }
 for key, bundleID in pairs(key2BundleID) do
     hs.hotkey.bind(hyperShift, key, function() hs.application.launchOrFocusByBundleID(bundleID) end)
 end
+
+return This
