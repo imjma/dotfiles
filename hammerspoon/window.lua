@@ -1,9 +1,8 @@
 local This = {}
 
 -- https://github.com/jhkuperus/dotfiles
-local GRID_SIZE = 6
+local GRID_SIZE = 4
 local HALF_GRID_SIZE = GRID_SIZE / 2
-local THIRD_GRID_SIZE = GRID_SIZE / 3
 hs.grid.setGrid(GRID_SIZE .. 'x' .. GRID_SIZE)
 hs.grid.setMargins({5, 5})
 hs.window.animationDuration = 0
@@ -20,11 +19,11 @@ screenPositions.topRight    = {x = HALF_GRID_SIZE, y = 0,              w = HALF_
 screenPositions.bottomLeft  = {x = 0,              y = HALF_GRID_SIZE, w = HALF_GRID_SIZE, h = HALF_GRID_SIZE}
 screenPositions.bottomRight = {x = HALF_GRID_SIZE, y = HALF_GRID_SIZE, w = HALF_GRID_SIZE, h = HALF_GRID_SIZE}
 
-screenPositions.leftOneThird  = {x = 0,            y = 0,              w = THIRD_GRID_SIZE, h = GRID_SIZE     }
-screenPositions.leftTwoThirds = {x = 0,            y = 0,              w = THIRD_GRID_SIZE * 2, h = GRID_SIZE     }
+screenPositions.leftOne   = {x = 0,            y = 0,              w = 1 , h = GRID_SIZE }
+screenPositions.leftThree = {x = 0,            y = 0,              w = 3 , h = GRID_SIZE     }
 
-screenPositions.rightOneThird  = {x = THIRD_GRID_SIZE * 2,  y = 0,              w = GRID_SIZE, h = GRID_SIZE     }
-screenPositions.rightTwoThirds = {x = THIRD_GRID_SIZE,            y = 0,              w = GRID_SIZE , h = GRID_SIZE     }
+screenPositions.rightOne= {x = 3,  y = 0,              w = 1, h = GRID_SIZE     }
+screenPositions.rightThree= {x = 1,            y = 0,              w = GRID_SIZE - 1, h = GRID_SIZE     }
 
 This.screenPositions = screenPositions
 
@@ -78,15 +77,12 @@ function This.cycleWindowLeft(window)
         window = hs.window.focusedWindow()
     end
     local current = hs.grid.get(window)
-    local cell = screenPositions.leftOneThird
 
-    if current == screenPositions.leftOneThird then
-        cell = screenPositions.left
-    elseif current == screenPositions.left then
-        cell = screenPositions.leftTwoThirds
+    if current.x ~= 0 or current.y ~= 0 or current.w >= GRID_SIZE - 1 then
+        This.moveWindowToPosition(screenPositions.leftOne, window)
+    else
+        hs.grid.resizeWindowWider(window)
     end
-
-    This.moveWindowToPosition(cell, window)
 end
 
 function This.cycleWindowRight(window)
@@ -94,15 +90,14 @@ function This.cycleWindowRight(window)
         window = hs.window.focusedWindow()
     end
     local current = hs.grid.get(window)
-    local cell = screenPositions.rightOneThird
 
-    if current == screenPositions.rightOneThird then
-        cell = screenPositions.right
-    elseif current == screenPositions.right then
-        cell = screenPositions.rightTwoThirds
+    if current.x <= 1 or current.y ~= 0 or current.w >= GRID_SIZE -1 then
+        This.moveWindowToPosition(screenPositions.rightOne, window)
+    else
+        current.x = current.x - 1
+        current.w = current.w + 1
+        This.moveWindowToPosition(current)
     end
-
-    This.moveWindowToPosition(cell, window)
 end
 
 return This
