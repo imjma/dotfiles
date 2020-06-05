@@ -21,6 +21,7 @@ function This.bindModsHotKey(mods, key, handler)
 end
 
 This.hyperMode = hs.hotkey.modal.new(hyperCmdShift, 'a')
+This.hyperMode:bind({}, 'escape', function() This.hyperMode:exit() end)
 
 function This.bindKey(key, handler)
     This.hyperMode:bind({}, key, handler)
@@ -52,7 +53,6 @@ bindApps = function(hotkey, apps)
       hotkey:bind({}, key, function() toggleApp(hotkey, app) end)
     end
   end
-  hotkey:bind({}, 'escape', function() hotkey:exit() end)
 end
 
 function This.bindApps(apps)
@@ -63,7 +63,6 @@ function This.bindApps(apps)
       This.bindKey(key, function() toggleApp(This.hyperMode, app) end)
     end
   end
-  This.bindKey('escape', function() This.hyperMode:exit() end)
 end
 
 

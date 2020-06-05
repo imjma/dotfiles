@@ -32,6 +32,7 @@ hyper.bindKey('b', function()
     local bundleId = hs.window.focusedWindow():application():bundleID()
     hs.alert.show(bundleId)
     hs.pasteboard.setContents(bundleId)
+    hyper.hyperMode:exit()
 end)
 
 apps = {
