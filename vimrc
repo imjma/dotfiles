@@ -406,7 +406,6 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-lists',
   \ 'coc-yaml',
-  \'coc-go',
   \'coc-prettier',
   \'coc-snippets',
   \ ]

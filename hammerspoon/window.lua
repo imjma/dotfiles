@@ -31,10 +31,13 @@ function This.windowMaxHeight(win)
     if win == nil then
         win = hs.window.focusedWindow()
     end
-    local current = hs.grid.get(win)
-    current.y = 0
-    current.h = GRID_SIZE
-    This.moveWindowToPosition(current, win)
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.y = max.y
+    f.h = max.h
+    win:setFrameInScreenBounds(f, 0)
 end
 
 function This.moveCenter(win)
