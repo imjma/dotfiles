@@ -25,6 +25,8 @@ hyper.bindModsHotKey({'ctrl', 'alt'}, 'right', function() wm.cycleWindowRight() 
 -- hyper.bindCmdShiftHotKey(']', function() 
     -- wm.moveWindowToPosition(wm.screenPositions.rightOneThird) 
 -- end)
+hyper.bindHotKey('left', function() wm.moveToNextScreen() end)
+hyper.bindHotKey('right', function() wm.moveToPreviousScreen() end)
 
 
 -- Show the bundleID of the currently open window

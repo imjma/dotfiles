@@ -103,4 +103,24 @@ function This.cycleWindowRight(window)
     end
 end
 
+function This.moveToNextScreen(win)
+    if win == nil then
+        win = hs.window.focusedWindow()
+    end
+    if win then
+        local screen = win:screen():next()
+        win:moveToScreen(screen)
+    end
+end
+
+function This.moveToPreviousScreen(win)
+    if win == nil then
+        win = hs.window.focusedWindow()
+    end
+    if win then
+        local screen = win:screen():previous()
+        win:moveToScreen(screen)
+    end
+end
+
 return This
