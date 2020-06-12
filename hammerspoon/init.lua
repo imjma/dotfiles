@@ -38,7 +38,7 @@ hyper.bindKey('b', function()
 end)
 
 apps = {
-  ['f'] = 'com.apple.finder',
+  ['f'] = 'org.mozilla.firefox',
   ['g'] = 'com.google.Chrome',
   ['m'] = 'com.freron.MailMate',
   ['n'] = 'notion.id',
