@@ -3,8 +3,9 @@ local This = {}
 -- https://github.com/jhkuperus/dotfiles
 local GRID_SIZE = 4
 local HALF_GRID_SIZE = GRID_SIZE / 2
+local MARGIN = 5
 hs.grid.setGrid(GRID_SIZE .. 'x' .. GRID_SIZE)
-hs.grid.setMargins({5, 5})
+hs.grid.setMargins({MARGIN, MARGIN})
 hs.window.animationDuration = 0
 
 -- Defining screen positions
@@ -35,8 +36,8 @@ function This.windowMaxHeight(win)
     local screen = win:screen()
     local max = screen:frame()
 
-    f.y = max.y
-    f.h = max.h
+    f.y = max.y+MARGIN
+    f.h = max.h-MARGIN-MARGIN
     win:setFrameInScreenBounds(f, 0)
 end
 
@@ -121,6 +122,30 @@ function This.moveToPreviousScreen(win)
         local screen = win:screen():previous()
         win:moveToScreen(screen)
     end
+end
+
+function This.moveToLeft(win)
+    if win == nil then
+        win = hs.window.focusedWindow()
+    end
+    local f = win:frame()
+
+    f.x = MARGIN
+
+    win:setFrameInScreenBounds(f, 0)
+end
+
+function This.moveToRight(win)
+    if win == nil then
+        win = hs.window.focusedWindow()
+    end
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.w-f.w-MARGIN
+
+    win:setFrameInScreenBounds(f, 0)
 end
 
 return This

@@ -28,6 +28,9 @@ hyper.bindModsHotKey({'ctrl', 'alt'}, 'right', function() wm.cycleWindowRight() 
 hyper.bindHotKey('left', function() wm.moveToNextScreen() end)
 hyper.bindHotKey('right', function() wm.moveToPreviousScreen() end)
 
+hyper.bindCmdShiftHotKey('[', function() wm.moveToLeft() end)
+hyper.bindCmdShiftHotKey(']', function() wm.moveToRight() end)
+
 
 -- Show the bundleID of the currently open window
 hyper.bindKey('b', function() 
@@ -42,8 +45,10 @@ apps = {
   ['g'] = 'com.google.Chrome',
   ['m'] = 'com.freron.MailMate',
   ['n'] = 'notion.id',
+  ['r'] = 'com.brave.Browser',
   ['s'] = 'com.tinyspeck.slackmacgap',
-  ['t'] = 'io.alacritty',
+  -- ['t'] = 'io.alacritty',
+  ['t'] = 'net.kovidgoyal.kitty',
   ['w'] = 'com.apple.Safari',
 }
 
