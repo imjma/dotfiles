@@ -47,8 +47,8 @@ apps = {
   ['n'] = 'notion.id',
   ['r'] = 'com.brave.Browser',
   ['s'] = 'com.tinyspeck.slackmacgap',
-  -- ['t'] = 'io.alacritty',
-  ['t'] = 'net.kovidgoyal.kitty',
+  ['t'] = 'io.alacritty',
+  -- ['t'] = 'net.kovidgoyal.kitty',
   ['w'] = 'com.apple.Safari',
 }
 
