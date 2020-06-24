@@ -320,8 +320,9 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gl <Plug>(coc-declaration) 
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -356,7 +357,7 @@ endfunction
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
-" coc-git
+" coc-git {{{
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
@@ -366,36 +367,47 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " nmap gc <Plug>(coc-git-commit)
 " }}}
 
+" coc-go {{{
+" Add missing imports on save
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
+autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
+autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+" }}}
+
+" }}}
+
 " vim-go {{{
 nmap <C-g> :GoDecls<cr>
 
-augroup go
-  autocmd!
+" augroup go
+"   autocmd!
 
-  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
-  autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
-  autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
-  " autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
+"   autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
+"   autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
+"   autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
+"   " autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
 
-  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
+"   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
-  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
-  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
+"   autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
+"   autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
 
-  " autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
-  " autocmd FileType go nmap <silent> <leader>t  <Plug>(go-test)
-  autocmd FileType go nmap <silent> <leader>r  <Plug>(go-referrers)
-  " autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
-  " autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+"   " autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
+"   " autocmd FileType go nmap <silent> <leader>t  <Plug>(go-test)
+"   autocmd FileType go nmap <silent> <leader>r  <Plug>(go-referrers)
+"   " autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
+"   " autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
 
-  " autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+"   " autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
 
-  " I like these more!
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
+"   " I like these more!
+"   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+"   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+"   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+"   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+" augroup END
+
 " }}}
 
 " }}}
@@ -403,6 +415,7 @@ augroup END
 " coc {{{
 let g:coc_global_extensions = [
   \ 'coc-git',
+  \ 'coc-go',
   \ 'coc-json',
   \ 'coc-lists',
   \ 'coc-yaml',
@@ -448,9 +461,6 @@ let g:coc_snippet_next = '<tab>'
 " }}}
 
 " vim-go {{{
-let g:go_def_mapping_enabled = 0
-let g:go_fmt_command = "goimports"
-
 let g:go_gocode_propose_source = 1
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_build_constraints = 1
@@ -466,7 +476,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_types = 1
 
-let g:go_modifytags_transform = 'camelcase'
+let g:go_addtags_transform = 'camelcase'
 let g:go_fold_enable = []
 
 " }}}
