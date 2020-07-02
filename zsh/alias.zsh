@@ -59,3 +59,6 @@ alias la='exa -lagh'
 alias lg='exa -lagh --git'
 
 alias tmd='tmux attach -t dev|| tmux new -ADs dev'
+
+# Markdown files
+alias -s md=v

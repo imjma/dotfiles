@@ -370,9 +370,9 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " coc-go {{{
 " Add missing imports on save
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
-autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
-autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+" autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
+" autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
+" autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
 " }}}
 
 " }}}
@@ -415,7 +415,6 @@ nmap <C-g> :GoDecls<cr>
 " coc {{{
 let g:coc_global_extensions = [
   \ 'coc-git',
-  \ 'coc-go',
   \ 'coc-json',
   \ 'coc-lists',
   \ 'coc-yaml',
@@ -461,7 +460,15 @@ let g:coc_snippet_next = '<tab>'
 " }}}
 
 " vim-go {{{
-let g:go_gocode_propose_source = 1
+" " disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
+let g:go_code_completion_enabled = 0
+
+" let g:go_jump_to_error = 1
+let g:go_fmt_autosave = 0
+" let g:go_gopls_enabled = 0
+
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
