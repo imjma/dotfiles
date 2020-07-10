@@ -329,6 +329,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 " nmap <leader>rn <Plug>(coc-rename)
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -375,6 +376,48 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 " autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
 " }}}
 
+" coc-explorer {{{
+nmap <leader>e :CocCommand explorer<CR>
+
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
+
+" Use preset argument to open it
+" nmap <space>ed :CocCommand explorer --preset .vim<CR>
+nmap <space>ef :CocCommand explorer --preset floating<CR>
+
+" List all presets
+nmap <space>el :CocList explPresets<CR>
+
+" }}}
+
 " }}}
 
 " vim-go {{{
@@ -414,6 +457,7 @@ nmap <C-g> :GoDecls<cr>
 
 " coc {{{
 let g:coc_global_extensions = [
+  \ 'coc-explorer',
   \ 'coc-git',
   \ 'coc-json',
   \ 'coc-lists',
