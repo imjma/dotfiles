@@ -51,6 +51,7 @@ syntax enable
 " basic {{{
 set encoding=utf-8
 
+set guicursor=          " avoid neovim to change cursor style
 set clipboard=unnamed
 set wildmode=longest,full
 set hlsearch            " highlight matches
