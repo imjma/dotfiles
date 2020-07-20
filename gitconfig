@@ -1,7 +1,7 @@
 [user]
   name = Jie Ma
   email = codejma@gmail.com
-	signingkey = 7948C9C14BFBDF2B
+	signingkey = 21A63631892F7F8A
 [mergetool]
   prompt = false
   keepBackup = false
@@ -118,5 +118,5 @@
   oldNormal = red bold
 [credential]
 	helper = osxkeychain
-# [commit]
-#	gpgsign = true
+[commit]
+	gpgsign = true
