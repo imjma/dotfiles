@@ -424,9 +424,10 @@ nmap <space>el :CocList explPresets<CR>
 " vim-go {{{
 nmap <C-g> :GoDecls<cr>
 
-" augroup go
-"   autocmd!
+augroup go
+  autocmd!
 
+  autocmd FileType go nmap <silent> <Leader>f :GoFmt<CR>
 "   autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
 "   autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
 "   autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
@@ -450,7 +451,7 @@ nmap <C-g> :GoDecls<cr>
 "   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 "   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 "   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-" augroup END
+augroup END
 
 " }}}
 
@@ -511,7 +512,7 @@ let g:go_def_mapping_enabled = 0
 let g:go_code_completion_enabled = 0
 
 " let g:go_jump_to_error = 1
-" let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 0
 " let g:go_gopls_enabled = 0
 
 let g:go_highlight_array_whitespace_error = 0
