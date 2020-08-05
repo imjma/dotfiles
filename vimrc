@@ -51,39 +51,38 @@ syntax enable
 " basic {{{
 set encoding=utf-8
 
-set guicursor=          " avoid neovim to change cursor style
 set clipboard=unnamed
-set wildmode=longest,full
-set hlsearch            " highlight matches
-set ignorecase          " case insensitive
 set cmdheight=2 " Better display for messages
-set signcolumn=yes " always show signcolumns
-set smartcase
-set smarttab
-set scrolloff=10             " at least 5 visible lines of text above and below
-set sidescroll=1
-set sidescrolloff=15 "Keep 15 columns next to the cursor when scrolling horizontally
 set cursorline              " highlight current line
-set nofoldenable
+set display+=lastline "When 'wrap' is on, display last line even if it doesn't fit.
 set foldmethod=indent
 set foldnestmax=3
-set noshowmode
-set nowritebackup
-set updatetime=300 " You will have bad coc experience for diagnostic messages when it's default 4000.
-set noswapfile
-set laststatus=2
-set ruler
-set display+=lastline "When 'wrap' is on, display last line even if it doesn't fit.
+set guicursor=          " avoid neovim to change cursor style
+set hidden "Hide buffers instead of asking if to save them
 set history=1000
+set hlsearch            " highlight matches
+set ignorecase          " case insensitive
+set laststatus=2
 set list
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 hi clear CursorLine
 hi CursorLine gui=underline cterm=underline
+set nofoldenable
+set nomodeline
+set noshowmode
+set noswapfile
+set nowritebackup
+set ruler
+set scrolloff=10             " at least 5 visible lines of text above and below
+set sidescroll=1
+set sidescrolloff=15 "Keep 15 columns next to the cursor when scrolling horizontally
+set signcolumn=yes " always show signcolumns
+set smartcase
+set smarttab
 set splitbelow " Open split panes to bottom
 set splitright " Open split panes to right
 set updatetime=300 " You will have bad coc experience for diagnostic messages when it's default 4000.
-set hidden "Hide buffers instead of asking if to save them
-set nomodeline
+set wildmode=longest,full
 set wildignore+=*.gem
 set wildignore+=*.git*
 set wildignore+=*.png,*.jpg,*.gif
@@ -417,6 +416,12 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
 nmap <space>el :CocList explPresets<CR>
+
+" hook for explorer window initialized
+function! CocExplorerInited(filetype, bufnr)
+  " transparent
+  call setbufvar(a:bufnr, '&winblend', 10)
+endfunction
 
 " }}}
 
