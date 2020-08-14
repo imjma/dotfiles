@@ -50,6 +50,8 @@ yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Drafts$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^iTunes$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^zoom.us$" manage=off
  
 # float tweetbot non main windows
 yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off
