@@ -24,6 +24,5 @@
       }
     }
   },
-  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
-  "tsserver.npm": "/usr/local/bin/npm"
+  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"]
 }

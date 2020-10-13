@@ -40,6 +40,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
+Plug 'jparise/vim-graphql'
 
 " Initialize plugin system
 call plug#end()
