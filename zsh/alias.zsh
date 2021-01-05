@@ -7,6 +7,8 @@ if [[ `command -v nvim` > /dev/null ]]; then
   # alias vim="mvim -v"
   # alias vim="nvim"
   alias v="nvim"
+else
+  alias v="vim"
 fi
 # git
 # alias nah="git reset --hard;git clean -df"

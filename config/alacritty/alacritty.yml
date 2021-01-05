@@ -100,7 +100,8 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: monospace
-    family: Iosevka Custom
+    #family: Iosevka Custom
+    family: JetBrains Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -359,12 +360,12 @@ cursor:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /usr/local/bin/zsh
-  args:
-    - --login
-    - -c
-    - 'tmux attach -t TMUX || tmux new -s TMUX'
+# shell:
+  # program: /bin/zsh
+  # args:
+  #   - --login
+  #   - -c
+  #   - 'tmux attach -t TMUX || tmux new -s TMUX'
 
 # Startup directory
 #

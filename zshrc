@@ -40,9 +40,17 @@ export LANG="en_US.UTF-8"
 # =============
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH="/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
+export fpath=( "$HOME/.zfunctions" $fpath )
 
-export EDITOR="neovim"
+case `uname` in 
+  arm64)
+    export EDITOR="vim"
+  ;;
+  *)
+    export EDITOR="neovim"
+  ;;
+esac
 export LSCOLORS=cxBxhxDxfxhxhxhxhxcxcx
 export CLICOLOR=1
 
@@ -199,8 +207,16 @@ exit() {
 
 case `uname` in
   Darwin)
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    case `uname -m` in 
+      arm64)
+        source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      ;;
+      *)
+        source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      ;;
+    esac
   ;;
   Linux)
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -210,7 +226,5 @@ esac
 
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
