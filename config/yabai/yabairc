@@ -19,13 +19,14 @@ yabai -m config window_topmost               off
 yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                on
-yabai -m config window_border                off
+yabai -m config window_border                on
 yabai -m config window_border_placement      inset
-yabai -m config window_border_width          4
-yabai -m config window_border_radius         -1.0
+yabai -m config window_border_width          1
+# yabai -m config window_border_radius         -1.0
 yabai -m config active_window_border_topmost off
 # yabai -m config active_window_border_color   0xff775759
-yabai -m config active_window_border_color   0xff742022
+# yabai -m config active_window_border_color   0xff742022
+yabai -m config active_window_border_color   0xffeab003
 yabai -m config normal_window_border_color   0xff505050
 yabai -m config insert_window_border_color   0xffd75f5f
 yabai -m config active_window_opacity        1.0
@@ -52,6 +53,7 @@ yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^iTunes$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
+yabai -m rule --add app="AnyConnect" manage=off
  
 # float tweetbot non main windows
 yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off

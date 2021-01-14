@@ -1,5 +1,6 @@
 # open terminal
 # cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+alt - return : open -a Firefox
 
 # focus window
 alt - h : yabai -m window --focus west
@@ -158,3 +159,6 @@ alt - p : yabai -m window --toggle sticky;\
 # change layout of desktop
 ctrl + alt - a : yabai -m space --layout bsp
 ctrl + alt - d : yabai -m space --layout float
+
+# move focused window to occupy the left two thirds of the screen. 
+# ctrl + alt - [ : yabai -m window --grid 1:3:0:0:2:1
