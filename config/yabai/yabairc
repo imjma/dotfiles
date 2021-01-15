@@ -53,8 +53,14 @@ yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^iTunes$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
+# float terminal as quick terminal
+yabai -m rule --add app="^Terminal$" manage=off
+
+# add Teams meeting as float
+yabai -m rule --add app="^Microsoft Teams$" title=".| Microsoft Teams$" manage=off
+
 yabai -m rule --add app="AnyConnect" manage=off
- 
+
 # float tweetbot non main windows
 yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off
 yabai -m rule --add app="^Tweetbot$" title="" manage=off

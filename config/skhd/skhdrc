@@ -1,6 +1,7 @@
 # open terminal
 # cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 alt - return : open -a Firefox
+shift + alt - return : open -a 'Firefox Developer Edition'
 
 # focus window
 alt - h : yabai -m window --focus west
