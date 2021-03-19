@@ -43,14 +43,15 @@ export GOBIN=$GOPATH/bin
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
 export fpath=( "$HOME/.zfunctions" $fpath )
 
-case `uname` in 
-  arm64)
-    export EDITOR="vim"
-  ;;
-  *)
-    export EDITOR="neovim"
-  ;;
-esac
+export EDITOR="neovim"
+# case `uname` in 
+#   arm64)
+#     export EDITOR="vim"
+#   ;;
+#   *)
+#     export EDITOR="neovim"
+#   ;;
+# esac
 export LSCOLORS=cxBxhxDxfxhxhxhxhxcxcx
 export CLICOLOR=1
 
@@ -231,5 +232,8 @@ esac
 eval "$(jump shell)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [ -r ~/.zsh_post ] && source ~/.zsh_post
