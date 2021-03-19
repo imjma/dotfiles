@@ -45,16 +45,21 @@ yabai -m config left_padding                 20
 yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
+
 # float apps
+yabai -m rule --add label="Preferences" app="Preferences$" manage=off # should float any preferences window for any app
+
 yabai -m rule --add app="^System Preferences$" manage=off
-yabai -m rule --add app="^1Password$" manage=off
+yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
+
+yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Drafts$" manage=off
-yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^iTunes$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
 # float terminal as quick terminal
 yabai -m rule --add app="^Terminal$" manage=off
+yabai -m rule --add app="^Pastebot$" manage=off
 
 # add Teams meeting as float
 yabai -m rule --add app="^Microsoft Teams$" title=".| Microsoft Teams$" manage=off
@@ -64,5 +69,25 @@ yabai -m rule --add app="AnyConnect" manage=off
 # float tweetbot non main windows
 yabai -m rule --add app="^Tweetbot$" title="!Main" manage=off
 yabai -m rule --add app="^Tweetbot$" title="" manage=off
+
+# app window to display
+## 1
+yabai -m rule --add app="^Alacritty$" space=^1
+yabai -m rule --add app="^Code$" space=^1
+
+## 2
+yabai -m rule --add app="^Slack$" space=^2
+yabai -m rule --add app="^Microsoft Edge$" space=^2
+yabai -m rule --add app="^Insomnia$" space=^2
+yabai -m rule --add app="^Logseq$" space=^2
+yabai -m rule --add app="^Obsidian$" space=^2
+
+## 3
+yabai -m rule --add app="^MailMate$" space=^3
+yabai -m rule --add app="^Calendar$" space=^3
+
+## 4
+yabai -m rule --add app="^Brave Browser$" space=^4
+yabai -m rule --add app="^Spotify$" manage=off space=4
 
 echo "yabai configuration loaded.."

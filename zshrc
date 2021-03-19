@@ -66,10 +66,13 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # =============
 #    PROMPT
 # =============
+# Set startship as prompt
+eval "$(starship init zsh)"
+
 # Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-SPACESHIP_VI_MODE_SHOW=false
+# autoload -U promptinit; promptinit
+# prompt spaceship
+# SPACESHIP_VI_MODE_SHOW=false
 
 # =============
 #    HISTORY
@@ -228,3 +231,5 @@ esac
 eval "$(jump shell)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -r ~/.zsh_post ] && source ~/.zsh_post
