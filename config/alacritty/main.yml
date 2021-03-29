@@ -10,8 +10,9 @@ scrolling:
 
 font:
   normal:
-    family: mplus Nerd Font
-    style: regular
+    family: Fantasque Sans Mono
+    # family: mplus Nerd Font
+    # style: regular
     # style: Regular
   size: 12.0
   offset:
