@@ -10,9 +10,10 @@ scrolling:
 
 font:
   normal:
-    family: Fantasque Sans Mono
+    family: FantasqueSansMono Nerd Font
     # family: mplus Nerd Font
     # style: regular
+    # family: JetBrains Mono
     # style: Regular
   size: 12.0
   offset:
@@ -52,3 +53,4 @@ colors:
     magenta: '#d3869b'
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
+
