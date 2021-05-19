@@ -2,7 +2,7 @@
 # cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 # cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 alt - return : open -a 'Microsoft Edge'
-shift + alt - return : open -a 'Brave Browser'
+shift + alt - return : open -a 'Firefox'
 
 # focus window
 alt - h : yabai -m window --focus west
@@ -95,10 +95,10 @@ ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
 ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
 
 # move window
-shift + ctrl - a : yabai -m window --move rel:-20:0
-shift + ctrl - s : yabai -m window --move rel:0:20
-shift + ctrl - w : yabai -m window --move rel:0:-20
-shift + ctrl - d : yabai -m window --move rel:20:0
+# shift + ctrl - a : yabai -m window --move rel:-20:0
+# shift + ctrl - s : yabai -m window --move rel:0:20
+# shift + ctrl - w : yabai -m window --move rel:0:-20
+# shift + ctrl - d : yabai -m window --move rel:20:0
 
 # increase window size
 shift + alt - a : yabai -m window --resize left:-20:0
@@ -164,3 +164,4 @@ ctrl + alt - d : yabai -m space --layout float
 
 # move focused window to occupy the left two thirds of the screen. 
 shift + alt - down : yabai -m window --grid 1:3:0:0:2:1
+
