@@ -41,6 +41,8 @@ Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'jparise/vim-graphql'
+Plug 'tridactyl/vim-tridactyl'
+Plug 'sheerun/vim-polyglot'
 
 " Initialize plugin system
 call plug#end()
@@ -134,6 +136,10 @@ endif
 
 set background=dark
 colorscheme gruvbox
+autocmd ColorScheme * highlight CocErrorFloat guifg=#ffffff
+autocmd ColorScheme * highlight CocInfoFloat guifg=#ffffff
+autocmd ColorScheme * highlight CocWarningFloat guifg=#ffffff
+autocmd ColorScheme * highlight SignColumn guibg=#adadad
 
 " Special sets for different filetype
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
@@ -319,11 +325,11 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gl <Plug>(coc-declaration) 
+nmap <silent> <Leader>d <Plug>(coc-definition)
+nmap <silent> <Leader>r <Plug>(coc-references)
+nmap <silent> <Leader>y <Plug>(coc-type-definition)
+nmap <silent> <Leader>i <Plug>(coc-implementation)
+nmap <silent> <Leader>l <Plug>(coc-declaration) 
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -346,6 +352,7 @@ nmap <silent> <C-p> :CocList files<CR>
 nmap <silent> <leader>b :CocList buffers<CR>
 nnoremap <silent> <leader>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 nmap <leader>/ :CocList grep<space>
+nmap <leader>// :CocListResume<CR>
 
 " grep word under cursor
 command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
@@ -435,14 +442,15 @@ augroup go
   autocmd!
 
   autocmd FileType go nmap <silent> <Leader>f :GoFmt<CR>
-"   autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
-"   autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
-"   autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
+  " autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def)
+  " autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
+  " autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
 "   " autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
 
 "   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
-"   autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <silent> <leader>ii <Plug>(go-implements)
 "   autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
 
 "   " autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
@@ -452,6 +460,7 @@ augroup go
 "   " autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
 
 "   " autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <silent> <Leader>cc <Plug>(go-callers)
 
 "   " I like these more!
 "   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
