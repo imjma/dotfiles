@@ -1,7 +1,7 @@
 window:
   padding:
-    x: 20
-    y: 20
+    x: 15
+    y: 15
   decorations: none
 
 scrolling:
@@ -10,12 +10,14 @@ scrolling:
 
 font:
   normal:
-    family: FantasqueSansMono Nerd Font
+    # family: FantasqueSansMono Nerd Font
     # family: mplus Nerd Font
     # style: regular
     # family: JetBrains Mono
-    # style: Regular
-  size: 12.0
+    # family: M PLUS 1  Code
+    family: M PLUS Code Latin 50
+    style: Regular
+  size: 11.5
   offset:
     x: 0
     y: 0
