@@ -64,3 +64,8 @@ alias tmd='tmux attach -t dev || tmux new -ADs dev'
 
 # Markdown files
 alias -s md=v
+
+# Docker
+alias dcu='docker compose up'
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
