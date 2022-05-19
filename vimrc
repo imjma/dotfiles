@@ -44,6 +44,7 @@ Plug 'jparise/vim-graphql'
 Plug 'tridactyl/vim-tridactyl'
 Plug 'sheerun/vim-polyglot'
 Plug 'beauwilliams/focus.nvim'
+Plug 'danilamihailov/beacon.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -665,10 +666,23 @@ augroup END
 
 " }}}
 
-" focus.vim{{{
+" focus.nvim{{{
 lua require("focus").setup()
 " }}}
 
+" beaconvim{{{
+let g:beacon_ignore_filetypes = ['fzf']
+let g:beacon_show_jumps = 0
+nmap n n:Beacon<cr>
+nmap N N:Beacon<cr>
+nmap * *:Beacon<cr>
+nmap # #:Beacon<cr>
+augroup MyCursorLineGroup
+    autocmd!
+    au WinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup end
+" }}}
 
 " runtime! init.d/*.vim
 "
