@@ -15,15 +15,15 @@ font:
     # style: regular
     # family: JetBrains Mono
     # family: M PLUS 1  Code
-    family: M PLUS Code Latin 50
+    family: M PLUS Code Latin 60
     style: Regular
   size: 11.5
   offset:
     x: 0
     y: 0
 
-cursor:
-  style: Beam
+# cursor:
+#   style: Beam
 
 # Colors (Gruvbox dark)
 colors:

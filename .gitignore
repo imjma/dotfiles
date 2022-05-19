@@ -23,3 +23,5 @@ karabiner.d/log/
 
 # mov
 watch_later
+
+config/coc/*
