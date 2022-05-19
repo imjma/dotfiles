@@ -43,6 +43,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jparise/vim-graphql'
 Plug 'tridactyl/vim-tridactyl'
 Plug 'sheerun/vim-polyglot'
+Plug 'beauwilliams/focus.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -663,4 +664,11 @@ augroup _lightline
 augroup END
 
 " }}}
+
+" focus.vim{{{
+lua require("focus").setup()
+" }}}
+
+
 " runtime! init.d/*.vim
+"
