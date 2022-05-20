@@ -43,8 +43,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'jparise/vim-graphql'
 Plug 'tridactyl/vim-tridactyl'
 Plug 'sheerun/vim-polyglot'
-Plug 'beauwilliams/focus.nvim'
 Plug 'danilamihailov/beacon.nvim'
+
+if has('nvim')
+  Plug 'beauwilliams/focus.nvim'
+endif
 
 " Initialize plugin system
 call plug#end()
@@ -667,7 +670,9 @@ augroup END
 " }}}
 
 " focus.nvim{{{
-lua require("focus").setup()
+if has('nvim')
+  lua require("focus").setup()
+endif
 " }}}
 
 " beaconvim{{{
