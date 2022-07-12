@@ -2,7 +2,8 @@ window:
   padding:
     x: 15
     y: 15
-  decorations: none
+  decorations: transparent
+  dynamic_padding: true
 
 scrolling:
   history: 0
@@ -10,20 +11,16 @@ scrolling:
 
 font:
   normal:
-    # family: FantasqueSansMono Nerd Font
-    # family: mplus Nerd Font
-    # style: regular
-    # family: JetBrains Mono
-    # family: M PLUS 1  Code
     family: M PLUS Code Latin 60
     style: Regular
   size: 11.5
   offset:
     x: 0
     y: 0
+  use_thin_strokes: true
 
-# cursor:
-#   style: Beam
+cursor:
+  style: Beam
 
 # Colors (Gruvbox dark)
 colors:
