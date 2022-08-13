@@ -41,12 +41,23 @@ Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'jparise/vim-graphql'
-Plug 'tridactyl/vim-tridactyl'
 Plug 'sheerun/vim-polyglot'
 Plug 'danilamihailov/beacon.nvim'
 
 if has('nvim')
+
   Plug 'beauwilliams/focus.nvim'
+
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+  " Plug 'hrsh7th/cmp-vsnip'
+  " Plug 'hrsh7th/vim-vsnip'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
 endif
 
 " Initialize plugin system
@@ -687,6 +698,12 @@ augroup MyCursorLineGroup
     au WinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
 augroup end
+" }}}
+
+" nvim-cmp {{{
+if has('nvim')
+  local cmp = require("cmp")
+endif
 " }}}
 
 " runtime! init.d/*.vim
