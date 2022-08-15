@@ -23,7 +23,7 @@ vim.keymap.set('n', 'ss', '<cmd>split<Return><C-w>w')
 vim.keymap.set('n', 'sv', '<cmd>vsplit<Return><C-w>w')
 
 -- Close window
-vim.keymap.set('n', '<leader>q', '<cmd>close<CR>')
+-- vim.keymap.set('n', '<leader>q', '<cmd>close<CR>')
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
