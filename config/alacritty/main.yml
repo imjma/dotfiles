@@ -11,7 +11,8 @@ scrolling:
 
 font:
   normal:
-    family: M PLUS Code Latin 60
+    # family: M PLUS Code Latin 60
+    family: MPLUSCodeLatin60 Nerd Font Mono
     style: Regular
   size: 11.5
   offset:
