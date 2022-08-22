@@ -45,8 +45,9 @@ local lsp_flags = {
 -- Setup lspconfig with nvim_cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['gopls'].setup{
+require'lspconfig'.gopls.setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities
 }
+

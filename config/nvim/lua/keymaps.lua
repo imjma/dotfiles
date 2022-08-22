@@ -31,3 +31,17 @@ vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>fa', '<cmd>Telescope diagnostics<cr>')
+
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight on yank',
+  callback = function(event)
+    vim.highlight.on_yank({higroup = 'Visual', timeout = 200})
+  end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'help', 'man'},
+  desc = 'Use q to close the window',
+  command = 'nnoremap <buffer> q <cmd>quit<cr>'
+})

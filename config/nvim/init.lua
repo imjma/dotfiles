@@ -41,5 +41,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 vim.opt.background = "dark" -- or "light" for light mode
+vim.g['gruvbox_material_foreground'] = 'mix'
 vim.g['gruvbox_material_background'] = 'medium'
+vim.g['gruvbox_material_visual'] = 'reverse'
 vim.cmd([[colorscheme gruvbox-material]])
