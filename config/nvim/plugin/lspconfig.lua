@@ -43,7 +43,10 @@ local lsp_flags = {
 }
 
 -- Setup lspconfig with nvim_cmp
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
 
 require'lspconfig'.gopls.setup{
   on_attach = on_attach,
