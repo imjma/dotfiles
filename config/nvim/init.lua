@@ -32,7 +32,8 @@ vim.opt.swapfile = false
 vim.opt.tabstop = 2
 vim.opt.undofile = true
 vim.opt.updatetime = 50
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
