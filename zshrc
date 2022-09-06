@@ -40,7 +40,8 @@ export LANG="en_US.UTF-8"
 # =============
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH="$(brew --prefix)/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH:$(brew --prefix)/opt/python/libexec/bin"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$(brew --prefix)/opt/python/libexec/bin"
 export fpath=( "$HOME/.zfunctions" $fpath )
 
 export EDITOR="neovim"
