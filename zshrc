@@ -40,7 +40,7 @@ export LANG="en_US.UTF-8"
 # =============
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
+export PATH="$(brew --prefix)/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH:$(brew --prefix)/opt/python/libexec/bin"
 export fpath=( "$HOME/.zfunctions" $fpath )
 
 export EDITOR="neovim"
@@ -213,9 +213,9 @@ case `uname` in
   Darwin)
     case `uname -m` in 
       arm64)
-        # [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        [ -f /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ] && source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+        # [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        [ -f $(brew --prefix)/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ] && source $(brew --prefix)/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
       ;;
       *)
         source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
