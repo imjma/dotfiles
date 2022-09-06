@@ -13,9 +13,10 @@ return require('packer').startup(function(use)
 
   use 'sainnhe/gruvbox-material'
 
+  use 'kyazdani42/nvim-web-devicons'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    -- requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   use 'hrsh7th/cmp-nvim-lsp'

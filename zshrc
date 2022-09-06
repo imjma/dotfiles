@@ -44,7 +44,7 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:
 export PATH="$PATH:$(brew --prefix)/opt/python/libexec/bin"
 export fpath=( "$HOME/.zfunctions" $fpath )
 
-export EDITOR="neovim"
+export EDITOR="nvim"
 # case `uname` in 
 #   arm64)
 #     export EDITOR="vim"
