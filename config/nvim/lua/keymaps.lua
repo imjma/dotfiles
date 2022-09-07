@@ -32,6 +32,7 @@ vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_gre
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.keymap.set('n', '<leader>fa', '<cmd>Telescope diagnostics<cr>')
+vim.keymap.set('n', '<leader>fd', '<cmd>Telescope treesitter<cr>')
 
 
 vim.api.nvim_create_autocmd('TextYankPost', {
