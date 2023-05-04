@@ -15,7 +15,7 @@ end
 vim.api.nvim_create_autocmd({ "BufWritePre" },
     { pattern = { "*.go" },
     callback = function(event)
-      vim.lsp.buf.formatting()
+      vim.lsp.buf.format()
     end
 })
 

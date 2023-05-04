@@ -31,6 +31,7 @@ esac
 [[ -e $HOME/dotfiles/zsh/alias.zsh ]] && source $HOME/dotfiles/zsh/alias.zsh
 [[ -e $HOME/dotfiles/zsh/git.zsh ]] && source $HOME/dotfiles/zsh/git.zsh
 [[ -e $HOME/dotfiles/zsh/brew.zsh ]] && source $HOME/dotfiles/zsh/brew.zsh
+[[ -e $HOME/dotfiles/zsh/rbenv.zsh ]] && source $HOME/dotfiles/zsh/rbenv.zsh
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
