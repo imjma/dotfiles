@@ -56,4 +56,6 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
 
   -- use 'tpope/vim-surround'
+
+  use 'github/copilot.vim'
 end)
