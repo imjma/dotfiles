@@ -1,7 +1,19 @@
 local ts = require'nvim-treesitter.configs'
 
 ts.setup({
-  ensure_installed = { "go", "lua", "rust", "toml", "json", "yaml" },
+  ensure_installed = {
+    "dockerfile",
+    "gitignore",
+    "go",
+    "graphql",
+    "json",
+    "lua",
+    "query",
+    "rust",
+    "toml",
+    "yaml",
+    "vim",
+  },
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
@@ -28,4 +40,13 @@ ts.setup({
   autopairs = {
     enable = true
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<C-space>",
+      node_incremental = "<C-space>",
+      scope_incremental = false,
+      node_decremental = "<bs>",
+    },
+  }
 })

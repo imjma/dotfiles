@@ -10,6 +10,11 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use({
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
 
   use 'sainnhe/gruvbox-material'
 
@@ -30,7 +35,7 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = { 
+    requires = {
       {'nvim-lua/plenary.nvim'},
       { "nvim-telescope/telescope-live-grep-args.nvim" },
     },
@@ -50,5 +55,5 @@ return require('packer').startup(function(use)
 
   use 'windwp/nvim-autopairs'
 
-  use 'tpope/vim-surround'
+  -- use 'tpope/vim-surround'
 end)
