@@ -11,8 +11,7 @@ scrolling:
 
 font:
   normal:
-    # family: M PLUS Code Latin 60
-    family: MPLUSCodeLatin60 Nerd Font Mono
+    family: PragmataPro Mono
     style: Regular
   size: 11.5
   offset:
