@@ -52,13 +52,12 @@ mkcdir () {
 # from: http://stackoverflow.com/a/12495234/4921402
 alias gcfa="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} fetch \;"
 
-# override prezto ultity alias with exa
-# https://the.exa.website
-alias l='exa -a'
-alias ll='exa -lgh'        # Lists human readable sizes.
-alias lt='exa --long --tree'
-alias la='exa -lagh'
-alias lg='exa -lagh --git'
+# override prezto ultity alias with eza
+alias l='eza -a'
+alias ll='eza -lgh'        # Lists human readable sizes.
+alias lt='eza --long --tree'
+alias la='eza -lagh'
+alias lg='eza -lagh --git'
 
 alias tmd='tmux attach -t dev || tmux new -ADs dev'
 

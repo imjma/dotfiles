@@ -69,7 +69,7 @@ function current_repository() {
 }
 
 # these aliases take advantage of the previous function
-alias gfpush='git push -f origin $(current_branch)'
+alias gfpush='git push --force-with-lease origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
 alias ggpull='git pull origin $(current_branch)'
 alias ggpur='git pull --rebase origin $(current_branch)'
