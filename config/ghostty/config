@@ -1,0 +1,19 @@
+font-family = "Berkeley Mono"
+font-thicken = true
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+theme = GruvboxDark
+
+adjust-cell-height = 2%
+
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 6
+
+window-save-state = always
+
+window-padding-x = 6
+window-padding-y = 6
+window-padding-balance = true
+
