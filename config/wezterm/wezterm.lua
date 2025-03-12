@@ -3,7 +3,8 @@ local wezterm = require 'wezterm'
 return {
   -- font = wezterm.font 'PragmataPro',
   -- font_size = 13,
-  font = wezterm.font 'Iosevka Custom',
+  -- font = wezterm.font 'Iosevka Custom',
+  font = wezterm.font 'Berkeley Mono',
   font_size = 12,
   line_height = 1.2,
   window_background_opacity = 0.92,
