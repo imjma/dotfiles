@@ -1,0 +1,10 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+sort_by     = "natural"
+linemode    = "size"
+
+[opener]
+play =  [
+    { run = 'iina --no-stdin "$@"' }
+]
