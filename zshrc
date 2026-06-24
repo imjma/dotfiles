@@ -42,8 +42,10 @@ export LANG="en_US.UTF-8"
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:$GOBIN:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$(brew --prefix)/opt/python/libexec/bin"
 export fpath=( "$HOME/.zfunctions" $fpath )
+
 
 export EDITOR="nvim"
 # case `uname` in 
@@ -236,8 +238,27 @@ eval "$(jump shell)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [ -r ~/.zsh_post ] && source ~/.zsh_post
+
+# pnpm
+export PNPM_HOME="/Users/jma/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi
+
+. "$HOME/.local/bin/env"
+
+if [[ -n "$SSH_CONNECTION" ]]; then
+  cd ~/code
+fi
+
+# fzf
+source <(fzf --zsh)

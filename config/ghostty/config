@@ -1,10 +1,10 @@
-font-family = "Berkeley Mono Condensed"
+font-family = "Berkeley Mono Regular"
 font-thicken = true
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
-theme = GruvboxDark
+theme = Gruvbox Dark
 
 adjust-cell-height = 2%
 
@@ -17,3 +17,4 @@ window-padding-x = 6
 window-padding-y = 6
 window-padding-balance = true
 
+macos-option-as-alt = left
