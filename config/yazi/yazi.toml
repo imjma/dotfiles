@@ -1,6 +1,6 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-[manager]
+[mgr]
 sort_by     = "natural"
 linemode    = "size"
 
@@ -8,3 +8,6 @@ linemode    = "size"
 play =  [
     { run = 'iina --no-stdin "$@"' }
 ]
+
+[tasks]
+image_bound = [10000,10000]

@@ -1,0 +1,84 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w2",
+      "custom_name": null,
+      "identity_cwd": "/Users/jma/code/irohas/irohas-app",
+      "public_pane_numbers": {
+        "13": 8,
+        "5": 4
+      },
+      "next_public_pane_number": 9,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 4,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 5
+              },
+              "second": {
+                "Pane": 13
+              }
+            }
+          },
+          "panes": {
+            "5": {
+              "cwd": "/Users/jma/code/irohas/irohas-app"
+            },
+            "13": {
+              "cwd": "/Users/jma/code/irohas/irohas-app"
+            }
+          },
+          "zoomed": false,
+          "focused": 13,
+          "root_pane": 5
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w5",
+      "custom_name": null,
+      "identity_cwd": "/Users/jma/dotfiles",
+      "public_pane_numbers": {
+        "14": 1
+      },
+      "next_public_pane_number": 2,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 14
+          },
+          "panes": {
+            "14": {
+              "cwd": "/Users/jma/dotfiles"
+            }
+          },
+          "zoomed": false,
+          "focused": 14,
+          "root_pane": 14
+        }
+      ],
+      "active_tab": 0
+    }
+  ],
+  "active": 1,
+  "selected": 1,
+  "agent_panel_scope": "AllWorkspaces",
+  "sidebar_width": 26,
+  "sidebar_section_split": 0.5,
+  "collapsed_space_keys": []
+}
