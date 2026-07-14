@@ -53,11 +53,11 @@ mkcdir () {
 alias gcfa="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} fetch \;"
 
 # override prezto ultity alias with eza
-alias l='eza -a'
-alias ll='eza -lgh'        # Lists human readable sizes.
-alias lt='eza --long --tree'
-alias la='eza -lagh'
-alias lg='eza -lagh --git'
+alias l='eza -a --icons --group-directories-first'
+alias ll='eza -lgh --icons --group-directories-first'        # Lists human readable sizes.
+alias lt='eza --long --tree --icons --group-directories-first'
+alias la='eza -lagh --icons --group-directories-first'
+alias lg='eza -lagh --git --icons --group-directories-first'
 
 alias tmd='tmux attach -t dev || tmux new -ADs dev'
 
