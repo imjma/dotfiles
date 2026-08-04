@@ -25,3 +25,9 @@ karabiner.d/log/
 watch_later
 
 config/coc/*
+
+*.log
+
+config/herdr/*.json
+config/herdr/*.lock
+config/karabiner/automatic_backups/
