@@ -50,7 +50,9 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+workspace-to-monitor-force-assignment.10 = ['secondary', 'main']
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -137,6 +139,7 @@ gaps.outer.right =      10
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -148,6 +151,7 @@ gaps.outer.right =      10
     alt-shift-7 = 'move-node-to-workspace 7'
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -176,17 +180,46 @@ gaps.outer.right =      10
     alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'wechat'
+if = 'test %{workspace} = 1 && test-not %{app-bundle-id} = com.mitchellh.ghostty'
+check-further-callbacks = true
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.tencent.xinWeChat'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'telegram'
+if = 'test %{app-bundle-id} = ru.keepcoder.Telegram'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'finder'
+if = 'test %{app-bundle-id} = com.apple.finder'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'ghostty'
-run = ['move-node-to-workspace 1', 'fullscreen --no-outer-gaps']
+if = 'test %{app-bundle-id} = com.1password.1password'
+run = 'layout floating'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.Safari'
+run = 'layout floating'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.mail'
+run = 'layout floating'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.MobileSMS'
+run = 'layout floating'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.bambulab.bambu-studio'
+run = ['layout floating', 'move-node-to-workspace 10']
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = app.zen-browser.zen'
+run = ['layout tiling', 'move-node-to-workspace 10']
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
+run = ['move-node-to-workspace 1', 'fullscreen on --no-outer-gaps']
