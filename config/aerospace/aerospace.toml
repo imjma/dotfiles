@@ -193,23 +193,11 @@ if = 'test %{app-bundle-id} = ru.keepcoder.Telegram'
 run = 'layout floating'
 
 [[on-window-detected]]
-if = 'test %{app-bundle-id} = com.apple.finder'
+if = 'test %{app-bundle-id} ~= ^com.apple.'
 run = 'layout floating'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.1password.1password'
-run = 'layout floating'
-
-[[on-window-detected]]
-if = 'test %{app-bundle-id} = com.apple.Safari'
-run = 'layout floating'
-
-[[on-window-detected]]
-if = 'test %{app-bundle-id} = com.apple.mail'
-run = 'layout floating'
-
-[[on-window-detected]]
-if = 'test %{app-bundle-id} = com.apple.MobileSMS'
 run = 'layout floating'
 
 [[on-window-detected]]
@@ -223,3 +211,11 @@ run = ['layout tiling', 'move-node-to-workspace 10']
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
 run = ['move-node-to-workspace 1', 'fullscreen on --no-outer-gaps']
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.microsoft.teams2'
+run = 'layout floating'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.cisco.secureclient.gui'
+run = 'layout floating'
