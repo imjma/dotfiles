@@ -163,6 +163,10 @@ gaps.outer.right =      10
 
     alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 
+    cmd-h = [] # Disable "hide application"
+    cmd-alt-h = [] # Disable "hide others"
+    cmd-alt-m = [] # Disable "hide application"
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
