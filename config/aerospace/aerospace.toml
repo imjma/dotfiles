@@ -227,3 +227,7 @@ run = 'layout floating'
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.electron.dockerdesktop'
 run = 'layout floating'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.spotify.client'
+run = 'layout floating'
