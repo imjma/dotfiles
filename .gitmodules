@@ -2,7 +2,7 @@
 	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
+	path = dot_tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "tmux-sensible"]
 	path = tmux/plugins/tmux-sensible

@@ -221,13 +221,19 @@ if = 'test %{app-bundle-id} = com.microsoft.teams2'
 run = 'layout floating'
 
 [[on-window-detected]]
-if = 'test %{app-bundle-id} = com.cisco.secureclient.gui'
-run = 'layout floating'
-
-[[on-window-detected]]
 if = 'test %{app-bundle-id} = com.electron.dockerdesktop'
 run = 'layout floating'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.spotify.client'
 run = 'layout floating'
+
+# Work laptop only
+
+{{ if eq .machine "work" }}
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.cisco.secureclient.gui'
+run = 'layout floating'
+
+{{ end }}
