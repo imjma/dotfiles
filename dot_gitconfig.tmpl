@@ -1,7 +1,11 @@
 [user]
   name = Jie Ma
+{{ if eq .machine "work" }}
+  email = ma.jie@abc.net.au
+{{ else }}
   email = im@jma.dev
-	signingkey = 21A63631892F7F8A
+  signingkey = 21A63631892F7F8A
+{{ end }}
 [mergetool]
   prompt = false
   keepBackup = false
@@ -117,6 +121,10 @@
   newHighlight = green bold 22
   oldNormal = red bold
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
+{{ if eq .machine "base" }}
 [commit]
-	gpgsign = true
+  gpgsign = true
+[includeIf "gitdir:~/code/irohas/"]
+  path = ~/.gitconfig-irohas
+{{ end }}
