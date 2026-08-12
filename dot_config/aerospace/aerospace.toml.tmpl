@@ -232,6 +232,10 @@ run = 'layout floating'
 if = 'test %{app-bundle-id} = com.usebruno.app'
 run = 'layout floating'
 
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.openai.codex'
+run = 'layout floating'
+
 # Work laptop only
 {{ if eq .machine "work" }}
 [[on-window-detected]]
