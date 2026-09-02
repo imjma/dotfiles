@@ -1,0 +1,8 @@
+#!/bin/sh
+
+message=${*:-$(aerospace echo -- '%{window-layout} · fullscreen=%{window-is-fullscreen}')}
+osascript - "$message" <<'APPLESCRIPT'
+on run argv
+    display notification (item 1 of argv) with title "AeroSpace"
+end run
+APPLESCRIPT

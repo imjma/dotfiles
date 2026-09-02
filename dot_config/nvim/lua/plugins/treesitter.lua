@@ -2,7 +2,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "go", "gomod", "gosum", "gowork", "graphql" },
+      ensure_installed = {
+        "graphql",
+      },
     },
   },
 }

@@ -1,3 +1,9 @@
 
 [gcloud]
 format = ''
+
+[username]
+disabled = true
+
+[hostname]
+disabled = true
