@@ -254,7 +254,7 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 
-. "$HOME/.local/bin/env"
+[ -r "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 if [[ -n "$SSH_CONNECTION" ]]; then
   cd ~/code
